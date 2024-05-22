@@ -13,11 +13,14 @@ interface Props {
     | undefined;
   width?: string;
   height?: string;
+  type?: string;
+  placeholder?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   variant: 'outlined',
   width: '200px',
   height: '30px',
+  type: 'text',
 });
 
 // refs
@@ -36,6 +39,8 @@ function emitInput() {
       :variant="props.variant"
       @input="emitInput"
       v-model="input"
+      :placeholder="props.placeholder"
+      :type="props.type"
     />
   </div>
 </template>
