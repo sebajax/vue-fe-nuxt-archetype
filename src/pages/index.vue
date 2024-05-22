@@ -75,11 +75,7 @@ const formInputs = [
         </v-row>
         <v-row>
           <OrganismModal title="Actualizar formulario">
-            <OrganismForm
-              :fields="formFields"
-              :inputs="formInputs"
-              :cols="responsiveCols"
-            />
+            <OrganismUserForm :cols="responsiveCols" />
           </OrganismModal>
         </v-row>
       </v-container>

@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+// interfaces
+import type { FormField } from '~/interfaces/formField.interface';
 
 // props
 interface Props {
-  fields: string[];
-  inputs: string[];
-  cols?: string;
+  format: FormField[];
+  cols: string;
 }
 const props = withDefaults(defineProps<Props>(), {
-  cols: '1',
+  cols: '6',
 });
 
 // refs
 const formData = ref<{ [key: string]: string }>({});
 onMounted(() => {
-  props.inputs.forEach((input) => {
-    formData.value[input] = '';
+  console.log('props', props);
+  props.format.forEach((field) => {
+    formData.value[field.name] = '';
   });
   console.log(formData.value);
 });
@@ -35,12 +37,18 @@ watch(
 <template>
   <v-container class="">
     <v-row>
-      <v-col v-for="(field, i) in props.fields" :key="field" :cols="props.cols">
+      <v-col
+        v-for="(field, i) in props.format"
+        :key="field.name"
+        :cols="props.cols"
+      >
         <AtomTextInput
-          :label="field"
+          :label="field.label"
+          :type="field.type"
+          :placeholder="field.placeholder"
           @changeInputValue="
             (value) => {
-              formData[props.inputs[i]] = value;
+              formData[field.name] = value;
             }
           "
         />
