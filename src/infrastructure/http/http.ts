@@ -1,5 +1,6 @@
 // module import
 import { AxiosError, isAxiosError, type AxiosInstance } from 'axios';
+import { StatusCodes } from 'http-status-codes';
 // domain import
 import { ResponseDomain, type IResponseDomain } from '~/domain/response.domain';
 
@@ -22,7 +23,7 @@ export class Http {
     const errorResponse = new ResponseDomain({
       error: true,
       message: 'INTERNAL_SERVER_ERROR',
-      code: 500,
+      code: StatusCodes.INTERNAL_SERVER_ERROR,
     });
 
     if (this._isHttpError(error)) {
