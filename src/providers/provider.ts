@@ -1,20 +1,17 @@
-// module import
-import axios, { type AxiosInstance } from 'axios';
+// interface import
+import { type IEnvironmentConfig } from '~/infrastructure/config/environment.config';
 // infrastructure import
-import {
-  environmentConfig,
-  type IEnvironmentConfig,
-} from '~/infrastructure/config/environment.config';
+import type { Http } from '~/infrastructure/http/http';
 
 /*
  * provider main class import all the providers must extend this class
  */
 export abstract class Provider {
   public environmentConfig: IEnvironmentConfig;
-  public http: AxiosInstance;
+  public http: Http;
 
-  public constructor() {
+  public constructor(environmentConfig: IEnvironmentConfig, http: Http) {
     this.environmentConfig = environmentConfig;
-    this.http = axios.create();
+    this.http = http;
   }
 }

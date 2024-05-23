@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { UserDomain } from '~/domain/user.domain';
 import { ref } from 'vue';
+import { UserDomain } from '~/domain/user.domain';
+import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
 
-const { $user } = useNuxtApp();
-const userResponse = ref('');
+const addUserStore = useAddUserStore();
 
 interface Props {
   fields: string[];
@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const addUserProvider = async () => {
   const user = new UserDomain('Pepe', 'example@example.com');
-  userResponse.value = await $user.addUserProvider(user);
+  await addUserStore.addUser(user);
 };
 
 // Call the function when the component is mounted
@@ -51,6 +51,6 @@ async function postData() {
   </v-container>
 
   <div>
-    <p>{{ userResponse }}</p>
+    <p>{{ addUserStore.response }}</p>
   </div>
 </template>
