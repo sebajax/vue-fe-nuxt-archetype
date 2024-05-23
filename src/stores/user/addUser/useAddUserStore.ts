@@ -1,9 +1,11 @@
 // domain import
 import { UserDomain } from '~/domain/user.domain';
+// message import
+import { addUserResponse } from './addUser.response';
 
 export const useAddUserStore = defineStore('addUserStore', {
   state: () => ({
-    response: {},
+    response: '',
   }),
   actions: {
     async addUser(user: UserDomain) {
@@ -11,7 +13,7 @@ export const useAddUserStore = defineStore('addUserStore', {
         const response = await useNuxtApp().$userProvider.addUserProvider(user);
         console.log(response);
 
-        this.response = response;
+        this.response = addUserResponse(response.message);
       } catch (error) {
         console.error(error);
       }
