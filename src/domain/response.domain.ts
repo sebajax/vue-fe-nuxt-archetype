@@ -4,9 +4,9 @@
 
 // response domain interface
 export interface IResponseDomain {
-  error: boolean;
-  message: string;
-  code: number;
+  error?: boolean;
+  message?: string;
+  code?: number;
   data?: object;
 }
 
@@ -17,7 +17,10 @@ export class ResponseDomain implements IResponseDomain {
   code: number;
   data?: object;
 
-  constructor({ error, message, code }: IResponseDomain, data: object = {}) {
+  constructor(
+    { error = false, message = '', code = 0 }: IResponseDomain = {},
+    data: object = {},
+  ) {
     this.error = error;
     this.message = message;
     this.code = code;

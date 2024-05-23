@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const addUserProvider = async () => {
-  const user = new UserDomain('Pepe', 'example12@example.com');
+  const user = new UserDomain('Pepe', 'example123@example.com');
   await addUserStore.addUser(user);
 };
 
@@ -51,6 +51,6 @@ async function postData() {
   </v-container>
 
   <div>
-    <p>{{ addUserStore.response }}</p>
+    <p>{{ addUserStore.getMessage }}</p>
   </div>
 </template>
