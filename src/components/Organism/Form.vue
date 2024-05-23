@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const addUserProvider = async () => {
-  const user = new UserDomain('Pepe', 'example@example.com');
+  const user = new UserDomain('Pepe', 'example12@example.com');
   await addUserStore.addUser(user);
 };
 

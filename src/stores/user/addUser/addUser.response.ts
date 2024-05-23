@@ -1,13 +1,13 @@
 interface Messages {
   USER_EXISTS: string;
   INSERT_USER_ERROR: string;
-  CREATED: string;
+  USER_CREATED: string;
 }
 
 const messages: Messages = {
   USER_EXISTS: 'Usuario ya existe',
   INSERT_USER_ERROR: 'Error al insertar el usuario',
-  CREATED: 'Usuario creado correctamente',
+  USER_CREATED: 'Usuario creado correctamente',
 };
 
 export function addUserResponse(key: string) {
