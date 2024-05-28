@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    container_name: ${API_NAME}-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    env_file:
+      - .env
+    ports:
+      - '${PORT}:${PORT}'

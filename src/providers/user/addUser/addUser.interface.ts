@@ -3,6 +3,9 @@ import type { ResponseDomain } from '~/domain/response.domain';
 import type { UserDomain } from '~/domain/user.domain';
 // provider import
 import { AddUserProvider } from './addUser.provider';
+// infrastructure import
+import { environmentConfig } from '~/infrastructure/config/environment.config';
+import { http } from '~/infrastructure/http/http.interface';
 
 // interface to implement the provider
 export interface IAddUserProvider {
@@ -10,4 +13,4 @@ export interface IAddUserProvider {
 }
 
 // provider factory init
-export const addUserProvider = new AddUserProvider();
+export const addUserProvider = new AddUserProvider(environmentConfig, http);

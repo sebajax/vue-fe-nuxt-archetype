@@ -6,7 +6,7 @@ import { addUserProvider } from '~/providers/user/addUser/addUser.interface';
 export default defineNuxtPlugin(() => {
   return {
     provide: {
-      user: {
+      userProvider: {
         addUserProvider: async (user: UserDomain) => {
           return addUserProvider.create(user);
         },

@@ -23,6 +23,7 @@ export default defineNuxtConfig({
       });
     },
     '@nuxt/eslint',
+    '@pinia/nuxt',
   ],
   vite: {
     vue: {
@@ -30,5 +31,8 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+  },
+  pinia: {
+    storesDirs: ['~/stores', '~/stores/**', '~/stores/**/**'],
   },
 });
