@@ -12,19 +12,24 @@ interface Props {
 }
 const props = defineProps<Props>();
 
-// user form format filled by the user
+// message form format filled by the user
 const formFormat = <FormField[]>[
   {
-    name: 'name',
-    label: 'Nombre',
-    placeholder: 'Nombre',
+    name: 'text',
+    label: 'Mensaje',
+    placeholder: 'Escriba su mensaje',
     type: 'text',
   },
   {
-    name: 'email',
-    label: 'Email',
+    name: 'sender',
+    label: 'Correo',
     placeholder: 'correo@falp.org',
     type: 'email',
+  },
+  {
+    name: 'datails',
+    label: 'Detalles',
+    type: 'text',
   },
 ];
 
@@ -76,7 +81,7 @@ async function postData(form: IUserDomain) {
         :format="formFormat"
         :cols="props.cols"
         @update-form-data="
-          (value: IUserDomain) => {
+          (value) => {
             formData = value;
           }
         "

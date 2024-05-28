@@ -4,7 +4,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 // get window width and update on resize
 const width = ref<number>(0);
 function updateWidth() {
-  if (typeof window !== 'undefined') {
+  if (window !== undefined) {
     width.value = window.innerWidth;
   }
 }
