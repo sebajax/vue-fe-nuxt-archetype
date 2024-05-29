@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 
+// set actual page
+const emits = defineEmits(['setPageTitle']);
+onMounted(() => {
+  emits('setPageTitle', 'Usuarios');
+});
+
 // get window width and update on resize
 const width = ref<number>(0);
 function updateWidth() {
-  if (window !== undefined) {
+  if (typeof window !== 'undefined') {
     width.value = window.innerWidth;
   }
 }
@@ -23,17 +29,8 @@ onUnmounted(() => {
 <template>
   <v-app>
     <!-- main content -->
-    <v-main>
-      <v-container fluid class="px-8 py-8">
-        <v-row>
-          <AtomTitle text="Inicio" />
-        </v-row>
-        <v-row>
-          <OrganismModal title="Actualizar formulario">
-            <OrganismUserForm :cols="responsiveCols" />
-          </OrganismModal>
-        </v-row>
-      </v-container>
-    </v-main>
+    <v-container fluid class="px-0">
+      <UserForm />
+    </v-container>
   </v-app>
 </template>

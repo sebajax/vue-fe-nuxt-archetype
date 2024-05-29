@@ -5,7 +5,7 @@
     <!-- Footer -->
     <v-footer app color="primary">
       <v-col>
-        <AtomText text="Nuxt Skeleton" />
+        <Text text="Nuxt Skeleton" />
       </v-col>
     </v-footer>
   </div>

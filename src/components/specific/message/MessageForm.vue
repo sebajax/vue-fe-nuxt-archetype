@@ -77,7 +77,7 @@ async function postData(form: IUserDomain) {
 <template>
   <v-container class="">
     <form class="pb-4">
-      <MoleculeFormInputs
+      <FormInputs
         :format="formFormat"
         :cols="props.cols"
         @update-form-data="
@@ -86,7 +86,7 @@ async function postData(form: IUserDomain) {
           }
         "
       />
-      <AtomButton text="Añadir" @click="postData(formData)" />
+      <Button label="Añadir" @click="postData(formData)" />
     </form>
     <v-spacer />
     <!-- TODO: replace with Pinnia based toast -->

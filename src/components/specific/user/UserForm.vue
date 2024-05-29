@@ -4,13 +4,8 @@ import { ref } from 'vue';
 // interfaces
 import type { FormField } from '~/interfaces/formField.interface';
 import type { IUserDomain } from '~/domain/user.domain';
-import type { ResponseDomain } from '~/domain/response.domain';
-
-// props
-interface Props {
-  cols?: string;
-}
-const props = defineProps<Props>();
+// stores
+import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
 
 // user form format filled by the user
 const formFormat = <FormField[]>[
@@ -28,6 +23,9 @@ const formFormat = <FormField[]>[
   },
 ];
 
+// store
+// const userProvider = useAddUserStore();
+
 // receive the data from the form
 const formData = ref<IUserDomain>({
   name: '',
@@ -36,23 +34,13 @@ const formData = ref<IUserDomain>({
 // TODO: replace with Pinnia based toast
 const mesagge = ref<string>('');
 
-// TODO: check composable implementation
-const { $user } = useNuxtApp();
-const userResponse = ref<ResponseDomain>();
-async function addUserProvider(form: IUserDomain) {
-  const user = new UserDomain(form.name, form.email);
-  userResponse.value = await $user.addUserProvider(user);
-  return userResponse.value;
-}
-
 // post data
-async function postData(form: IUserDomain) {
-  if (form.name && form.email) {
+async function postData() {
+  if (formData.value.name && formData.value.email) {
     try {
       console.log('form', formData.value);
-      const res = await addUserProvider(form);
-      console.log('res', res);
-      mesagge.value = res?.message;
+      // const res = await addUserProvider.addUser(formData.value);
+      // console.log('res', res);
       formData.value = {
         name: '',
         email: '',
@@ -70,18 +58,17 @@ async function postData(form: IUserDomain) {
 </script>
 
 <template>
-  <v-container class="">
+  <v-container class="px-0">
     <form class="pb-4">
-      <MoleculeFormInputs
-        :format="formFormat"
-        :cols="props.cols"
-        @update-form-data="
-          (value: IUserDomain) => {
-            formData = value;
-          }
-        "
+      <TextInput
+        v-for="field in formFormat"
+        :key="field.name"
+        :label="field.label"
+        :placeholder="field.placeholder"
+        :type="field.type"
+        v-model="formData[field.name as keyof IUserDomain]"
       />
-      <AtomButton text="Añadir" @click="postData(formData)" />
+      <Button label="Añadir" @click="postData()" />
     </form>
     <v-spacer />
     <!-- TODO: replace with Pinnia based toast -->

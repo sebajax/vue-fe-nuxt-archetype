@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <v-dialog :max-width="props.maxWidth">
     <template #activator="{ props: activatorProps }">
-      <AtomButton v-bind="activatorProps" text="Formulario" />
+      <Button v-bind="activatorProps" label="Formulario" />
     </template>
     <template #default="{ isActive }">
       <!-- if the component has title -->
