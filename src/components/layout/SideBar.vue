@@ -8,7 +8,7 @@ const sidebarItems = [
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
   { label: 'Mensajes', icon: 'mdi-message', path: '/messages' },
 ];
-const defaultTheme = defineModel();
+const defaultMode = defineModel();
 </script>
 
 <template>
@@ -41,12 +41,14 @@ const defaultTheme = defineModel();
         </v-list-item>
       </v-list>
       <v-spacer></v-spacer>
-      <Switch
-        :label="`Tema ${spTheme}`"
-        false-value="light"
-        true-value="dark"
-        v-model="defaultTheme"
-      ></Switch>
+      <div class="flex items-center justify-left w-full px-4">
+        <Switch
+          :label="`Tema ${spTheme}`"
+          false-value="light"
+          true-value="dark"
+          v-model="defaultMode"
+        ></Switch>
+      </div>
     </v-container>
   </v-navigation-drawer>
 </template>
