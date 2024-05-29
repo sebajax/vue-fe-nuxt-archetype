@@ -2,10 +2,10 @@
 import { ref } from 'vue';
 // validators
 import { useVuelidate } from '@vuelidate/core';
-import { required, email, maxLength, alpha } from '@vuelidate/validators';
+import { alpha, email, maxLength, required } from '@vuelidate/validators';
 // interfaces
-import type { FormField } from '~/interfaces/formField.interface';
 import type { IUserDomain } from '~/domain/user.domain';
+import type { FormField } from '~/interfaces/formField.interface';
 // stores
 import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
 
@@ -26,7 +26,7 @@ const formFormat = <FormField[]>[
 ];
 
 // store
-// const addUserProvider = useAddUserStore();
+const addUserProvider = useAddUserStore();
 
 // form and rules
 const formData = ref<IUserDomain>({
@@ -71,8 +71,8 @@ async function postData() {
   console.log('validation', validation);
   if (validation) {
     console.log('form', formData.value);
-    // const res = await addUserProvider.addUser(formData.value);
-    // console.log('res', res);
+    const res = await addUserProvider.addUser(formData.value);
+    console.log('res', res);
     formData.value = {
       name: '',
       email: '',

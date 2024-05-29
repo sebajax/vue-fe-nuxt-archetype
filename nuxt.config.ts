@@ -22,9 +22,9 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
+    '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
     '@pinia/nuxt',
-    '@nuxtjs/tailwindcss',
   ],
   vite: {
     vue: {
