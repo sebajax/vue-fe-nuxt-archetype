@@ -4,7 +4,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 // set actual page
 const emits = defineEmits(['setPageTitle']);
 onMounted(() => {
-  emits('setPageTitle', 'Pacientes');
+  emits('setPageTitle', 'Mensajes');
 });
 
 // get window width and update on resize
