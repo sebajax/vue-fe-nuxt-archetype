@@ -36,7 +36,7 @@ onUnmounted(() => {
         </v-row>
         <v-row>
           <Modal title="Actualizar formulario">
-            <UserForm :cols="responsiveCols" />
+            <PatientForm :cols="responsiveCols" />
           </Modal>
         </v-row>
       </v-container>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { UserDomain } from '~/domain/user.domain';
 import { ref } from 'vue';
+// validators
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, maxLength, alpha } from '@vuelidate/validators';
 // interfaces
 import type { FormField } from '~/interfaces/formField.interface';
 import type { IUserDomain } from '~/domain/user.domain';
@@ -24,56 +26,91 @@ const formFormat = <FormField[]>[
 ];
 
 // store
-// const userProvider = useAddUserStore();
+// const addUserProvider = useAddUserStore();
 
-// receive the data from the form
+// form and rules
 const formData = ref<IUserDomain>({
   name: '',
   email: '',
 });
+const rules = {
+  name: { required, maxLength: maxLength(80), alpha },
+  email: { required, email },
+};
+const $v = useVuelidate(rules, formData);
+
+// vuetify rules
+// TODO: make them composables and connect with vuelidate
+const nameRules = [
+  (value: string) => {
+    if (value) return true;
+    return 'El campo Nombre es requerido.';
+  },
+  (value: string) => {
+    if (value?.length <= 50) return true;
+    return 'El nombre debe tener a lo más 50 caracteres.';
+  },
+];
+const emailRules = [
+  (value: string) => {
+    if (value) return true;
+    return 'El campo Correo es requerido.';
+  },
+  (value: string) => {
+    if (/.+@.+\..+/.test(value)) return true;
+    return 'El correo debe ser uno válido.';
+  },
+];
+
 // TODO: replace with Pinnia based toast
 const mesagge = ref<string>('');
 
 // post data
 async function postData() {
-  if (formData.value.name && formData.value.email) {
-    try {
-      console.log('form', formData.value);
-      // const res = await addUserProvider.addUser(formData.value);
-      // console.log('res', res);
-      formData.value = {
-        name: '',
-        email: '',
-      };
-    } catch (error) {
-      console.error(error);
-    } finally {
-      return mesagge.value;
-    }
+  const validation = await $v.value.$validate();
+  console.log('validation', validation);
+  if (validation) {
+    console.log('form', formData.value);
+    // const res = await addUserProvider.addUser(formData.value);
+    // console.log('res', res);
+    formData.value = {
+      name: '',
+      email: '',
+    };
+    mesagge.value = 'Usuario añadido correctamente';
   } else {
-    mesagge.value = 'Los campos nombre y correo son requeridos';
-    console.log('Please fill all the fields');
+    mesagge.value = 'Error al añadir usuario';
   }
 }
 </script>
 
 <template>
-  <v-container class="px-0">
-    <form class="pb-4">
+  <v-form @submit.prevent="postData" class="pb-4">
+    <v-container class="px-0 space-y-4">
       <TextInput
-        v-for="field in formFormat"
-        :key="field.name"
-        :label="field.label"
-        :placeholder="field.placeholder"
-        :type="field.type"
-        v-model="formData[field.name as keyof IUserDomain]"
+        :key="formFormat[0].name"
+        :label="formFormat[0].label"
+        :placeholder="formFormat[0].placeholder"
+        :type="formFormat[0].type"
+        v-model="formData.name"
+        required
+        :rules="nameRules"
+      ></TextInput>
+      <TextInput
+        :key="formFormat[1].name"
+        :label="formFormat[1].label"
+        :placeholder="formFormat[1].placeholder"
+        :type="formFormat[1].type"
+        v-model="formData.email"
+        required
+        :rules="emailRules"
       />
-      <Button label="Añadir" @click="postData()" />
-    </form>
-    <v-spacer />
-    <!-- TODO: replace with Pinnia based toast -->
-    <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">
-      {{ mesagge }}
-    </p>
-  </v-container>
+      <Button label="Añadir usuario" @click="postData()" />
+      <v-spacer />
+      <!-- TODO: replace with Pinnia based toast -->
+      <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">
+        {{ mesagge }}
+      </p>
+    </v-container>
+  </v-form>
 </template>
