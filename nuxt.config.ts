@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     },
     '@nuxt/eslint',
     '@pinia/nuxt',
+    '@nuxtjs/tailwindcss',
   ],
   vite: {
     vue: {
