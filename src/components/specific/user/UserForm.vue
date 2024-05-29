@@ -68,18 +68,21 @@ const mesagge = ref<string>('');
 // post data
 async function postData() {
   const validation = await $v.value.$validate();
-  console.log('validation', validation);
   if (validation) {
-    console.log('form', formData.value);
-    const res = await addUserProvider.addUser(formData.value);
-    console.log('res', res);
+    await addUserProvider.addUser(formData.value);
+    const res: boolean = addUserProvider.getError;
+    if (!res) {
+      mesagge.value = 'Usuario añadido correctamente';
+      return;
+    } else {
+      mesagge.value = 'Error al añadir usuario';
+    }
     formData.value = {
       name: '',
       email: '',
     };
-    mesagge.value = 'Usuario añadido correctamente';
   } else {
-    mesagge.value = 'Error al añadir usuario';
+    mesagge.value = 'Asegúrate de llenar los campos correctamente';
   }
 }
 </script>
@@ -105,7 +108,7 @@ async function postData() {
         required
         :rules="emailRules"
       />
-      <Button label="Añadir usuario" @click="postData()" />
+      <Button label="Añadir usuario" @click="postData()" :readinly="formData" />
       <v-spacer />
       <!-- TODO: replace with Pinnia based toast -->
       <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">

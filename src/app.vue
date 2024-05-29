@@ -1,13 +1,36 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch, getCurrentInstance } from 'vue';
+import { useTheme } from 'vuetify';
+// types
+import type { Theme } from './interfaces/theme.type';
+
+// stores
+// import { useThemeStore } from '@/stores/theme/themeStore';
+
+// vuetify theme
+const theme = useTheme();
+// stored theme
+// const themeStore = useThemeStore();
+
 const actualPage = ref<string>('Paciente');
+const defaultTheme = ref<Theme>('light');
+const themeLanguaje = ref<string>(
+  { light: 'claro', dark: 'oscuro' }[defaultTheme.value],
+);
+
+// set default theme based on the swtich value
+watch(defaultTheme, (newTheme: Theme) => {
+  // themeStore.setTheme(newTheme);
+  themeLanguaje.value = { light: 'claro', dark: 'oscuro' }[newTheme];
+  theme.global.name.value = newTheme;
+});
 </script>
 
 <template>
   <NuxtLayout>
     <v-app class="d-flex">
       <v-layout column>
-        <SideBar />
+        <SideBar v-model="defaultTheme" :sp-theme="themeLanguaje" />
         <Header v-model="actualPage" />
         <v-main :style="{ height: '100vh' }">
           <NuxtPage
