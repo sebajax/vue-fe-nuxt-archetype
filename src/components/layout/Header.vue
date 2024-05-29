@@ -8,7 +8,7 @@ const model = defineModel<string>();
     color="light-gray"
     class="d-flex justify-center align-center px-6 mt-4 rounded-lg app-bar-margin"
   >
-    <BaseTitle :text="model || 'Header'" class="title-center" />
+    <BaseTitle :text="model || ''" class="title-center" />
     <v-spacer />
     <Button
       label="perfil"

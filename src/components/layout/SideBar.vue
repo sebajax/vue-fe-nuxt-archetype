@@ -1,10 +1,14 @@
 <script lang="ts" setup>
+defineProps<{
+  spTheme: string;
+}>();
 const sidebarItems = [
   { label: 'Pacientes', icon: 'mdi-account', path: '/' },
   { label: 'Usuarios', icon: 'mdi-account-group', path: '/users' },
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
   { label: 'Mensajes', icon: 'mdi-message', path: '/messages' },
 ];
+const defaultTheme = defineModel();
 </script>
 
 <template>
@@ -19,25 +23,30 @@ const sidebarItems = [
           subtitle="Archetype"
           width="100%"
         ></v-list-item>
-        <v-list-item-group>
-          <v-list-item
-            v-for="item in sidebarItems"
-            :key="item.label"
-            width="100%"
-          >
-            <NuxtLink :to="item.path">
-              <Button
-                :label="item.label"
-                elevation="0"
-                width="100%"
-                class="justify-start"
-                :prepend-icon="item.icon"
-              >
-              </Button>
-            </NuxtLink>
-          </v-list-item>
-        </v-list-item-group>
+        <v-list-item
+          v-for="item in sidebarItems"
+          :key="item.label"
+          width="100%"
+        >
+          <NuxtLink :to="item.path">
+            <Button
+              :label="item.label"
+              elevation="0"
+              width="100%"
+              class="justify-start"
+              :prepend-icon="item.icon"
+            >
+            </Button>
+          </NuxtLink>
+        </v-list-item>
       </v-list>
+      <v-spacer></v-spacer>
+      <Switch
+        :label="`Tema ${spTheme}`"
+        false-value="light"
+        true-value="dark"
+        v-model="defaultTheme"
+      ></Switch>
     </v-container>
   </v-navigation-drawer>
 </template>

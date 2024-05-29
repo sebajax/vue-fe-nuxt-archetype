@@ -9,9 +9,10 @@ import 'vuetify/styles';
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
     theme: {
-      defaultTheme: 'dark',
+      defaultTheme: 'light',
       themes: {
         light: {
+          dark: false,
           colors: {
             primary: '#B684E7',
             secondary: '#4D306A',
@@ -19,9 +20,10 @@ export default defineNuxtPlugin((app) => {
           },
         },
         dark: {
+          dark: true,
           colors: {
-            primary: '#B684E7',
-            secondary: '#4D306A',
+            primary: '#4D306A',
+            secondary: '#B684E7',
             'light-gray': '#F4F5F6',
           },
         },
