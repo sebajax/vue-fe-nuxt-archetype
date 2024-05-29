@@ -17,6 +17,8 @@ export default defineNuxtPlugin((app) => {
             primary: '#B684E7',
             secondary: '#4D306A',
             'light-gray': '#F4F5F6',
+            'dark-text': '#282828',
+            title: '#B684E7',
           },
         },
         dark: {
@@ -25,6 +27,8 @@ export default defineNuxtPlugin((app) => {
             primary: '#4D306A',
             secondary: '#B684E7',
             'light-gray': '#F4F5F6',
+            title: '#B684E7',
+            'dark-text': '#F4F5F6',
           },
         },
       },

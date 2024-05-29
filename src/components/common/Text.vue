@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-interface Props {
-  text: string;
-}
-const props = defineProps<Props>();
+// interface Props {
+//   text: string;
+// }
+// const props = defineProps<Props>();
+defineOptions({
+  inheritAttrs: true,
+});
 </script>
 
 <template>
-  <p>{{ props.text }}</p>
+  <p class="text-[14px] tracking-[0.1px]"><slot></slot></p>
 </template>
 
 <style scoped>
