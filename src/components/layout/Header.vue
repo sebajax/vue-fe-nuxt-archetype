@@ -15,6 +15,7 @@ const model = defineModel<string>();
       elevation="0"
       class="button-center"
       prepend-icon="mdi-account-circle"
+      color="secondary"
     />
   </v-app-bar>
 </template>
