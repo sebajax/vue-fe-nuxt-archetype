@@ -90,7 +90,7 @@ async function postData() {
 <template>
   <v-form @submit.prevent="postData" class="pb-4">
     <v-container class="px-0 space-y-4">
-      <TextInput
+      <InputText
         :key="formFormat[0].name"
         :label="formFormat[0].label"
         :placeholder="formFormat[0].placeholder"
@@ -98,8 +98,8 @@ async function postData() {
         v-model="formData.name"
         required
         :rules="nameRules"
-      ></TextInput>
-      <TextInput
+      ></InputText>
+      <InputText
         :key="formFormat[1].name"
         :label="formFormat[1].label"
         :placeholder="formFormat[1].placeholder"

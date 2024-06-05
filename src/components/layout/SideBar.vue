@@ -3,7 +3,8 @@ defineProps<{
   spTheme: string;
 }>();
 const sidebarItems = [
-  { label: 'Pacientes', icon: 'mdi-account', path: '/' },
+  { label: 'Inicio', icon: 'mdi-home', path: '/' },
+  { label: 'Pacientes', icon: 'mdi-account', path: '/patients' },
   { label: 'Usuarios', icon: 'mdi-account-group', path: '/users' },
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
   { label: 'Mensajes', icon: 'mdi-message', path: '/messages' },

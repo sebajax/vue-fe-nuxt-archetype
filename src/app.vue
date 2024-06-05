@@ -12,7 +12,7 @@ const theme = useTheme();
 // stored theme
 // const themeStore = useThemeStore();
 
-const actualPage = ref<string>('Paciente');
+const actualPage = ref<string>('');
 const defaultTheme = ref<Theme>('light');
 const themeLanguaje = ref<string>(
   { light: 'claro', dark: 'oscuro' }[defaultTheme.value],
