@@ -4,9 +4,11 @@ interface Props {
 }
 const props = defineProps<Props>();
 </script>
+
 <template>
   <h1>{{ props.text }}</h1>
 </template>
+
 <style scoped>
 h1 {
   font-size: 2rem;

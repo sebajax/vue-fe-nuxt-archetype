@@ -2,12 +2,10 @@
 // props
 interface Props {
   label: string;
-  placeholder?: string;
-  type?: string;
+  items: string[];
 }
 const props = withDefaults(defineProps<Props>(), {
-  placeholder: '',
-  type: 'text',
+  items: () => [''],
 });
 
 // model
@@ -15,11 +13,11 @@ const model = defineModel<string>();
 </script>
 
 <template>
-  <v-text-field
+  <v-select
     variant="outlined"
-    :label="props.label"
-    :placeholder="props.placeholder"
-    :type="props.type"
+    density="comfortable"
     v-model="model"
+    :label="props.label"
+    :items="props.items"
   />
 </template>
