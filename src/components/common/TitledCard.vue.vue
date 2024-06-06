@@ -10,9 +10,9 @@ const props = defineProps<{
       <v-card-title class="title-left text-title">
         <span class="text-lg">{{ props.title }}</span>
       </v-card-title>
-      <hr class="mx-4" />
+      <hr class="mx-4" >
       <v-card-text>
-        <slot></slot>
+        <slot/>
       </v-card-text>
     </v-card>
   </div>

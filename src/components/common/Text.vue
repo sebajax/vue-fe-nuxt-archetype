@@ -9,7 +9,7 @@ defineOptions({
 </script>
 
 <template>
-  <p class="text-[14px] tracking-[0.1px]"><slot></slot></p>
+  <p class="text-[14px] tracking-[0.1px]"><slot/></p>
 </template>
 
 <style scoped>

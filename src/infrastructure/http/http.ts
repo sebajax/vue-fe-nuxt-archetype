@@ -1,5 +1,6 @@
 // module import
-import { AxiosError, isAxiosError, type AxiosInstance } from 'axios';
+import type { AxiosError} from 'axios';
+import { isAxiosError, type AxiosInstance } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 // domain import
 import { ResponseDomain, type IResponseDomain } from '~/domain/response.domain';

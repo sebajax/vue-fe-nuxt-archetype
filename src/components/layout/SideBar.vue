@@ -2,6 +2,10 @@
 defineProps<{
   spTheme: string;
 }>();
+
+const nuxtApp = useNuxtApp();
+const theme = defineModel();
+
 const sidebarItems = [
   { label: 'Inicio', icon: 'mdi-home', path: '/' },
   { label: 'Pacientes', icon: 'mdi-account', path: '/patients' },
@@ -9,7 +13,16 @@ const sidebarItems = [
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
   { label: 'Mensajes', icon: 'mdi-message', path: '/messages' },
 ];
-const defaultMode = defineModel();
+
+watch(theme, (newTheme) => {
+  nuxtApp.$localStorage.set('theme', newTheme);
+});
+
+onMounted(() => {
+  if (nuxtApp.$localStorage.get('theme')) {
+    theme.value = nuxtApp.$localStorage.get('theme');
+  }
+});
 </script>
 
 <template>
@@ -23,7 +36,7 @@ const defaultMode = defineModel();
           title="OncoTracer"
           subtitle="Archetype"
           width="100%"
-        ></v-list-item>
+        />
         <v-list-item
           v-for="item in sidebarItems"
           :key="item.label"
@@ -36,19 +49,18 @@ const defaultMode = defineModel();
               width="100%"
               class="justify-start"
               :prepend-icon="item.icon"
-            >
-            </Button>
+            />
           </NuxtLink>
         </v-list-item>
       </v-list>
-      <v-spacer></v-spacer>
+      <v-spacer/>
       <div class="flex items-center justify-left w-full px-4">
         <Switch
+          v-model="theme"
           :label="`Tema ${spTheme}`"
           false-value="light"
           true-value="dark"
-          v-model="defaultMode"
-        ></Switch>
+        />
       </div>
     </v-container>
   </v-navigation-drawer>
