@@ -107,7 +107,7 @@ async function postData() {
 
 <template>
   <v-form @submit.prevent="postData" class="pb-4">
-    <v-container class="px-0 space-y-4">
+    <div class="px-0 grid lg:grid-cols-2 gap-4">
       <!-- name -->
       <InputText
         key="name"
@@ -139,6 +139,6 @@ async function postData() {
       <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">
         {{ mesagge }}
       </p>
-    </v-container>
+    </div>
   </v-form>
 </template>

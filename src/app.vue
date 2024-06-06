@@ -34,7 +34,7 @@ watch(defaultTheme, (newTheme: Theme) => {
         <Header v-model="actualPage" />
         <v-main :style="{ height: '100vh' }">
           <NuxtPage
-            class="pt-5 pr-8"
+            class="pt-5 pr-8 overflow-y-scroll"
             @setPageTitle="(value: string) => (actualPage = value)"
           />
         </v-main>
