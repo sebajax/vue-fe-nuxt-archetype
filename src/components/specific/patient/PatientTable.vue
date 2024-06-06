@@ -3,7 +3,14 @@ import { useTheme } from 'vuetify';
 
 const patients = ref(usePatients);
 const theme = useTheme();
-const primaryColor = ref(theme.global.current.value.colors.primary);
+
+// TODO: make them a composable
+const primaryColor = computed(() => {
+  return theme.global.current.value.colors.primary;
+});
+const secondaryColor = computed(() => {
+  return theme.global.current.value.colors['dark-text'];
+});
 </script>
 
 <template>
@@ -30,23 +37,20 @@ const primaryColor = ref(theme.global.current.value.colors.primary);
 
 /* even table row bg-color */
 .v-table tbody tr:nth-child(even) {
+  color: black;
   background-color: #e6e6e6;
 }
 /* odd table row bg-color */
 .v-table tbody tr:nth-child(odd) {
+  color: black;
   background-color: white;
 }
 
 /* header class: color and font */
 .v-table thead tr th {
   background-color: v-bind(primaryColor);
-  color: #4d306a;
+  color: v-bind(secondaryColor);
   font-size: large;
   font-weight: 900;
-}
-
-.theme--dark .v-table thead tr th {
-  background-color: #333333; /* Color de fondo para el tema oscuro */
-  color: #333333; /* Color de texto para el tema oscuro */
 }
 </style>
