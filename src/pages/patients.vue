@@ -28,7 +28,11 @@ onUnmounted(() => {
   <v-app>
     <!-- main content -->
     <v-container fluid class="px-0">
-      <PatientForm />
+      <!-- Searcher prototype -->
+      <PatientSearcher />
+      <!-- Table prototype -->
+      <PatientTable />
+      <!-- <PatientForm /> -->
     </v-container>
   </v-app>
 </template>
