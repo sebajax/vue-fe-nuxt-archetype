@@ -1,5 +1,5 @@
 // domain import
-import { UserDomain } from '~/domain/user.domain';
+import type { UserDomain } from '~/domain/user.domain';
 // message import
 
 export const useAddUserStore = defineStore('addUserStore', {

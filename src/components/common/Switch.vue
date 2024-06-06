@@ -14,11 +14,11 @@ defineOptions({
 <template>
   <div>
     <v-switch
+      v-model="model"
       inset
       :label="props.label"
-      v-model="model"
       v-bind="$attrs"
-    ></v-switch>
+    />
   </div>
 </template>
 

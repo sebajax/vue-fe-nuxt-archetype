@@ -47,11 +47,11 @@ watch(patientFilter, (newFilter) => {
       placeholder="Búsqueda por rut o nombre"
     />
     <InputDropdown
+      v-model="categoryFilter"
       label="Categoría"
       :items="category"
-      v-model="categoryFilter"
     />
-    <InputDropdown label="Urgencia" :items="urgency" v-model="urgencyFilter" />
+    <InputDropdown v-model="urgencyFilter" label="Urgencia" :items="urgency" />
   </div>
 </template>
 

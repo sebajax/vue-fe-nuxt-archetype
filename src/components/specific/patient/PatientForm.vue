@@ -106,23 +106,23 @@ async function postData() {
 </script>
 
 <template>
-  <v-form @submit.prevent="postData" class="pb-4">
+  <v-form class="pb-4" @submit.prevent="postData">
     <div class="px-0 grid lg:grid-cols-2 gap-4">
       <!-- name -->
       <InputText
         key="name"
+        v-model="formData.name"
         label="Nombre"
         placeholder="Nombre y Apellido"
-        v-model="formData.name"
         required
         :rules="nameRules"
-      ></InputText>
+      />
       <!-- rut -->
       <InputText
         key="rut"
+        v-model="formData.rut"
         label="Rut"
         placeholder="12345678-5"
-        v-model="formData.rut"
         required
         :rules="emailRules"
       />
@@ -133,7 +133,7 @@ async function postData() {
 
       <InputDropdown label="Sexo" :items="['Femenino', 'Masculino', 'Otro']" />
 
-      <Button label="Añadir usuario" @click="postData()" :readinly="formData" />
+      <Button label="Añadir usuario" :readinly="formData" @click="postData()" />
       <v-spacer />
       <!-- TODO: replace with Pinnia based toast -->
       <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">

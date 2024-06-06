@@ -16,11 +16,11 @@ const model = defineModel<string>();
 
 <template>
   <v-text-field
+    v-model="model"
     variant="outlined"
     density="comfortable"
     :label="props.label"
     :placeholder="props.placeholder"
     :type="props.type"
-    v-model="model"
   />
 </template>

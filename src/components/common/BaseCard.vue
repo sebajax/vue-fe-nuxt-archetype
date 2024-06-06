@@ -3,7 +3,7 @@
 <template>
   <v-card class="rounded-lg px-4 py-4">
     <div>
-      <slot></slot>
+      <slot/>
     </div>
   </v-card>
 </template>

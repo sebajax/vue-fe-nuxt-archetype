@@ -14,9 +14,9 @@ const model = defineModel<string>();
 
 <template>
   <v-select
+    v-model="model"
     variant="outlined"
     density="comfortable"
-    v-model="model"
     :label="props.label"
     :items="props.items"
   />

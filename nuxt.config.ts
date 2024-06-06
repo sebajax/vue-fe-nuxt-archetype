@@ -14,7 +14,10 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  plugins: ['~/plugins/user/user.provider'],
+  plugins: [
+    '~/plugins/localStorage.client.ts',
+    '~/plugins/sessionStorage.client.ts',
+  ],
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
