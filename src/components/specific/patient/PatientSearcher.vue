@@ -1,34 +1,31 @@
 <script lang="ts" setup>
-// model
+// [Emits]
+const emits = defineEmits(['filterData']);
+
+// [Data]
+// -selector
+const category = ['Cancer', 'Melanoma'];
+const urgency = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+// [Reactivity - Filter]
+// -reactivity
 const idFilter = ref('');
 const categoryFilter = ref('');
 const urgencyFilter = ref('');
-
-// items
-const category = ref(['Cancer', 'Melanoma']);
-const urgency = ref(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
-
-// filter
+// -computed
 const patientFilter = computed(() => {
-  setTimeout;
   return {
     id: idFilter.value,
     category: categoryFilter.value,
     urgency: urgencyFilter.value,
   };
 });
-
-// emit
-const emits = defineEmits(['filterData']);
-
-// Timer to handle the filter
 let timeout: ReturnType<typeof setTimeout> | null = null;
+// TODO: make this a composable
 watch(patientFilter, (newFilter) => {
-  // Delete previous timer
   if (timeout !== null) {
     clearTimeout(timeout);
   }
-  // New timer
   timeout = setTimeout(() => {
     console.log(newFilter);
     window.alert(JSON.stringify(newFilter));
@@ -40,7 +37,7 @@ watch(patientFilter, (newFilter) => {
 </script>
 
 <template>
-  <div class="inline-flex space-x-2 w-full">
+  <div class="inline-flex w-full space-x-2">
     <InputText
       v-model="idFilter"
       label="Buscar paciente"

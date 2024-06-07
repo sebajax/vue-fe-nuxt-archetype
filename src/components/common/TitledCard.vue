@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// [Props]
 const props = defineProps<{
   title: string;
 }>();
@@ -12,7 +13,7 @@ const props = defineProps<{
       </v-card-title>
       <hr class="mx-4" >
       <v-card-text>
-        <slot/>
+        <slot />
       </v-card-text>
     </v-card>
   </div>

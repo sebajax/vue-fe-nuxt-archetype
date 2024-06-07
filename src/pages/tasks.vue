@@ -1,23 +1,20 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
-
-// set actual page
+// [Emits]
 const emits = defineEmits(['setPageTitle']);
-onMounted(() => {
-  emits('setPageTitle', 'Tareas');
-});
 
-// get window width and update on resize
+// [Reactivity - Check window width]
+// TODO: make this a composable
 const width = ref<number>(0);
 function updateWidth() {
   if (typeof window !== 'undefined') {
     width.value = window.innerWidth;
   }
 }
-// TODO: redefine devices sizes (600)
 const responsiveCols = computed(() => (width.value < 600 ? '12' : '6'));
 
+// [Lifecycle Hooks]
 onMounted(() => {
+  emits('setPageTitle', 'Tareas');
   updateWidth();
   window.addEventListener('resize', updateWidth);
 });

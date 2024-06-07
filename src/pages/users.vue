@@ -1,28 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
-
-// set actual page
+// [Emits]
 const emits = defineEmits(['setPageTitle']);
+
+// [Lifecycle Hooks]
 onMounted(() => {
   emits('setPageTitle', 'Usuarios');
-});
-
-// get window width and update on resize
-const width = ref<number>(0);
-function updateWidth() {
-  if (typeof window !== 'undefined') {
-    width.value = window.innerWidth;
-  }
-}
-// TODO: redefine devices sizes (600)
-const responsiveCols = computed(() => (width.value < 600 ? '12' : '6'));
-
-onMounted(() => {
-  updateWidth();
-  window.addEventListener('resize', updateWidth);
-});
-onUnmounted(() => {
-  window.removeEventListener('resize', updateWidth);
 });
 </script>
 

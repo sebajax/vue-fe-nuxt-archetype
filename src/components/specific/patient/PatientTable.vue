@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+// [Imports]
 import { useTheme } from 'vuetify';
 
+// [Reactivity - Get Patients]
 const patients = ref(usePatients);
-const theme = useTheme();
 
+// [Reactivity - Theme selector]
+const theme = useTheme();
 // TODO: make them a composable
 const primaryColor = computed(() => {
   return theme.global.current.value.colors.primary;
@@ -16,17 +19,7 @@ const secondaryColor = computed(() => {
 <template>
   <div class="rounded-lg overflow-hidden">
     {{ primaryColor }}
-    <v-data-table :items="patients">
-      <template v-slot:header.id="{ column }">
-        <thead>
-          <tr>
-            <th class="bg-red-500">
-              {{ column.title?.toUpperCase() }}
-            </th>
-          </tr>
-        </thead>
-      </template>
-    </v-data-table>
+    <v-data-table :items="patients" />
   </div>
 </template>
 

@@ -1,4 +1,3 @@
-import type { Component } from 'nuxt/schema';
 import { getCurrentInstance, type ComponentInternalInstance } from 'vue';
 
 export const useInstance = () => {
