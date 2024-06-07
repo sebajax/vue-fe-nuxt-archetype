@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// props
+// [Props]
 interface Props {
   label: string;
   items: string[];
@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<Props>(), {
   items: () => [''],
 });
 
-// model
+// [Model]
 const model = defineModel<string>();
 </script>
 

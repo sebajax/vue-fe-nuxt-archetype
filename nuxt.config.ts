@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
+        // @ts-expect-error because config.plugins may be undefined
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },

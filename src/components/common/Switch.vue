@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-// props
+// [Props]
 const props = defineProps<{
   label: string;
 }>();
-// model
-const model = defineModel();
-// options
+
+// [Model]
+const model = defineModel<string>();
+
+// [Options]
 defineOptions({
   inheritAttrs: true,
 });
@@ -13,12 +15,7 @@ defineOptions({
 
 <template>
   <div>
-    <v-switch
-      v-model="model"
-      inset
-      :label="props.label"
-      v-bind="$attrs"
-    />
+    <v-switch v-model="model" inset :label="props.label" v-bind="$attrs" />
   </div>
 </template>
 

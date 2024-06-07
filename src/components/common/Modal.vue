@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// [Props]
 interface Props {
   title?: string | null;
   maxWidth?: string;
@@ -17,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
     <template #default="{ isActive }">
       <!-- if the component has title -->
       <v-card v-if="props.title" :title="props.title">
-        <slot/>
+        <slot />
         <v-card-actions>
           <v-spacer />
           <v-btn text="Cerrar" @click="isActive.value = false" />
@@ -25,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
       </v-card>
       <!-- card without title -->
       <v-card v-else>
-        <slot/>
+        <slot />
         <v-card-actions>
           <v-spacer />
           <v-btn text="Cerrar" @click="isActive.value = false" />

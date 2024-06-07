@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// props
+// [Props]
 interface Props {
   label: string;
   placeholder?: string;
@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'text',
 });
 
-// model
+// [Model]
 const model = defineModel<string>();
 </script>
 

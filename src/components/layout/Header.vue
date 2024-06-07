@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// [Model]
 const model = defineModel<string>();
 </script>
 

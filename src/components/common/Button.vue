@@ -1,11 +1,11 @@
 <script setup lang="ts">
-// props
+// [Props]
 interface Props {
   label: string;
 }
 const props = defineProps<Props>();
 
-// options
+// [Options]
 defineOptions({
   inheritAttrs: true,
 });

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-// validators
+// [Imports]
+// -validators
 import { useVuelidate } from '@vuelidate/core';
 import {
   alpha,
@@ -9,17 +9,14 @@ import {
   numeric,
   required,
 } from '@vuelidate/validators';
-// interfaces
-import type { IUserDomain } from '~/domain/user.domain';
-import type { FormField } from '~/interfaces/formField.interface';
-// stores
+// -stores
 import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
 import InputDropdown from '~/components/common/InputDropdown.vue';
 
-// store
+// [Stores]
 const addUserProvider = useAddUserStore();
 
-// form and rules
+// [Reactivity - Post Data]
 const formData = ref({
   name: '',
   rut: '',
@@ -33,6 +30,39 @@ const formData = ref({
   altPhone: '',
   email: '',
 });
+// TODO: replace with Pinnia based toast
+const mesagge = ref<string>('');
+// -post data
+async function postData() {
+  const validation = await $v.value.$validate();
+  if (validation) {
+    // await addUserProvider.addUser(formData.value);
+    const res: boolean = addUserProvider.getError;
+    if (!res) {
+      mesagge.value = 'Usuario añadido correctamente';
+      return;
+    } else {
+      mesagge.value = 'Error al añadir usuario';
+    }
+    formData.value = {
+      name: '',
+      rut: '',
+      birthdate: '',
+      age: 0,
+      genre: '',
+      nationality: '',
+      address: '',
+      socialSecurity: '',
+      phone: '',
+      altPhone: '',
+      email: '',
+    };
+  } else {
+    mesagge.value = 'Asegúrate de llenar los campos correctamente';
+  }
+}
+
+// [Reactivity - Validation]
 const rules = {
   name: { required, maxLength: maxLength(80), alpha },
   rut: { required, maxLength: maxLength(12) },
@@ -47,8 +77,7 @@ const rules = {
   email: { required, email },
 };
 const $v = useVuelidate(rules, formData);
-
-// vuetify rules
+// -vuetify rules
 // TODO: make them composables and connect with vuelidate
 const nameRules = [
   (value: string) => {
@@ -70,39 +99,6 @@ const emailRules = [
     return 'El correo debe ser uno válido.';
   },
 ];
-
-// TODO: replace with Pinnia based toast
-const mesagge = ref<string>('');
-
-// post data
-async function postData() {
-  const validation = await $v.value.$validate();
-  if (validation) {
-    // await addUserProvider.addUser(formData.value);
-    const res: boolean = addUserProvider.getError;
-    if (!res) {
-      mesagge.value = 'Usuario añadido correctamente';
-      return;
-    } else {
-      mesagge.value = 'Error al añadir usuario';
-    }
-    const formData = ref({
-      name: '',
-      rut: '',
-      birthdate: '',
-      age: 0,
-      genre: '',
-      nationality: '',
-      address: '',
-      socialSecurity: '',
-      phone: '',
-      altPhone: '',
-      email: '',
-    });
-  } else {
-    mesagge.value = 'Asegúrate de llenar los campos correctamente';
-  }
-}
 </script>
 
 <template>

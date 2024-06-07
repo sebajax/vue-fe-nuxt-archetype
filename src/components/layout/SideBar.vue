@@ -1,23 +1,27 @@
 <script lang="ts" setup>
+// [Props]
 defineProps<{
   spTheme: string;
 }>();
 
-const nuxtApp = useNuxtApp();
-const theme = defineModel();
+// [Model]
+const theme = defineModel<string>();
 
+// [Data]
+const nuxtApp = useNuxtApp();
 const sidebarItems = [
   { label: 'Inicio', icon: 'mdi-home', path: '/' },
   { label: 'Pacientes', icon: 'mdi-account', path: '/patients' },
   { label: 'Usuarios', icon: 'mdi-account-group', path: '/users' },
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
-  { label: 'Mensajes', icon: 'mdi-message', path: '/messages' },
 ];
 
+// [Reactivity - Set theme]
 watch(theme, (newTheme) => {
   nuxtApp.$localStorage.set('theme', newTheme);
 });
 
+// [Lifecycle Hooks]
 onMounted(() => {
   if (nuxtApp.$localStorage.get('theme')) {
     theme.value = nuxtApp.$localStorage.get('theme');
@@ -32,11 +36,7 @@ onMounted(() => {
       class="bg-primary fill-height py-4 px-0 d-flex flex-column align-start rounded-lg"
     >
       <v-list width="100%">
-        <v-list-item
-          title="OncoTracer"
-          subtitle="Archetype"
-          width="100%"
-        />
+        <v-list-item title="OncoTracer" subtitle="Archetype" width="100%" />
         <v-list-item
           v-for="item in sidebarItems"
           :key="item.label"
@@ -53,7 +53,7 @@ onMounted(() => {
           </NuxtLink>
         </v-list-item>
       </v-list>
-      <v-spacer/>
+      <v-spacer />
       <div class="flex items-center justify-left w-full px-4">
         <Switch
           v-model="theme"
