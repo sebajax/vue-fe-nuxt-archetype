@@ -6,7 +6,7 @@ import type { Theme } from './interfaces/theme.type';
 // stores
 // import { useThemeStore } from '@/stores/theme/themeStore';
 
-// [Data]
+// [Reactivity - Actual page]
 const actualPage = ref<string>('');
 
 // [Reactivity - Set application theme]
