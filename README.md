@@ -2,6 +2,57 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+### Observaciones
+
+- El componente queda excento de responsabilidad de vuelidate.
+- Vuelidate 1 a 1 con los formularios a nivel de composable
+- Interfaces en la carpeta interfaces EXCEPTO para las props de los componenetes common
+
+```html
+<!-- FIRST: SCRIPT -->
+<script setup lang="ts">
+  // [Imports]
+  // - interface
+  // - module
+
+  // [Const]
+
+  // VUE
+
+  // [Options]
+
+  // [Props]
+
+  // [Emits]
+
+  // [Plugin]
+
+  // [Composable]
+
+  // [Store]
+
+  // [Global Method]
+
+  // [Global Computed]
+
+  // [Modularity - ['Name']]
+  // - [Reactivity State]
+  // -- {Alway add first} *all the defineModel v-model
+  // -- ref
+  // - [Computed]
+  // - [Method]
+  // - [Watch]
+
+  // [Lifecycle Hooks]
+</script>
+
+<!-- SECOND: VUE TEMPLATE -->
+<template></template>
+
+<!-- THIRD: VUE STYLE -->
+<style></style>
+```
+
 ```tree
 vue-fe-nuxt-archetype/
 ├── assets/

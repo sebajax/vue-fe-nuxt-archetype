@@ -1,14 +1,5 @@
 <script lang="ts" setup>
-// [Props]
-defineProps<{
-  spTheme: string;
-}>();
-
-// [Model]
-const theme = defineModel<string>();
-
-// [Data]
-const nuxtApp = useNuxtApp();
+// [Const]
 const sidebarItems = [
   { label: 'Inicio', icon: 'mdi-home', path: '/' },
   { label: 'Pacientes', icon: 'mdi-account', path: '/patients' },
@@ -16,7 +7,18 @@ const sidebarItems = [
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
 ];
 
-// [Reactivity - Set theme]
+// [Props]
+defineProps<{
+  spTheme: string;
+}>();
+
+// [Plugin]
+const nuxtApp = useNuxtApp();
+
+// [Modularity - Set theme]
+// - [Reactivity State]
+const theme = defineModel<string>();
+// - [Watch]
 watch(theme, (newTheme) => {
   nuxtApp.$localStorage.set('theme', newTheme);
 });

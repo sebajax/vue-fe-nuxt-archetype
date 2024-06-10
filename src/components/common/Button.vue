@@ -24,3 +24,5 @@ defineOptions({
     </span>
   </v-btn>
 </template>
+
+<style></style>

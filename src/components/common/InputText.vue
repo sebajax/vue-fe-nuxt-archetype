@@ -5,6 +5,7 @@ interface Props {
   placeholder?: string;
   type?: string;
 }
+
 const props = withDefaults(defineProps<Props>(), {
   placeholder: '',
   type: 'text',
