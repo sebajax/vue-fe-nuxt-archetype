@@ -39,4 +39,12 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['~/stores', '~/stores/**', '~/stores/**/**'],
   },
+  runtimeConfig: {
+    // The private keys which are only available within server-side
+    apiSecret: '123',
+    // Keys within public, will be also exposed to the client-side
+    public: {
+      nodeEnv: process.env.API_NAME,
+    },
+  },
 });
