@@ -11,7 +11,7 @@ import {
 } from '@vuelidate/validators';
 // -stores
 import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
-import InputDropdown from '~/components/common/InputDropdown.vue';
+import InputDropdown from '~/components/common/BaseInputDropdown.vue';
 
 // [Stores]
 const addUserProvider = useAddUserStore();
@@ -114,7 +114,7 @@ const emailRules = [
         :rules="nameRules"
       />
       <!-- rut -->
-      <InputText
+      <BaseInputText
         key="rut"
         v-model="formData.rut"
         label="Rut"
@@ -122,14 +122,21 @@ const emailRules = [
         required
         :rules="emailRules"
       />
-      <InputDropdown
+      <BaseInputDropdown
         label="Rol"
         :items="['Administrador', 'Médico', 'Enfermera']"
       />
 
-      <InputDropdown label="Sexo" :items="['Femenino', 'Masculino', 'Otro']" />
+      <BaseInputDropdown
+        label="Sexo"
+        :items="['Femenino', 'Masculino', 'Otro']"
+      />
 
-      <Button label="Añadir usuario" :readinly="formData" @click="postData()" />
+      <BaseButton
+        label="Añadir usuario"
+        :readinly="formData"
+        @click="postData()"
+      />
       <v-spacer />
       <!-- TODO: replace with Pinnia based toast -->
       <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">

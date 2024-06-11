@@ -38,17 +38,21 @@ watch(patientFilter, (newFilter) => {
 
 <template>
   <div class="inline-flex w-full space-x-2">
-    <InputText
+    <BaseInputText
       v-model="idFilter"
       label="Buscar paciente"
       placeholder="Búsqueda por rut o nombre"
     />
-    <InputDropdown
+    <BaseInputDropdown
       v-model="categoryFilter"
       label="Categoría"
       :items="category"
     />
-    <InputDropdown v-model="urgencyFilter" label="Urgencia" :items="urgency" />
+    <BaseInputDropdown
+      v-model="urgencyFilter"
+      label="Urgencia"
+      :items="urgency"
+    />
   </div>
 </template>
 

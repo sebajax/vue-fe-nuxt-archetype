@@ -45,7 +45,7 @@ onMounted(() => {
           width="100%"
         >
           <NuxtLink :to="item.path">
-            <Button
+            <BaseButton
               :label="item.label"
               elevation="0"
               width="100%"
@@ -57,7 +57,7 @@ onMounted(() => {
       </v-list>
       <v-spacer />
       <div class="flex items-center justify-left w-full px-4">
-        <Switch
+        <BaseSwitch
           v-model="theme"
           :label="`Tema ${spTheme}`"
           false-value="light"
