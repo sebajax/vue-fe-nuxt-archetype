@@ -11,7 +11,7 @@ const model = defineModel<string>();
   >
     <BaseTitle :text="model || ''" class="title-center" />
     <v-spacer />
-    <Button
+    <BaseButton
       label="perfil"
       elevation="0"
       class="button-center"

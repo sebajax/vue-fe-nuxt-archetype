@@ -7,10 +7,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Text class="h-[16px]">
+  <BaseText class="h-[16px]">
     <b class="text-[14px] leading-[14px]">{{ props.category }}: </b>
     <span class="text-[14px] leading-[14px]"> {{ props.value }}</span>
-  </Text>
+  </BaseText>
 </template>
 
 <style></style>
