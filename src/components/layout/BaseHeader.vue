@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-// [Model]
+// VUE
+
+// [Modularity - Model]
+// - [Reactivity state]
 const model = defineModel<string>();
 </script>
 

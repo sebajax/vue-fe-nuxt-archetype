@@ -1,17 +1,17 @@
 <script setup lang="ts">
+// VUE
+
 // [Props]
-interface Props {
+interface IProps {
   label: string;
   placeholder?: string;
-  type?: string;
 }
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<IProps>(), {
   placeholder: '',
-  type: 'text',
 });
 
-// [Model]
+// [Modularity - Model]
+// - [Reactivity State]
 const model = defineModel<string>();
 </script>
 
@@ -22,6 +22,6 @@ const model = defineModel<string>();
     density="comfortable"
     :label="props.label"
     :placeholder="props.placeholder"
-    :type="props.type"
+    type="text"
   />
 </template>

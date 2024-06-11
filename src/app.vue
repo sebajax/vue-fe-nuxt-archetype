@@ -1,10 +1,10 @@
 <script setup lang="ts">
 // [Imports]
 import { useTheme } from 'vuetify';
-// types
+// - types
 import type { Theme } from './interfaces/theme.type';
-// stores
-// import { useThemeStore } from '@/stores/theme/themeStore';
+
+// VUE
 
 // [Reactivity - Actual page]
 const actualPage = ref<string>('');

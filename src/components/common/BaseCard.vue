@@ -2,9 +2,7 @@
 
 <template>
   <v-card v-bind="$attrs" class="rounded-lg px-4 py-4">
-    <div>
-      <slot />
-    </div>
+    <slot />
   </v-card>
 </template>
 
