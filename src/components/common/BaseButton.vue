@@ -1,14 +1,16 @@
 <script setup lang="ts">
-// [Props]
-interface Props {
-  label: string;
-}
-const props = defineProps<Props>();
+// VUE
 
 // [Options]
 defineOptions({
   inheritAttrs: true,
 });
+
+// [Props]
+interface IProps {
+  label: string;
+}
+const props = defineProps<IProps>();
 </script>
 
 <template>

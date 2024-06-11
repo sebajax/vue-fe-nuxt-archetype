@@ -1,10 +1,14 @@
 <script lang="ts" setup>
-// [Props]
-const props = defineProps<{
-  label: string;
-}>();
+// VUE
 
-// [Model]
+// [Props]
+interface IProps {
+  label: string;
+}
+const props = defineProps<IProps>();
+
+// [Modularity - Model]
+// - [Reactivity State]
 const model = defineModel<string>();
 
 // [Options]

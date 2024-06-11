@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+// VUE
+
 // [Props]
-const props = defineProps<{
+interface IProps {
   title: string;
-}>();
+}
+const props = defineProps<IProps>();
 </script>
 
 <template>

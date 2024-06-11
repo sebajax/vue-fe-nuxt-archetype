@@ -1,10 +1,12 @@
 <script setup lang="ts">
+// VUE
+
 // [Props]
-interface Props {
+interface IProps {
   title?: string | null;
   maxWidth?: string;
 }
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<IProps>(), {
   title: null,
   maxWidth: '800',
 });

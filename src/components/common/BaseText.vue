@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+// VUE
+
 // [Options]
 defineOptions({
   inheritAttrs: true,
@@ -6,11 +8,7 @@ defineOptions({
 </script>
 
 <template>
-  <p class="text-[14px] tracking-[0.1px]"><slot /></p>
+  <p class="text-[16px] tracking-[0.1px]"><slot /></p>
 </template>
 
-<style scoped>
-p {
-  font-size: 16px;
-}
-</style>
+<style scoped></style>

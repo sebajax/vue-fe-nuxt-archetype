@@ -2,6 +2,8 @@
 // [Imports]
 import { useTheme } from 'vuetify';
 
+// VUE
+
 // [Reactivity - Get Patients]
 const patients = ref(usePatients);
 

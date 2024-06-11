@@ -7,10 +7,13 @@ const sidebarItems = [
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
 ];
 
+// VUE
+
 // [Props]
-defineProps<{
+interface IProps {
   spTheme: string;
-}>();
+}
+defineProps<IProps>();
 
 // [Plugin]
 const nuxtApp = useNuxtApp();
@@ -32,7 +35,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-navigation-drawer app permanent class="sidebar pl-6 pr-4 py-4">
+  <v-navigation-drawer
+    app
+    permanent
+    class="sidebar fixed top-0 bottom-0 right-0 left-0 pl-6 pr-4 py-4 z-[999] shadow-none drop-shadow-none"
+  >
     <v-container
       fluid
       class="bg-primary fill-height py-4 px-0 d-flex flex-column align-start rounded-lg"
@@ -70,12 +77,6 @@ onMounted(() => {
 
 <style scoped>
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
   background-color: transparent !important;
   border-right: none;
   box-shadow: none;

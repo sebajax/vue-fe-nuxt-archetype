@@ -1,14 +1,17 @@
 <script setup lang="ts">
+// VUE
+
 // [Props]
-interface Props {
+interface IProps {
   label: string;
   items: string[];
 }
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<IProps>(), {
   items: () => [''],
 });
 
-// [Model]
+// [Modularity - Model]
+// - [Reactivity State]
 const model = defineModel<string>();
 </script>
 
@@ -21,3 +24,5 @@ const model = defineModel<string>();
     :items="props.items"
   />
 </template>
+
+<script></script>

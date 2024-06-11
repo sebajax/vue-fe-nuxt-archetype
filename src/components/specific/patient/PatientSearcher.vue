@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-// [Emits]
-const emits = defineEmits(['filterData']);
-
-// [Data]
+// [Const]
 // -selector
 const category = ['Cancer', 'Melanoma'];
 const urgency = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+// VUE
+
+// [Emits]
+const emits = defineEmits(['filterData']);
 
 // [Reactivity - Filter]
 // -reactivity
