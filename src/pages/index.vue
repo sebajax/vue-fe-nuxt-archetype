@@ -1,48 +1,74 @@
 <script setup lang="ts">
-const { loggedIn, user, refresh, login, logout, currentProvider, clear } =
+const { loggedIn, user, refresh, login, logout, currentProvider, fetch } =
   useOidcAuth();
 </script>
 <template>
-  <div class="w-full grid grid-cols-2">
-    <div class="col-start-1 flex flex-col gap-4 items-center">
-      <p class="text-xl">Login with</p>
-      <v-btn class="btn-base btn-login" @click="login()">
-        <span class="i-majesticons-login-line" />
-        <span class="pl-2">Default provider</span>
-      </v-btn>
-      <p>Logged in: {{ loggedIn }}</p>
-      <p>Current provider: {{ currentProvider }}</p>
-      <v-btn
-        class="btn-base btn-login"
-        :disabled="!loggedIn || !user.canRefresh"
-        @click="refresh()"
-      >
-        <span class="i-majesticons-refresh" />
-        <span class="pl-2">Refresh</span>
-      </v-btn>
-      <v-btn
-        class="btn-base btn-login"
-        :disabled="!loggedIn"
-        @click="logout(currentProvider)"
-      >
-        <span class="i-majesticons-logout-line" />
-        <span class="pl-2">Logout</span>
-      </v-btn>
-      <v-btn class="btn-base btn-login" :disabled="!loggedIn" @click="clear()">
-        <span class="i-majesticons-delete-bin-line" />
-        <span class="pl-2">Clear session</span>
-      </v-btn>
-    </div>
-    <div class="col-start-2">
-      <p class="pb-4 text-xl">User object</p>
-      <div v-for="(value, key, index) in user" :key="index">
-        <span class="font-bold text-base">
-          {{ `${key}` }}
-        </span>
-        <p class="text-sm pb-3 break-all">
-          {{ value }}
-        </p>
-      </div>
-    </div>
-  </div>
+
+
+  <v-container class="mt-5 pa-2">
+    <v-row>
+
+      <v-col md="5" cols="12">
+  
+        <div class="flex flex-col pa-4 gap-4 items-left">
+          <p >
+            Métodos y referencias disponibles del composable
+            <b style="color:orange">useOidcAuth();</b>
+           </p>
+
+          <p><b>LoggedIn : </b>{{ loggedIn }}</p>
+          <p><b>Current provider : </b> {{ currentProvider }}</p>
+          <v-btn
+            color="#B684E7"
+            append-icon="mdi-refresh"
+            :disabled="!loggedIn || !user.canRefresh"
+            @click="refresh()"
+          >
+            <span class="pl-2">Refresh</span>
+          </v-btn>
+          <v-btn
+          color="#B684E7"
+          append-icon="mdi-logout"
+          :disabled="!loggedIn"
+          @click="logout(currentProvider)"
+        >
+          <span class="pl-2">Logout</span>
+        </v-btn>
+        </div>
+      </v-col>
+  
+      <v-col md="7" cols="12">
+        <v-card rounded="lg">
+          <p class="pa-4">Opciones disponibles en la referencia <b >USER</b></p>
+          
+          <v-table class="pa-3" height="400px" fixed-header>
+            <thead>
+              <tr>
+                <th class="text-left">
+                  Option
+                </th>
+                <th class="text-left">
+                  Value
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(value, key, index) in user" :key="index"
+              >
+                <td>
+                  <b>{{ key }}</b>
+                </td>
+                <td>
+                  <p class="pa-3 break-all">
+                    {{ value }}
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </v-table>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>

@@ -5,7 +5,20 @@ definePageMeta({
 const { login } = useOidcAuth();
 </script>
 <template>
-  <div class="flex flex-col gap-4 items-center mt-5">
-    <v-btn color="primary" @click="login()">Login</v-btn>
-  </div>
+  <v-card class="mx-auto pa-10" width="40%" elevation="10" rounded="lg">
+    <h2 class="text-slate-500 mb-5 text-center text-2xl font-bold">
+      OncoTracer
+    </h2>
+    <v-btn
+      class="mt-5"
+      text="access Openid"
+      type="submit"
+      rounded="lg"
+      append-icon="mdi-login"
+      color="#B684E7"
+      block
+      @click="login()"
+    ></v-btn>
+  </v-card>
 </template>
+<style></style>
