@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         baseUrl: '',
         redirectUri: '',
         scope: ['openid'],
+        exposeAccessToken: true,
       },
     },
     session: {
