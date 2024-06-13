@@ -2,6 +2,31 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // OIDC Auth (OpenID Connect) configuration
+  oidc: {
+    defaultProvider: 'keycloak',
+    providers: {
+      keycloak: {
+        clientId: '',
+        clientSecret: '',
+        baseUrl: '',
+        redirectUri: '',
+        scope: ['openid'],
+      },
+    },
+    session: {
+      automaticRefresh: true,
+      expirationCheck: true,
+      maxAge: 30 * 1000,
+    },
+    middleware: {
+      globalMiddlewareEnabled: false,
+      customLoginPage: false,
+    },
+  },
+  future: {
+    compatibilityVersion: 4,
+  },
   srcDir: 'src/',
   devtools: { enabled: true },
   components: [
@@ -19,6 +44,7 @@ export default defineNuxtConfig({
     '~/plugins/sessionStorage.client.ts',
   ],
   modules: [
+    'nuxt-oidc-auth',
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -48,6 +74,7 @@ export default defineNuxtConfig({
     // Keys within public, will be also exposed to the client-side
     public: {
       nodeEnv: process.env.API_NAME,
+      api: process.env.CLEAN_ARCHITECTURE_API,
     },
   },
 });

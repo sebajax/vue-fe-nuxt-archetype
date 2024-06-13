@@ -1,6 +1,7 @@
-// domain import
-import type { UserDomain } from '~/domain/user.domain';
-// message import
+// Domain import
+
+import type { IResponseDomain } from '~/interfaces/domain/response.domain';
+import type { TResponseAddUser } from './addUser.response';
 
 export const useAddUserStore = defineStore('addUserStore', {
   state: () => ({
@@ -12,10 +13,15 @@ export const useAddUserStore = defineStore('addUserStore', {
     },
   },
   actions: {
-    async addUser(user: UserDomain) {
+    async execute() {
       try {
-        const response = await useNuxtApp().$userProvider.addUserProvider(user);
-        this.response = response.error;
+        const runtimeConfig = useRuntimeConfig();
+        const getResponse = await useHttp().get(
+          `${runtimeConfig.public.api}/user`,
+        );
+        const data =
+          getResponse.data as unknown as IResponseDomain<TResponseAddUser>;
+        this.response = data.error;
       } catch (error) {
         console.error(error);
       }

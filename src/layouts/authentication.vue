@@ -1,0 +1,19 @@
+<script setup lang="ts"></script>
+
+<template>
+  <div
+    class="relative h-100dvh flex flex-col bg-base font-base justify-center items-center text-center"
+  >
+    <div class="py-8 text-2xl">
+      <p>Please login</p>
+      <div class="absolute right-16 top-8 text-5">
+        <span class="i-majesticons-sun" />
+      </div>
+    </div>
+    <main
+      class="flex-1 w-full overflow-y-auto p-4 dark:(from-brand-blue via-brand-blue to-brand-blueDark bg-gradient-to-tr) sm:px-8 sm:py-6"
+    >
+      <slot />
+    </main>
+  </div>
+</template>
