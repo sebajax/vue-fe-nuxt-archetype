@@ -1,10 +1,10 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: ["auth"],
+  middleware: ['auth'],
 });
 </script>
 <template>
   <div>
-      <h1>vista protegida</h1>
+    <h1>vista protegida</h1>
   </div>
 </template>
