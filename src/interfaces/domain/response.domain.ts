@@ -1,29 +1,28 @@
-/*
- * response domain
- */
-
-// response domain interface
-export interface IResponseDomain {
-  error?: boolean;
-  message?: string;
-  code?: number;
-  data?: object;
-}
-
-// response domain class
-export class ResponseDomain implements IResponseDomain {
+// Response domain interface
+interface IResponseDomain<T> {
   error: boolean;
   message: string;
   code: number;
-  data?: object;
+  data?: T;
+}
 
-  constructor(
-    { error = false, message = '', code = 0 }: IResponseDomain = {},
-    data: object = {},
-  ) {
+// Define a type alias for the constructor parameters, excluding 'data'
+type TypeResponseDomain<T> = Omit<IResponseDomain<T>, 'data'>;
+
+// Response domain class
+class ResponseDomain<T> implements IResponseDomain<T> {
+  error: boolean;
+  message: string;
+  code: number;
+  data: T;
+
+  constructor({ error, message, code }: TypeResponseDomain<T>, data: T) {
     this.error = error;
     this.message = message;
     this.code = code;
     this.data = data;
   }
 }
+
+export { ResponseDomain };
+export type { IResponseDomain };

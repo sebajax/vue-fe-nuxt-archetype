@@ -25,6 +25,14 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
   // [Emits]
 
+  // [Modularity - ['Name']]
+  // - [Reactivity State]
+  // -- {Alway add first} *all the defineModel v-model
+  // -- ref
+  // - [Computed]
+  // - [Method]
+  // - [Watch]
+
   // [Plugin]
 
   // [Composable]
@@ -34,14 +42,6 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
   // [Global Method]
 
   // [Global Computed]
-
-  // [Modularity - ['Name']]
-  // - [Reactivity State]
-  // -- {Alway add first} *all the defineModel v-model
-  // -- ref
-  // - [Computed]
-  // - [Method]
-  // - [Watch]
 
   // [Lifecycle Hooks]
 </script>

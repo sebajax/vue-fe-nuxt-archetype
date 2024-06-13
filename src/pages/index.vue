@@ -1,51 +1,49 @@
 <script setup lang="ts">
-// [Emits]
-const emits = defineEmits(['setPageTitle']);
-
-// [Lifecycle Hooks]
-onMounted(() => {
-  emits('setPageTitle', 'Pacientes');
-});
+const { loggedIn, user, refresh, login, logout, currentProvider, clear } =
+  useOidcAuth();
 </script>
 
 <template>
-  <v-app>
-    <!-- main content -->
-    <v-container fluid class="px-3 py-8">
-      <v-row>
-        <BaseCard class="w-full">
-          <div
-            class="grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 lg:grid-cols-3"
-          >
-            <!-- Personal data card -->
-            <TitledCard title="Antecedentes personales">
-              <Text class="text-[20px] font-bold text-dark-text"
-                >Regina del Pilar Plaza Baeza</Text
-              >
-              <v-container class="px-0">
-                <TextData category="Rut" value="12.345.678-9" />
-                <TextData category="Correo" value="correo@falp.org" />
-                <TextData category="Categoría" value="II" />
-                <TextData category="Edad" value="42 años" />
-              </v-container>
-            </TitledCard>
-            <!-- Tags card -->
-            <TitledCard title="Tags">
-              <Text>Tag_1 Tag_2 Tag_3</Text>
-            </TitledCard>
-            <TitledCard title="Definición plan de tratamiento">
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-                risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
-                nec, ultricies sed, dolor.
-              </Text>
-              <Text>
-                Parrafo 2: Cras elementum ultrices diam. Maecenas ligula massa,
-              </Text>
-            </TitledCard>
-          </div>
-        </BaseCard>
-      </v-row>
-    </v-container>
-  </v-app>
+  <div class="w-full grid grid-cols-2">
+    <div class="col-start-1 flex flex-col gap-4 items-center">
+      <p class="text-xl">Login with</p>
+      <button class="btn-base btn-login" @click="login()">
+        <span class="i-majesticons-login-line" />
+        <span class="pl-2">Default provider</span>
+      </button>
+      <p>Logged in: {{ loggedIn }}</p>
+      <p>Current provider: {{ currentProvider }}</p>
+      <button
+        class="btn-base btn-login"
+        :disabled="!loggedIn || !user.canRefresh"
+        @click="refresh()"
+      >
+        <span class="i-majesticons-refresh" />
+        <span class="pl-2">Refresh</span>
+      </button>
+      <button
+        class="btn-base btn-login"
+        :disabled="!loggedIn"
+        @click="logout(currentProvider)"
+      >
+        <span class="i-majesticons-logout-line" />
+        <span class="pl-2">Logout</span>
+      </button>
+      <button class="btn-base btn-login" :disabled="!loggedIn" @click="clear()">
+        <span class="i-majesticons-delete-bin-line" />
+        <span class="pl-2">Clear session</span>
+      </button>
+    </div>
+    <div class="col-start-2">
+      <p class="pb-4 text-xl">User object</p>
+      <div v-for="(value, key, index) in user" :key="index">
+        <span class="font-bold text-base">
+          {{ `${key}` }}
+        </span>
+        <p class="text-sm pb-3 break-all">
+          {{ value }}
+        </p>
+      </div>
+    </div>
+  </div>
 </template>
