@@ -4,9 +4,8 @@ definePageMeta({
 });
 const { login } = useOidcAuth();
 </script>
-
 <template>
-  <div class="flex flex-col gap-4 items-center">
-    <button class="btn-base btn-login" @click="login()" />
+  <div class="flex flex-col gap-4 items-center mt-5">
+    <v-btn color="primary" @click="login()">Login</v-btn>
   </div>
 </template>
