@@ -6,10 +6,10 @@ import type { Theme } from './interfaces/theme.type';
 
 // VUE
 
-// [Reactivity - Actual page]
+// [Modularity - Actual page]
 const actualPage = ref<string>('');
 
-// [Reactivity - Set application theme]
+// [Modularity - Set application theme]
 const theme = useTheme();
 const defaultTheme = ref<Theme>('light');
 const themeLanguaje = ref<string>(

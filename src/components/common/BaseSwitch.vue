@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 // VUE
+// [Options]
+defineOptions({
+  inheritAttrs: true,
+});
 
 // [Props]
 interface IProps {
@@ -10,11 +14,6 @@ const props = defineProps<IProps>();
 // [Modularity - Model]
 // - [Reactivity State]
 const model = defineModel<string>();
-
-// [Options]
-defineOptions({
-  inheritAttrs: true,
-});
 </script>
 
 <template>
