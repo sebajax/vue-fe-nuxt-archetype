@@ -16,6 +16,9 @@ onMounted(() => {
     <v-container fluid class="px-0">
       <!-- Searcher prototype -->
       <PatientSearcher />
+      <NuxtLink :to="{ path: `/patient-details/${1}` }">
+        <BaseButton label="Detalles" class="mb-4" />
+      </NuxtLink>
       <!-- Table prototype -->
       <PatientTable />
       <!-- <PatientForm /> -->
