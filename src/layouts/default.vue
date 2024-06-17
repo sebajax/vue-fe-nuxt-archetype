@@ -22,8 +22,8 @@ watch(defaultTheme, (newTheme: Theme) => {
 <template>
   <v-app class="d-flex">
     <v-layout column>
-      <SideBar v-model="defaultTheme" :sp-theme="themeLanguaje" />
-      <Header v-model="actualPage" />
+      <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguaje" />
+      <BaseHeader v-model="actualPage" />
       <v-main :style="{ height: '100vh' }">
         <NuxtPage
           class="pt-5 pr-8 overflow-y-scroll"
