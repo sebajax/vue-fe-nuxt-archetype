@@ -1,28 +1,31 @@
 <script setup lang="ts">
 // [Imports]
 import { useTheme } from 'vuetify';
-// types
-import type { Theme } from '../interfaces/theme.type';
-// stores
-// import { useThemeStore } from '@/stores/theme/themeStore';
-// [Reactivity - Actual page]
+// - Interface
+import type { TypeTheme } from '../interfaces/theme.interface';
+import { EnumTheme, EnumThemeTranslation } from '../interfaces/theme.interface';
+
+// [Modularity - Actual page]
 const actualPage = ref<string>('');
-// [Reactivity - Set application theme]
+
+// [Modularity - Set application theme]
 const theme = useTheme();
-const defaultTheme = ref<Theme>('light');
-const themeLanguaje = ref<string>(
-  { light: 'claro', dark: 'oscuro' }[defaultTheme.value],
-);
-// -set default theme based on the swtich value
-watch(defaultTheme, (newTheme: Theme) => {
-  themeLanguaje.value = { light: 'claro', dark: 'oscuro' }[newTheme];
+const defaultTheme = ref<TypeTheme>(EnumTheme.LIGHT);
+const themeLanguage = ref<string>(EnumThemeTranslation.LIGHT);
+// - [Watch]
+watch(defaultTheme, (newTheme: TypeTheme) => {
+  themeLanguage.value =
+    newTheme === EnumTheme.LIGHT
+      ? EnumThemeTranslation.LIGHT
+      : EnumThemeTranslation.DARK;
   theme.global.name.value = newTheme;
 });
 </script>
+
 <template>
   <v-app class="d-flex">
     <v-layout column>
-      <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguaje" />
+      <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguage" />
       <BaseHeader v-model="actualPage" />
       <v-main :style="{ height: '100vh' }">
         <NuxtPage
@@ -33,6 +36,7 @@ watch(defaultTheme, (newTheme: Theme) => {
     </v-layout>
   </v-app>
 </template>
+
 <style scoped>
 .full-height {
   height: 100vh; /* You can adjust this value to your desired height */

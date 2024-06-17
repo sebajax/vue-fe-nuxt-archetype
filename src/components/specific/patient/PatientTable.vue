@@ -22,8 +22,8 @@ const options = ref({
   page: 1,
   itemsPerPage: 10,
 });
-async function getPatients(event) {
-  options.value = event;
+async function getPatients(event: unknown) {
+  options.value = event as unknown as typeof options.value;
   // TODO: change to real API
   console.log(options.value);
 }
