@@ -36,22 +36,7 @@ async function getPatients(event: unknown) {
 </template>
 
 <style>
-.v-table {
-  border-radius: 20px;
-}
-
-/* even table row bg-color */
-.v-table tbody tr:nth-child(even) {
-  color: black;
-  background-color: #e6e6e6;
-}
-/* odd table row bg-color */
-.v-table tbody tr:nth-child(odd) {
-  color: black;
-  background-color: white;
-}
-
-/* header class: color and font */
+/* Header class: color and font */
 .v-table thead tr th {
   background-color: v-bind(primaryColor);
   color: v-bind(secondaryColor);

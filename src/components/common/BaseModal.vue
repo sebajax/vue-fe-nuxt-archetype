@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<IProps>(), {
       <Button v-bind="activatorProps" label="Formulario" />
     </template>
     <template #default="{ isActive }">
-      <!-- if the component has title -->
+      <!-- If the component has title -->
       <v-card v-if="props.title" :title="props.title">
         <slot />
         <v-card-actions>
@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<IProps>(), {
           <v-btn text="Cerrar" @click="isActive.value = false" />
         </v-card-actions>
       </v-card>
-      <!-- card without title -->
+      <!-- Card without title -->
       <v-card v-else>
         <slot />
         <v-card-actions>

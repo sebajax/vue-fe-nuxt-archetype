@@ -37,3 +37,18 @@ p {
   font-size: 16px;
   line-height: 1.5;
 }
+
+// Table
+.v-table {
+  border-radius: 20px;
+}
+/* Even table row bg-color */
+.v-table tbody tr:nth-child(even) {
+  color: black;
+  background-color: #e6e6e6;
+}
+/* Odd table row bg-color */
+.v-table tbody tr:nth-child(odd) {
+  color: black;
+  background-color: white;
+}
