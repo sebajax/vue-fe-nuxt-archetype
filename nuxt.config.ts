@@ -16,8 +16,8 @@ export default defineNuxtConfig({
       },
     },
     session: {
+      expirationCheck: false, // TODO: Check why this was causing a refreshToken error
       automaticRefresh: true,
-      expirationCheck: true,
       maxAge: 60 * 60 * 24,
     },
     middleware: {
