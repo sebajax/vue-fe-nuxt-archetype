@@ -1,9 +1,10 @@
-// Module import
+// [Imports]
+// - Modules
 import { createVuetify } from 'vuetify';
 import 'vuetify/styles';
-// Material design icons
+// - Material design icons
 import '@mdi/font/css/materialdesignicons.css';
-// Interface import
+// - Interface
 import { EnumTheme } from '~/interfaces/theme.interface';
 
 // Custom theme light

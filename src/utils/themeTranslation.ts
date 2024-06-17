@@ -1,4 +1,5 @@
-// Interface import
+// [Imports]
+// - Interface
 import {
   EnumThemeTranslation,
   type TypeThemeTranslationKeys,
