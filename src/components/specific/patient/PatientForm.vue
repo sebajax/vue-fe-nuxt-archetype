@@ -1,23 +1,13 @@
 <script setup lang="ts">
 // [Imports]
-// -validators
-import { useVuelidate } from '@vuelidate/core';
-import {
-  alpha,
-  email,
-  maxLength,
-  numeric,
-  required,
-} from '@vuelidate/validators';
+import patientValidation from '~/composables/velidate-patient.composable';
 // -stores
 import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
 
 // VUE
 
-// [Stores]
-const addUserProvider = useAddUserStore();
-
-// [Reactivity - Post Data]
+// [Modularity - Post Data]
+// - [Reactivity State]
 const formData = ref({
   name: '',
   rut: '',
@@ -33,7 +23,9 @@ const formData = ref({
 });
 // TODO: replace with Pinnia based toast
 const mesagge = ref<string>('');
-// -post data
+// - [Composable]
+const { $v, nameRules, emailRules } = patientValidation(formData);
+// - [Methods]
 async function postData() {
   const validation = await $v.value.$validate();
   if (validation) {
@@ -63,43 +55,8 @@ async function postData() {
   }
 }
 
-// [Reactivity - Validation]
-const rules = {
-  name: { required, maxLength: maxLength(80), alpha },
-  rut: { required, maxLength: maxLength(12) },
-  birthdate: { required },
-  age: { required, numeric },
-  genre: { required, alpha },
-  nationality: { required, alpha },
-  address: { required },
-  socialSecurity: { required, alpha },
-  phone: { required, numeric },
-  altPhone: { numeric },
-  email: { required, email },
-};
-const $v = useVuelidate(rules, formData);
-// -vuetify rules
-// TODO: make them composables and connect with vuelidate
-const nameRules = [
-  (value: string) => {
-    if (value) return true;
-    return 'El campo Nombre es requerido.';
-  },
-  (value: string) => {
-    if (value?.length <= 50) return true;
-    return 'El nombre debe tener a lo más 50 caracteres.';
-  },
-];
-const emailRules = [
-  (value: string) => {
-    if (value) return true;
-    return 'El campo Correo es requerido.';
-  },
-  (value: string) => {
-    if (/.+@.+\..+/.test(value)) return true;
-    return 'El correo debe ser uno válido.';
-  },
-];
+// [Stores]
+const addUserProvider = useAddUserStore();
 </script>
 
 <template>
@@ -123,16 +80,16 @@ const emailRules = [
         required
         :rules="emailRules"
       />
+      <!-- rol -->
       <BaseInputDropdown
         label="Rol"
         :items="['Administrador', 'Médico', 'Enfermera']"
       />
-
+      <!-- gente -->
       <BaseInputDropdown
         label="Sexo"
         :items="['Femenino', 'Masculino', 'Otro']"
       />
-
       <BaseButton
         label="Añadir usuario"
         :readinly="formData"

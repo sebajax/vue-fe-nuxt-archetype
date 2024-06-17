@@ -35,7 +35,15 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
   // [Plugin]
 
-  // [Composable]
+  // [Modularity - ['Name']]
+  // - [Reactivity State]
+  // -- {Alway add first} *all the defineModel v-model
+  // -- ref
+  // - [Utils]
+  // - [Composable]
+  // - [Computed]
+  // - [Method]
+  // - [Watch]
 
   // [Store]
 
