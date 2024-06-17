@@ -1,3 +1,43 @@
 // assets/styles/main.scss
 @import 'vuetify/styles';
 @import '@mdi/font/css/materialdesignicons.css';
+// Inter font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+// Styles for heading elements
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter';
+  font-weight: bold;
+  margin-bottom: 1rem; // Adjust as needed
+  color: #333; // Default text color
+}
+
+// Styles for paragraph elements
+p {
+  font-family: 'Inter';
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
