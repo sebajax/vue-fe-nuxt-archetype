@@ -17,6 +17,18 @@ watch(defaultTheme, (newTheme: TypeTheme) => {
   themeLanguage.value = getThemeTranslation(newTheme);
   theme.global.name.value = newTheme;
 });
+// [Modularity - Page title]
+const title = ref('Nuxt Archetype');
+const description = ref('Nuxt 3 frontend archetype');
+useHead({
+  title,
+  meta: [
+    {
+      name: 'description',
+      content: description,
+    },
+  ],
+});
 </script>
 
 <template>

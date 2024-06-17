@@ -3,6 +3,19 @@ definePageMeta({
   layout: 'authentication',
 });
 const { login } = useOidcAuth();
+
+// [Modularity - Page title]
+const title = ref('Login');
+const description = ref('Login page Nuxt 3 archetype');
+useHead({
+  title,
+  meta: [
+    {
+      name: 'description',
+      content: description,
+    },
+  ],
+});
 </script>
 <template>
   <v-card class="mx-auto pa-10" width="40%" elevation="10" rounded="lg">
