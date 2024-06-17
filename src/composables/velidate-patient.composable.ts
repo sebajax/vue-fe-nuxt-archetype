@@ -1,13 +1,11 @@
 // composables/useFormValidation.ts
-
-import { ref } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import {
-  required,
-  maxLength,
-  email as emailValidator,
   alpha,
+  email as emailValidator,
+  maxLength,
   numeric,
+  required,
 } from '@vuelidate/validators';
 
 function patientValidation(formData: any) {

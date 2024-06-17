@@ -18,7 +18,7 @@ const { login } = useOidcAuth();
       color="#B684E7"
       block
       @click="login()"
-    ></v-btn>
+    />
   </v-card>
 </template>
 <style></style>

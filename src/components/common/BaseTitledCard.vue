@@ -14,7 +14,7 @@ const props = defineProps<IProps>();
       <v-card-title class="title-left text-title">
         <span class="text-lg">{{ props.title }}</span>
       </v-card-title>
-      <hr class="mx-4" />
+      <hr class="mx-4" >
       <v-card-text>
         <slot />
       </v-card-text>

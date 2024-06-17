@@ -2,10 +2,10 @@
 
 import useVuelidate from '@vuelidate/core';
 import {
-  required,
-  maxLength,
-  email as emailValidator,
   alpha,
+  email as emailValidator,
+  maxLength,
+  required,
 } from '@vuelidate/validators';
 
 // TODO: use the correct form interface instead of any

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const { loggedIn, user, refresh, login, logout, currentProvider, fetch } =
-  useOidcAuth();
+const { loggedIn, user, logout, currentProvider } = useOidcAuth();
 </script>
 <template>
   <v-container class="mt-5 pa-2">
@@ -14,14 +13,6 @@ const { loggedIn, user, refresh, login, logout, currentProvider, fetch } =
 
           <p><b>LoggedIn : </b>{{ loggedIn }}</p>
           <p><b>Current provider : </b> {{ currentProvider }}</p>
-          <v-btn
-            color="#B684E7"
-            append-icon="mdi-refresh"
-            :disabled="!loggedIn || !user.canRefresh"
-            @click="refresh()"
-          >
-            <span class="pl-2">Refresh</span>
-          </v-btn>
           <v-btn
             color="#B684E7"
             append-icon="mdi-logout"

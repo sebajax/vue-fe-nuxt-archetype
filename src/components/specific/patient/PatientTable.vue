@@ -18,11 +18,11 @@ const secondaryColor = computed(() => {
 });
 
 // [Reactivity - Fetch Data]
-const options: any = ref({
+const options = ref({
   page: 1,
   itemsPerPage: 10,
 });
-async function getPatients(event: any) {
+async function getPatients(event) {
   options.value = event;
   // TODO: change to real API
   console.log(options.value);
