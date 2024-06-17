@@ -16,12 +16,22 @@ const primaryColor = computed(() => {
 const secondaryColor = computed(() => {
   return theme.global.current.value.colors['dark-text'];
 });
+
+// [Reactivity - Fetch Data]
+const options: any = ref({
+  page: 1,
+  itemsPerPage: 10,
+});
+async function getPatients(event: any) {
+  options.value = event;
+  // TODO: change to real API
+  console.log(options.value);
+}
 </script>
 
 <template>
   <div class="rounded-lg overflow-hidden">
-    {{ primaryColor }}
-    <v-data-table :items="patients" />
+    <v-data-table :items="patients" @update:options="getPatients($event)" />
   </div>
 </template>
 
