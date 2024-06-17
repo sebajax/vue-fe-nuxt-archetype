@@ -10,6 +10,7 @@ enum EnumThemeTranslation {
 
 // Type Theme Types
 type TypeTheme = 'light' | 'dark';
+type TypeThemeTranslationKeys = keyof typeof EnumThemeTranslation;
 
 export { EnumTheme, EnumThemeTranslation };
-export type { TypeTheme };
+export type { TypeTheme, TypeThemeTranslationKeys };

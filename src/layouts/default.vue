@@ -14,10 +14,7 @@ const defaultTheme = ref<TypeTheme>(EnumTheme.LIGHT);
 const themeLanguage = ref<string>(EnumThemeTranslation.LIGHT);
 // - [Watch]
 watch(defaultTheme, (newTheme: TypeTheme) => {
-  themeLanguage.value =
-    newTheme === EnumTheme.LIGHT
-      ? EnumThemeTranslation.LIGHT
-      : EnumThemeTranslation.DARK;
+  themeLanguage.value = getThemeTranslation(newTheme);
   theme.global.name.value = newTheme;
 });
 </script>
