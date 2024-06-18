@@ -17,7 +17,7 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
   // [Const]
 
-  // VUE
+  // VUE - Not necessary to add only to know that here starts VUE data
 
   // [Options]
 
@@ -25,15 +25,9 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
   // [Emits]
 
-  // [Modularity - ['Name']]
-  // - [Reactivity State]
-  // -- {Alway add first} *all the defineModel v-model
-  // -- ref
-  // - [Computed]
-  // - [Method]
-  // - [Watch]
-
   // [Plugin]
+
+  // [Composable]
 
   // [Modularity - ['Name']]
   // - [Reactivity State]

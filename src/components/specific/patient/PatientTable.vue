@@ -1,13 +1,15 @@
 <script lang="ts" setup>
-// VUE
 // [Modularity - Get Patients]
 const patients = ref(usePatients);
 
+// TODO: make pagination options an interface
 // [Modularity - Fetch Data After Update]
+// - [Reactivity State]
 const options = ref({
   page: 1,
   itemsPerPage: 10,
 });
+// TODO: get event data from options value from domains
 async function getPatients(event: unknown) {
   options.value = event as unknown as typeof options.value;
   // TODO: change to real API

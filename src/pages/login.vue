@@ -1,12 +1,17 @@
 <script setup lang="ts">
+// [Options]
 definePageMeta({
   layout: 'authentication',
 });
+
+// [Composable]
 const { login } = useOidcAuth();
 
 // [Modularity - Page title]
+// - [Reactivity State]
 const title = ref('Login');
 const description = ref('Login page Nuxt 3 archetype');
+// - [Composable]
 useHead({
   title,
   meta: [

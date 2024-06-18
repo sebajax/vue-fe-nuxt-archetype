@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// VUE
-
 // [Props]
 interface IProps {
   title?: string | null;
@@ -15,10 +13,10 @@ const props = withDefaults(defineProps<IProps>(), {
 <template>
   <ClientOnly>
     <v-dialog :max-width="props.maxWidth">
-      <template ssr #activator="{ props: activatorProps }">
+      <template #activator="{ props: activatorProps }">
         <BaseButton v-bind="activatorProps" label="Formulario" />
       </template>
-      <template ssr #default="{ isActive }">
+      <template #default="{ isActive }">
         <!-- If the component has title -->
         <v-card v-if="props.title" :title="props.title">
           <div class="px-6">
@@ -43,3 +41,5 @@ const props = withDefaults(defineProps<IProps>(), {
     </v-dialog>
   </ClientOnly>
 </template>
+
+<style></style>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// VUE
-
 // [Emits]
 const emits = defineEmits(['setPageTitle']);
 
