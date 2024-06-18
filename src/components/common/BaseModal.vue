@@ -15,12 +15,14 @@ const props = withDefaults(defineProps<IProps>(), {
 <template>
   <v-dialog :max-width="props.maxWidth">
     <template #activator="{ props: activatorProps }">
-      <Button v-bind="activatorProps" label="Formulario" />
+      <BaseButton v-bind="activatorProps" label="Formulario" />
     </template>
     <template #default="{ isActive }">
       <!-- If the component has title -->
       <v-card v-if="props.title" :title="props.title">
-        <slot />
+        <div class="px-6">
+          <slot />
+        </div>
         <v-card-actions>
           <v-spacer />
           <v-btn text="Cerrar" @click="isActive.value = false" />
@@ -28,7 +30,9 @@ const props = withDefaults(defineProps<IProps>(), {
       </v-card>
       <!-- Card without title -->
       <v-card v-else>
-        <slot />
+        <div class="px-6">
+          <slot />
+        </div>
         <v-card-actions>
           <v-spacer />
           <v-btn text="Cerrar" @click="isActive.value = false" />

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // VUE
-// [Reactivity - Get Patients]
+// [Modularity - Get Patients]
 const patients = ref(usePatients);
 
 // [Modularity - Fetch Data After Update]

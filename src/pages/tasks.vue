@@ -4,24 +4,9 @@
 // [Emits]
 const emits = defineEmits(['setPageTitle']);
 
-// [Reactivity - Check window width]
-// TODO: make this a composable
-const width = ref<number>(0);
-function updateWidth() {
-  if (typeof window !== 'undefined') {
-    width.value = window.innerWidth;
-  }
-}
-const responsiveCols = computed(() => (width.value < 600 ? '12' : '6'));
-
 // [Lifecycle Hooks]
 onMounted(() => {
   emits('setPageTitle', 'Tareas');
-  updateWidth();
-  window.addEventListener('resize', updateWidth);
-});
-onUnmounted(() => {
-  window.removeEventListener('resize', updateWidth);
 });
 </script>
 
@@ -34,9 +19,9 @@ onUnmounted(() => {
           <Title text="Inicio" />
         </v-row>
         <v-row>
-          <Modal title="Actualizar formulario">
-            <UserForm :cols="responsiveCols" />
-          </Modal>
+          <BaseModal title="Actualizar formulario">
+            Modal de ejemplo
+          </BaseModal>
         </v-row>
       </v-container>
     </v-main>
