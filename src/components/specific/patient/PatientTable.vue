@@ -1,23 +1,9 @@
 <script lang="ts" setup>
-// [Imports]
-import { useTheme } from 'vuetify';
-
 // VUE
-
 // [Reactivity - Get Patients]
 const patients = ref(usePatients);
 
-// [Reactivity - Theme selector]
-const theme = useTheme();
-// TODO: make them a composable
-const primaryColor = computed(() => {
-  return theme.global.current.value.colors.primary;
-});
-const secondaryColor = computed(() => {
-  return theme.global.current.value.colors['dark-text'];
-});
-
-// [Reactivity - Fetch Data]
+// [Modularity - Fetch Data After Update]
 const options = ref({
   page: 1,
   itemsPerPage: 10,
@@ -35,12 +21,4 @@ async function getPatients(event: unknown) {
   </div>
 </template>
 
-<style>
-/* Header class: color and font */
-.v-table thead tr th {
-  background-color: v-bind(primaryColor);
-  color: v-bind(secondaryColor);
-  font-size: large;
-  font-weight: 900;
-}
-</style>
+<style></style>

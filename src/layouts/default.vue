@@ -29,6 +29,17 @@ useHead({
     },
   ],
 });
+
+// [Modularity - Get theme colors]
+const colors = useColors();
+
+// TODO: make them a composable
+const primaryColor = computed(() => {
+  return theme.global.current.value.colors.primary;
+});
+const secondaryColor = computed(() => {
+  return theme.global.current.value.colors['dark-text'];
+});
 </script>
 
 <template>
@@ -36,7 +47,7 @@ useHead({
     <v-layout column>
       <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguage" />
       <BaseHeader v-model="actualPage" />
-      <v-main :style="{ height: '100vh' }">
+      <v-main class="h-[100vh]">
         <NuxtPage
           class="pt-5 pr-8 overflow-y-scroll"
           @set-page-title="(value: string) => (actualPage = value)"
@@ -46,8 +57,12 @@ useHead({
   </v-app>
 </template>
 
-<style scoped>
-.full-height {
-  height: 100vh; /* You can adjust this value to your desired height */
+<style>
+/* Table header class: color and font */
+.v-table thead tr th {
+  background-color: v-bind(primaryColor);
+  color: v-bind(secondaryColor);
+  font-size: large;
+  font-weight: 900;
 }
 </style>
