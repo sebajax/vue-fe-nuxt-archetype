@@ -8,21 +8,26 @@ export function useColors() {
 
   // Computed colors reactive to theme changes
   // Primary color
-  const primaryColor = computed(() => {
+  const primary = computed(() => {
     return theme.global.current.value.colors.primary;
   });
   // Secondary color
-  const secondaryColor = computed(() => {
+  const secondary = computed(() => {
     return theme.global.current.value.colors.secondary;
   });
   // Dark text color
-  const darkTextColor = computed(() => {
+  const darkText = computed(() => {
     return theme.global.current.value.colors['dark-text'];
   });
   // Light gray color
-  const lightGrayColor = computed(() => {
+  const lightGray = computed(() => {
     return theme.global.current.value.colors['light-gray'];
   });
 
-  return { primaryColor, secondaryColor, darkTextColor, lightGrayColor };
+  return {
+    primary,
+    secondary,
+    darkText,
+    lightGray,
+  };
 }

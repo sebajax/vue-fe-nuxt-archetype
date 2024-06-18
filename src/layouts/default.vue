@@ -31,15 +31,9 @@ useHead({
 });
 
 // [Modularity - Get theme colors]
-const { primaryColor, secondaryColor } = useColors();
-
-// TODO: make them a composable
-const primaryColor = computed(() => {
-  return theme.global.current.value.colors.primary;
-});
-const secondaryColor = computed(() => {
-  return theme.global.current.value.colors['dark-text'];
-});
+const colors = useColors();
+const primaryColor = colors.primary;
+const darkTextColor = colors.darkText;
 </script>
 
 <template>
@@ -61,7 +55,7 @@ const secondaryColor = computed(() => {
 /* Table header class: color and font */
 .v-table thead tr th {
   background-color: v-bind(primaryColor);
-  color: v-bind(secondaryColor);
+  color: v-bind(darkTextColor);
   font-size: large;
   font-weight: 900;
 }
