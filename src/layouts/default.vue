@@ -31,7 +31,7 @@ useHead({
 });
 
 // [Modularity - Get theme colors]
-const colors = useColors();
+const { primaryColor, secondaryColor } = useColors();
 
 // TODO: make them a composable
 const primaryColor = computed(() => {

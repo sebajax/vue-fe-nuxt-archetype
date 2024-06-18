@@ -1,10 +1,9 @@
 // [Imports]
 import { useTheme } from 'vuetify';
 
-// Theme definition
-
-// Colors
-function useColors() {
+// Colors theme definition
+export function useColors() {
+  // Vuetify composable theme
   const theme = useTheme();
 
   // Computed colors reactive to theme changes
@@ -24,7 +23,6 @@ function useColors() {
   const lightGrayColor = computed(() => {
     return theme.global.current.value.colors['light-gray'];
   });
+
   return { primaryColor, secondaryColor, darkTextColor, lightGrayColor };
 }
-
-export { useColors };
