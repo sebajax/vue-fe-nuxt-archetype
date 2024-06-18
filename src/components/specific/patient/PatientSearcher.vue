@@ -1,20 +1,19 @@
 <script lang="ts" setup>
+// TODO: make this an interface if it comes from a master table in the DB
 // [Const]
 // -selector
-const category = ['Cancer', 'Melanoma'];
-const urgency = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
-// VUE
+const category: string[] = ['Cancer', 'Melanoma'];
+const urgency: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
 // [Emits]
 const emits = defineEmits(['filterData']);
 
-// [Reactivity - Filter]
-// -reactivity
-const idFilter = ref('');
-const categoryFilter = ref('');
-const urgencyFilter = ref('');
-// -computed
+// [Modularity - Filter]
+// - [Reactivity State]
+const idFilter = ref<string>('');
+const categoryFilter = ref<string>('');
+const urgencyFilter = ref<string>('');
+// - [Computed]
 const patientFilter = computed(() => {
   return {
     id: idFilter.value,
@@ -22,8 +21,8 @@ const patientFilter = computed(() => {
     urgency: urgencyFilter.value,
   };
 });
-let timeout: ReturnType<typeof setTimeout> | null = null;
 // TODO: make this a composable
+let timeout: ReturnType<typeof setTimeout> | null = null;
 watch(patientFilter, (newFilter) => {
   if (timeout !== null) {
     clearTimeout(timeout);

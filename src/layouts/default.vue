@@ -17,6 +17,24 @@ watch(defaultTheme, (newTheme: TypeTheme) => {
   themeLanguage.value = getThemeTranslation(newTheme);
   theme.global.name.value = newTheme;
 });
+
+// [Modularity - Page title]
+const title = ref('Nuxt Archetype');
+const description = ref('Nuxt 3 frontend archetype');
+useHead({
+  title,
+  meta: [
+    {
+      name: 'description',
+      content: description,
+    },
+  ],
+});
+
+// [Modularity - Get theme colors]
+const colors = useColors();
+const primaryColor = colors.primary;
+const darkTextColor = colors.darkText;
 </script>
 
 <template>
@@ -24,7 +42,7 @@ watch(defaultTheme, (newTheme: TypeTheme) => {
     <v-layout column>
       <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguage" />
       <BaseHeader v-model="actualPage" />
-      <v-main :style="{ height: '100vh' }">
+      <v-main class="h-[100vh]">
         <NuxtPage
           class="pt-5 pr-8 overflow-y-scroll"
           @set-page-title="(value: string) => (actualPage = value)"
@@ -34,8 +52,12 @@ watch(defaultTheme, (newTheme: TypeTheme) => {
   </v-app>
 </template>
 
-<style scoped>
-.full-height {
-  height: 100vh; /* You can adjust this value to your desired height */
+<style>
+/* Table header class: color and font */
+.v-table thead tr th {
+  background-color: v-bind(primaryColor);
+  color: v-bind(darkTextColor);
+  font-size: large;
+  font-weight: 900;
 }
 </style>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// VUE
-
 // [Props]
 interface IProps {
   title?: string | null;
@@ -13,27 +11,35 @@ const props = withDefaults(defineProps<IProps>(), {
 </script>
 
 <template>
-  <v-dialog :max-width="props.maxWidth">
-    <template #activator="{ props: activatorProps }">
-      <Button v-bind="activatorProps" label="Formulario" />
-    </template>
-    <template #default="{ isActive }">
-      <!-- if the component has title -->
-      <v-card v-if="props.title" :title="props.title">
-        <slot />
-        <v-card-actions>
-          <v-spacer />
-          <v-btn text="Cerrar" @click="isActive.value = false" />
-        </v-card-actions>
-      </v-card>
-      <!-- card without title -->
-      <v-card v-else>
-        <slot />
-        <v-card-actions>
-          <v-spacer />
-          <v-btn text="Cerrar" @click="isActive.value = false" />
-        </v-card-actions>
-      </v-card>
-    </template>
-  </v-dialog>
+  <ClientOnly>
+    <v-dialog :max-width="props.maxWidth">
+      <template #activator="{ props: activatorProps }">
+        <BaseButton v-bind="activatorProps" label="Formulario" />
+      </template>
+      <template #default="{ isActive }">
+        <!-- If the component has title -->
+        <v-card v-if="props.title" :title="props.title">
+          <div class="px-6">
+            <slot />
+          </div>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn text="Cerrar" @click="isActive.value = false" />
+          </v-card-actions>
+        </v-card>
+        <!-- Card without title -->
+        <v-card v-else>
+          <div class="px-6">
+            <slot />
+          </div>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn text="Cerrar" @click="isActive.value = false" />
+          </v-card-actions>
+        </v-card>
+      </template>
+    </v-dialog>
+  </ClientOnly>
 </template>
+
+<style></style>

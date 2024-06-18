@@ -1,27 +1,15 @@
 <script lang="ts" setup>
-// [Imports]
-import { useTheme } from 'vuetify';
-
-// VUE
-
-// [Reactivity - Get Patients]
+// [Modularity - Get Patients]
 const patients = ref(usePatients);
 
-// [Reactivity - Theme selector]
-const theme = useTheme();
-// TODO: make them a composable
-const primaryColor = computed(() => {
-  return theme.global.current.value.colors.primary;
-});
-const secondaryColor = computed(() => {
-  return theme.global.current.value.colors['dark-text'];
-});
-
-// [Reactivity - Fetch Data]
+// TODO: make pagination options an interface
+// [Modularity - Fetch Data After Update]
+// - [Reactivity State]
 const options = ref({
   page: 1,
   itemsPerPage: 10,
 });
+// TODO: get event data from options value from domains
 async function getPatients(event: unknown) {
   options.value = event as unknown as typeof options.value;
   // TODO: change to real API
@@ -35,27 +23,4 @@ async function getPatients(event: unknown) {
   </div>
 </template>
 
-<style>
-.v-table {
-  border-radius: 20px;
-}
-
-/* even table row bg-color */
-.v-table tbody tr:nth-child(even) {
-  color: black;
-  background-color: #e6e6e6;
-}
-/* odd table row bg-color */
-.v-table tbody tr:nth-child(odd) {
-  color: black;
-  background-color: white;
-}
-
-/* header class: color and font */
-.v-table thead tr th {
-  background-color: v-bind(primaryColor);
-  color: v-bind(secondaryColor);
-  font-size: large;
-  font-weight: 900;
-}
-</style>
+<style></style>

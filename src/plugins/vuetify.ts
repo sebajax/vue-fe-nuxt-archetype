@@ -11,8 +11,7 @@ import { EnumTheme } from '~/interfaces/theme.interface';
 const customLightTheme = {
   dark: false,
   colors: {
-    background: '#eee',
-    primary: '#4D306A',
+    primary: '#B684E7',
     secondary: '#B684E7',
     title: '#B684E7',
     'light-gray': '#F4F5F6',
@@ -24,7 +23,6 @@ const customLightTheme = {
 const customDarkTheme = {
   dark: true,
   colors: {
-    background: '#15202b',
     primary: '#4D306A',
     secondary: '#B684E7',
     title: '#B684E7',
