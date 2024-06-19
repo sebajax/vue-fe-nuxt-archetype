@@ -43,6 +43,9 @@ export const useToastStore = defineStore('toastStore', () => {
     configToast.value.colorTimer = newConfig.colorTimer
       ? newConfig.colorTimer
       : ToastInitConfig.colorTimer;
+
+    // Call toggleStateToast() to show the toast
+    toggleStateToast();
   }
 
   return { toggleStateToast, configToast, updateConfig, toastState };

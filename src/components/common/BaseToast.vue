@@ -12,7 +12,7 @@ const { configToast, toggleStateToast } = useToastStore();
     <!-- toast component with inherited text and close button  -->
     <v-snackbar
       v-model="configToast.state"
-      timeout="configToast.timeout"
+      :timeout="configToast.timeout"
       location="end top"
       :timer="configToast.colorTimer"
       multi-line

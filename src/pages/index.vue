@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // [Imports]
+// - Store
+import { EnumToastType } from '~/interfaces/toast.interface';
 import { useToastStore } from '~/stores/toast/useToastStore';
 
 // [Store]
@@ -7,19 +9,16 @@ const { loggedIn, user, logout, currentProvider } = useOidcAuth();
 const { toggleStateToast, updateConfig, configToast } = useToastStore();
 
 // test Toast Component
-function testToast(){
+function testToast() {
   toggleStateToast();
 }
-function testUpdateConfig(){
-  const types = ['info', 'success', 'warning', 'error' ]
-  const typeRandom = types[Math.floor(Math.random()*4)]
+function testUpdateConfig() {
   updateConfig({
-    text: `Test data index, type: ${typeRandom}`,
-    state: true,
-    type: typeRandom,
+    text: `Test data index, type: ${EnumToastType.DARK}`,
+    type: EnumToastType.DARK,
     timeout: 3000,
     icon: 'alert',
-    colorTimer: "yellow"
+    colorTimer: 'yellow',
   });
 }
 </script>
@@ -44,22 +43,14 @@ function testUpdateConfig(){
             <span class="pl-2">Logout</span>
           </v-btn>
           <!-- test toast component -->
-            <v-divider />
-            <h3>Toast component</h3>
-            <v-btn
-              color="primary"
-              @click="testToast"
-            >
-              test toggleState
-            </v-btn>
+          <v-divider />
+          <h3>Toast component</h3>
+          <v-btn color="primary" @click="testToast"> test toggleState </v-btn>
 
-            <v-btn
-              color="primary"
-              @click="testUpdateConfig"
-            >
-              test updateConfig
-            </v-btn>
-            <pre>{{configToast}}</pre>
+          <v-btn color="primary" @click="testUpdateConfig">
+            test updateConfig
+          </v-btn>
+          <pre>{{ configToast }}</pre>
         </div>
       </v-col>
 

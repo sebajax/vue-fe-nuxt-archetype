@@ -9,9 +9,9 @@ enum EnumToastType {
 // This interface will be used in BaseToast.vue component
 interface IConfigToast {
   text: string;
-  state: boolean;
   type: EnumToastType;
-  timeout?: number;
+  state?: boolean; // Optional
+  timeout?: number; // Optional
   icon?: string; // Optional
   colorTimer?: string; // Optional
 }
