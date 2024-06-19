@@ -13,7 +13,7 @@ export const useToastStore = defineStore('toastStore', () => {
     [EnumToastType.INFO]: 'mdi-information-outline',
     [EnumToastType.SUCCESS]: 'mdi-check-circle-outline',
     [EnumToastType.WARNING]: 'mdi-alert-outline',
-    [EnumToastType.ERROR]: 'mdi-alert-circle-outline',
+    [EnumToastType.ERROR]: 'mdi-close-circle-outline',
     [EnumToastType.ALERT]: 'mdi-alert-circle-outline',
   };
 

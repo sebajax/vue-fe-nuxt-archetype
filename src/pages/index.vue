@@ -6,19 +6,14 @@ import { useToastStore } from '~/stores/toast/useToastStore';
 
 // [Store]
 const { loggedIn, user, logout, currentProvider } = useOidcAuth();
-const { toggleStateToast, updateConfig, configToast } = useToastStore();
+const { updateConfig, configToast } = useToastStore();
 
 // test Toast Component
-function testToast() {
-  toggleStateToast();
-}
 function testUpdateConfig() {
   updateConfig({
-    text: `Test data index, type: ${EnumToastType.DARK}`,
-    type: EnumToastType.DARK,
-    timeout: 3000,
-    icon: 'alert',
-    colorTimer: 'yellow',
+    text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eaque voluptates veritatis ea odit at animi, fugiat quaerat repellendus sit libero a qui voluptas quos magni laboriosam ab dolore eligendi.`,
+    type: EnumToastType.ERROR,
+    showIcon: true,
   });
 }
 </script>
@@ -45,8 +40,6 @@ function testUpdateConfig() {
           <!-- test toast component -->
           <v-divider />
           <h3>Toast component</h3>
-          <v-btn color="primary" @click="testToast"> test toggleState </v-btn>
-
           <v-btn color="primary" @click="testUpdateConfig">
             test updateConfig
           </v-btn>

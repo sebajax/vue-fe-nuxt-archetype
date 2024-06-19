@@ -14,18 +14,24 @@ const { configToast, toggleStateToast } = useToastStore();
       v-model="configToast.state"
       :timeout="configToast.timeout"
       location="end top"
-      :timer="configToast.colorTimer"
+      class="mr-4 p-[22px]"
+      rounded="lg"
       multi-line
       variant="elevated"
       transition="scroll-x-reverse-transition"
       :color="configToast.type"
-    >
-      <v-icon v-if="configToast.icon" class="mt-n1">
-        {{ `${'mdi-' + configToast.icon}` }}
-      </v-icon>
+      >
+      
+      <div class="inline-flex items-center text-left">
+        <v-icon v-if="configToast.icon" class="mt-n1 icon-size">
+          {{ configToast.icon}}
+        </v-icon>
 
-      <span class="ml-2 mt-2">{{ configToast.text }}</span>
-
+        <span class="ml-2 text-[14px] font-semibold line-clamp-3">
+          {{ configToast.text }}
+        </span>
+      </div>
+ 
       <template #actions>
         <v-btn
           variant="plain"
@@ -37,4 +43,9 @@ const { configToast, toggleStateToast } = useToastStore();
   </div>
 </template>
 
-<style></style>
+<style scoped>
+.icon-size{
+  font-size: 50px;
+}
+
+</style>
