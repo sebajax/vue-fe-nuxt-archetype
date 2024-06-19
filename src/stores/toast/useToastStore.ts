@@ -1,25 +1,31 @@
 // [Imports]
 // - Interface
-import { EnumToastType, type IConfigToast } from '~/interfaces/toast.interface';
+import {
+  EnumToastType,
+  type IConfigToast,
+  type IToastTypeIconMap,
+} from '~/interfaces/toast.interface';
 
 // This store will be used for BaseToast.vue component configuration
 export const useToastStore = defineStore('toastStore', () => {
-  // Initial configuration
-  const ToastInitConfig = {
-    timeout: 3000,
-    icon: 'bell',
-    colorTimer: 'yellow',
+  // Icon mappings - Initial configuration
+  const toastTypeIcons: IToastTypeIconMap = {
+    [EnumToastType.INFO]: 'mdi-information-outline',
+    [EnumToastType.SUCCESS]: 'mdi-check-circle-outline',
+    [EnumToastType.WARNING]: 'mdi-alert-outline',
+    [EnumToastType.ERROR]: 'mdi-alert-circle-outline',
+    [EnumToastType.ALERT]: 'mdi-alert-circle-outline',
   };
 
   // [Modularity - This is for BaseToast.vue component]
   // - [Reactivity State]
   const configToast = ref<IConfigToast>({
     text: '',
-    state: false,
     type: EnumToastType.INFO,
-    timeout: ToastInitConfig.timeout,
-    icon: ToastInitConfig.icon,
-    colorTimer: ToastInitConfig.colorTimer,
+    showIcon: true,
+    icon: toastTypeIcons[EnumToastType.INFO],
+    state: false,
+    timeout: 3000,
   });
   // - [Computed]
   const toastState = computed(() => {
@@ -33,16 +39,10 @@ export const useToastStore = defineStore('toastStore', () => {
     // Mandatory to update the state
     configToast.value.text = newConfig.text;
     configToast.value.type = newConfig.type;
+    configToast.value.icon =
+      newConfig.showIcon === true ? toastTypeIcons[newConfig.type] : '';
     // Optional to update the other properties
-    configToast.value.timeout = newConfig.timeout
-      ? newConfig.timeout
-      : ToastInitConfig.timeout;
-    configToast.value.icon = newConfig.icon
-      ? newConfig.icon
-      : ToastInitConfig.icon;
-    configToast.value.colorTimer = newConfig.colorTimer
-      ? newConfig.colorTimer
-      : ToastInitConfig.colorTimer;
+    configToast.value.timeout = newConfig.timeout ? newConfig.timeout : 3000;
 
     // Call toggleStateToast() to show the toast
     toggleStateToast();
