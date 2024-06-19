@@ -14,6 +14,7 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
   // [Imports]
   // - Interface
   // - Module
+  // - Store
 
   // [Const]
 

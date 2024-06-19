@@ -11,7 +11,6 @@ interface IConfigToast {
   text: string;
   state: boolean;
   type: EnumToastType;
-  location: string;
   timeout?: number;
   icon?: string; // Optional
   colorTimer?: string; // Optional
