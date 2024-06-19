@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // [Imports]
 import { useTheme } from 'vuetify';
-
 // - Interface
 import type { TypeTheme } from '../interfaces/theme.interface';
 import { EnumTheme, EnumThemeTranslation } from '../interfaces/theme.interface';
