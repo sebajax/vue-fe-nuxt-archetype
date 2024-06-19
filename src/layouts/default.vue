@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // [Imports]
 import { useTheme } from 'vuetify';
+
 // - Interface
 import type { TypeTheme } from '../interfaces/theme.interface';
 import { EnumTheme, EnumThemeTranslation } from '../interfaces/theme.interface';
@@ -42,6 +43,9 @@ const darkTextColor = colors.darkText;
     <v-layout column>
       <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguage" />
       <BaseHeader v-model="actualPage" />
+      <ClientOnly>
+        <BaseToast/>
+      </ClientOnly>
       <v-main class="h-[100vh]">
         <NuxtPage
           class="pt-5 pr-8 overflow-y-scroll"
