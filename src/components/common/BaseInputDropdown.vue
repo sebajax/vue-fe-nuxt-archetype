@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// VUE
-
 // [Props]
 interface IProps {
   label: string;

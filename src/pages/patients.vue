@@ -14,6 +14,10 @@ onMounted(() => {
   <v-app>
     <!-- main content -->
     <v-container fluid class="px-0">
+      <!-- Add patient form -->
+      <BaseModal title="Actualizar formulario" button-label="Añadir paciente">
+        <PatientForm />
+      </BaseModal>
       <!-- Searcher prototype -->
       <PatientSearcher />
       <NuxtLink :to="{ path: `/patient-details/${1}` }">
