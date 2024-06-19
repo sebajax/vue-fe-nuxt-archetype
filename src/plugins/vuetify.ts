@@ -16,6 +16,11 @@ const customLightTheme = {
     title: '#B684E7',
     'light-gray': '#F4F5F6',
     'dark-text': '#282828',
+    error: '#CF142B',
+    success:'#35A644',
+    alert:'#FFC72C',
+    warning:'#FB8C00',
+    info:'#7B3EB9'
   },
 };
 
@@ -28,6 +33,11 @@ const customDarkTheme = {
     title: '#B684E7',
     'light-gray': '#212121',
     'dark-text': '#F4F5F6',
+    error: '#CF142B',
+    success:'#35A644',
+    alert:'#FFC72C',
+    warning:'#FB8C00',
+    info:'#7B3EB9'
   },
 };
 

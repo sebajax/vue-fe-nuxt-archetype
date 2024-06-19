@@ -1,5 +1,21 @@
 <script setup lang="ts">
+// [Imports]
+// - Store
+import { EnumToastType } from '~/interfaces/toast.interface';
+import { useToastStore } from '~/stores/toast/useToastStore';
+
+// [Store]
 const { loggedIn, user, logout, currentProvider } = useOidcAuth();
+const { updateConfig, configToast } = useToastStore();
+
+// test Toast Component
+function testUpdateConfig() {
+  updateConfig({
+    text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eaque voluptates veritatis ea odit at animi, fugiat quaerat repellendus sit libero a qui voluptas quos magni laboriosam ab dolore eligendi.`,
+    type: EnumToastType.ERROR,
+    showIcon: true,
+  });
+}
 </script>
 <template>
   <v-container class="mt-5 pa-2">
@@ -21,6 +37,13 @@ const { loggedIn, user, logout, currentProvider } = useOidcAuth();
           >
             <span class="pl-2">Logout</span>
           </v-btn>
+          <!-- test toast component -->
+          <v-divider />
+          <h3>Toast component</h3>
+          <v-btn color="primary" @click="testUpdateConfig">
+            test updateConfig
+          </v-btn>
+          <pre>{{ configToast }}</pre>
         </div>
       </v-col>
 
