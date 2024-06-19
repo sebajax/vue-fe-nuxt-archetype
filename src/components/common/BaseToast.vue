@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  // [Imports]
-  import { useToastStore } from '~/stores/toast/useToastStore';
-  
-  // [Store]
-  const {configToast , toggleStateToast, } = useToastStore();
+// [Imports]
+// - Store
+import { useToastStore } from '~/stores/toast/useToastStore';
 
+// [Store]
+const { configToast, toggleStateToast } = useToastStore();
 </script>
 
 <template>
@@ -20,14 +20,13 @@
       transition="scroll-x-reverse-transition"
       :color="configToast.type"
     >
-
-      <v-icon v-if="configToast.icon"  class="mt-n1">
+      <v-icon v-if="configToast.icon" class="mt-n1">
         {{ `${'mdi-' + configToast.icon}` }}
       </v-icon>
-    
+
       <span class="ml-2 mt-2">{{ configToast.text }}</span>
-      
-      <template v-slot:actions>
+
+      <template #actions>
         <v-btn
           variant="plain"
           append-icon="mdi-close"
