@@ -20,7 +20,8 @@ const customLightTheme = {
     success:'#35A644',
     alert:'#FFC72C',
     warning:'#FB8C00',
-    info:'#7B3EB9'
+    info:'#7B3EB9',
+    'blue-falp': '#004990'
   },
 };
 
@@ -37,7 +38,8 @@ const customDarkTheme = {
     success:'#35A644',
     alert:'#FFC72C',
     warning:'#FB8C00',
-    info:'#7B3EB9'
+    info:'#7B3EB9',
+    'blue-falp': '#004990'
   },
 };
 

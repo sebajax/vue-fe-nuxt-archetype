@@ -37,6 +37,15 @@ export default defineNuxtConfig({
     },
   ],
   css: ['~/assets/styles/main.scss'],
+  tailwindcss: {
+    cssPath: ['~/assets/tailwind.css', { injectPosition: "first" }],
+    configPath: 'tailwind.config',
+    exposeConfig: {
+      level: 2
+    },
+    config: {},
+    viewer: true,
+  },
   build: {
     transpile: ['vuetify'],
   },
