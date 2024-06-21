@@ -29,40 +29,52 @@ useHead({
 });
 </script>
 <template>
-  <v-card class="mx-auto my-auto pa-2 bg-blue-falp" width="40%" variant="flat">
-    <div class="inline-flex w-full justify-between">
+  <div class=" w-[746px] mx-auto my-auto p-2 bg-blue-falp">
+    <div class="inline-flex w-full justify-between px-4">
       <img :src="white_logo_falp" alt="logo_falp" class="white-logo-falp-size">
       <img :src="onco_tracer_logo" alt="logo_oncoTracer" class="onco-tracer-logo-size">
     </div>
-
     <div class="mt-5">
       <img :src="img_login" alt="img_oncoTracer" width="100%">
     </div>
-
     <div class="grid text-center mt-8">
-      <p>Bienvenido</p>
-      <b class="mt-5 text-[20px]">Sistema de Trazabilidad Oncológico FALP</b>
-      
+      <p class="text-[20px] font-medium leading-[27px]">Bienvenido</p>
+      <p class="mt-5 text-[32px] font-medium leading-[44px]">Sistema de Trazabilidad Oncológico FALP</p>
+    </div>
+
+    <div class="flex justify-center">
+      <BaseButton 
+      class="mt-10"
+      label="Inicio sesión"       
+      type="submit"
+      height="48"
+      variant="flat"
+      rounded="xl"
+      color="#0F87FF"
+      block
+      font-size="text-[16px]"
+      @click="login()"
+      />
 
     </div>
 
-
-    <v-btn
-      class="mt-10"
-      type="submit"
-      rounded="xl"
-      color="#0F87FF"
-      width="524"
-      height="48"
-      block
-      @click="login()"
-    >
-      <span class="text-[16px]">Iniciar sesión</span>
-    </v-btn>
-
-  </v-card>
+  </div>
 </template>
 <style scoped>
+
+/*
+color: var(--Operativos-Neutral-00, #FFF);
+text-align: center;
+-webkit-text-stroke-width: 1;
+-webkit-text-stroke-color: #000;
+font-family: Inter;
+font-size: 32px;
+font-style: normal;
+font-weight: 500;
+line-height: 136.023%;
+
+*/
+
 .card-size{
   width: 746px;
   height: 743px;
@@ -78,5 +90,6 @@ useHead({
   width: 30%;
 
 }
+
 
 </style>
