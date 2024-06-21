@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// VUE
-
 // [Emits]
 const emits = defineEmits(['setPageTitle']);
 
@@ -14,18 +12,20 @@ onMounted(() => {
   <v-app>
     <!-- main content -->
     <v-container fluid class="px-0">
-      <!-- Add patient form -->
-      <BaseModal title="Actualizar formulario" button-label="Añadir paciente">
-        <PatientForm />
-      </BaseModal>
       <!-- Searcher prototype -->
       <PatientSearcher />
+      <!-- Add patient form -->
+      <div class="flex w-full mb-6 justify-end">
+        <BaseModal title="Actualizar formulario" button-label="Añadir paciente">
+          <PatientForm />
+        </BaseModal>
+      </div>
+      <!-- Table prototype -->
+      <PatientTable />
+      <!-- Patient details -->
       <NuxtLink :to="{ path: `/patient-details/${1}` }">
         <BaseButton label="Detalles" class="mb-4" />
       </NuxtLink>
-      <!-- Table prototype -->
-      <PatientTable />
-      <!-- <PatientForm /> -->
     </v-container>
   </v-app>
 </template>

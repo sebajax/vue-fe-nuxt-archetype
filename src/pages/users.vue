@@ -13,8 +13,6 @@ onMounted(() => {
 <template>
   <v-app>
     <!-- main content -->
-    <v-container fluid class="px-0">
-      <UserForm />
-    </v-container>
+    <v-container fluid class="px-0"> </v-container>
   </v-app>
 </template>
