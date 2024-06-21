@@ -2,6 +2,8 @@
 // [Imports]
 import white_logo_falp from '~/public/logos/white_logo_falp.svg';
 import onco_tracer_logo from '~/public/logos/onco_tracer_logo.svg';
+import img_login from '~/public/img/login/img_login.png';
+
 
 // [Options]
 definePageMeta({
@@ -27,38 +29,54 @@ useHead({
 });
 </script>
 <template>
-  <v-card class="mx-auto my-auto pa-10 bg-blue-falp" width="40%"  rounded="lg">
-<!--     <h2 class="text-slate-500 mb-5 text-center text-2xl font-bold">
-      OncoTracer
-    </h2> -->
+  <v-card class="mx-auto my-auto pa-2 bg-blue-falp" width="40%" variant="flat">
+    <div class="inline-flex w-full justify-between">
+      <img :src="white_logo_falp" alt="logo_falp" class="white-logo-falp-size">
+      <img :src="onco_tracer_logo" alt="logo_oncoTracer" class="onco-tracer-logo-size">
+    </div>
 
-<!--     <v-row>
-      <v-col cols="6">
-        <img :src="white_logo_falp" alt="logo_falp">
-      </v-col>
-      <v-col cols="6">
-        <img :src="onco_tracer_logo" alt="logo_oncoTracer">
-      </v-col>
-    </v-row> -->
+    <div class="mt-5">
+      <img :src="img_login" alt="img_oncoTracer" width="100%">
+    </div>
 
-    <div class="inline-flex w-full justify-between bg-red-500">
-      <img :src="white_logo_falp" alt="logo_falp">
-      <img :src="onco_tracer_logo" alt="logo_oncoTracer">
+    <div class="grid text-center mt-8">
+      <p>Bienvenido</p>
+      <b class="mt-5 text-[20px]">Sistema de Trazabilidad Oncológico FALP</b>
+      
+
     </div>
 
 
-
-
     <v-btn
-      class="mt-5"
-      text="access Openid"
+      class="mt-10"
       type="submit"
-      rounded="lg"
-      append-icon="mdi-login"
-      color="#B684E7"
+      rounded="xl"
+      color="#0F87FF"
+      width="524"
+      height="48"
       block
       @click="login()"
-    />
+    >
+      <span class="text-[16px]">Iniciar sesión</span>
+    </v-btn>
+
   </v-card>
 </template>
-<style></style>
+<style scoped>
+.card-size{
+  width: 746px;
+  height: 743px;
+}
+.white-logo-falp-size{
+  /*width: 220px;
+  height: 60px;]*/
+  width: 30%;
+}
+.onco-tracer-logo-size{
+  /*width: 205px;
+  height: 102px;]*/
+  width: 30%;
+
+}
+
+</style>
