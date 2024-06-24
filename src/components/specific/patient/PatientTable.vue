@@ -38,7 +38,7 @@ const headers = ref([
       <template #item.id="{ item }">
         <!-- Redirection to details -->
         <NuxtLink :to="`/patient-details/${item.id}`">
-          <v-icon color="primary">mdi-file-tree</v-icon>
+          <v-icon color="primary" size="x-large">mdi-file-tree</v-icon>
         </NuxtLink>
       </template>
     </v-data-table>

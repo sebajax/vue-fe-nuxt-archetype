@@ -22,10 +22,6 @@ onMounted(() => {
       </div>
       <!-- Table prototype -->
       <PatientTable />
-      <!-- Patient details -->
-      <NuxtLink :to="{ path: `/patient-details/${1}` }">
-        <BaseButton label="Detalles" class="mb-4" />
-      </NuxtLink>
     </v-container>
   </v-app>
 </template>
