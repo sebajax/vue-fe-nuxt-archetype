@@ -4,7 +4,6 @@ import white_logo_falp from '~/public/logos/white_logo_falp.svg';
 import onco_tracer_logo from '~/public/logos/onco_tracer_logo.svg';
 import img_login from '~/public/img/login/img_login.png';
 
-
 // [Options]
 definePageMeta({
   layout: 'authentication',
@@ -29,67 +28,42 @@ useHead({
 });
 </script>
 <template>
-  <div class=" w-[746px] mx-auto my-auto p-2 bg-blue-falp">
+  <div class="mx-auto my-auto p-2 bg-blue-falp md:w-2/3 lg:w-1/2">
+    <!-- Icons -->
     <div class="inline-flex w-full justify-between px-4">
-      <img :src="white_logo_falp" alt="logo_falp" class="white-logo-falp-size">
-      <img :src="onco_tracer_logo" alt="logo_oncoTracer" class="onco-tracer-logo-size">
+      <img :src="white_logo_falp" alt="logo_falp" class="w-1/3" >
+      <img :src="onco_tracer_logo" alt="logo_oncoTracer" class="w-1/3" >
     </div>
+    <!-- Center Image -->
     <div class="mt-5">
-      <img :src="img_login" alt="img_oncoTracer" width="100%">
+      <img class="w-full" :src="img_login" alt="img_oncoTracer" >
     </div>
+    <!-- Titles -->
     <div class="grid text-center mt-8">
-      <p class="text-[20px] font-medium leading-[27px]">Bienvenido</p>
-      <p class="mt-5 text-[32px] font-medium leading-[44px]">Sistema de Trazabilidad Oncológico FALP</p>
+      <p class="font-medium leading-[27px] md:text-[18px] lg:text-[20px]">
+        Bienvenido
+      </p>
+      <h4 class="mt-5 font-medium leading-[44px] md:text-[24px] lg:text-[32px]">
+        Sistema de Trazabilidad Oncológico FALP
+      </h4>
     </div>
-
+    <!-- Button -->
     <div class="flex justify-center">
-      <BaseButton 
-      class="mt-10"
-      label="Inicio sesión"       
-      type="submit"
-      height="48"
-      variant="flat"
-      rounded="xl"
-      color="#0F87FF"
-      block
-      font-size="text-[16px]"
-      @click="login()"
-      />
-
+      <div class="w-full md:w-[524px]">
+        <BaseButton
+          class="mt-10"
+          label="Inicio sesión"
+          type="submit"
+          height="48"
+          variant="flat"
+          rounded="xl"
+          color="#0F87FF"
+          block
+          font-size="text-[16px]"
+          @click="login()"
+        />
+      </div>
     </div>
-
   </div>
 </template>
-<style scoped>
-
-/*
-color: var(--Operativos-Neutral-00, #FFF);
-text-align: center;
--webkit-text-stroke-width: 1;
--webkit-text-stroke-color: #000;
-font-family: Inter;
-font-size: 32px;
-font-style: normal;
-font-weight: 500;
-line-height: 136.023%;
-
-*/
-
-.card-size{
-  width: 746px;
-  height: 743px;
-}
-.white-logo-falp-size{
-  /*width: 220px;
-  height: 60px;]*/
-  width: 30%;
-}
-.onco-tracer-logo-size{
-  /*width: 205px;
-  height: 102px;]*/
-  width: 30%;
-
-}
-
-
-</style>
+<style scoped></style>
