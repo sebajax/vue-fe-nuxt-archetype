@@ -1,12 +1,40 @@
 <script setup lang="ts">
-// VUE
+// TODO: replace with real user Interface
+interface IPatient {
+  id: number;
+  rut: string;
+  nombre: string;
+  categoría: string;
+  urgencia: number;
+}
 
 // [Emits]
 const emits = defineEmits(['setPageTitle']);
 
+// [Modularity - Get Patient by ID]
+// - [Reactivity State]
+const patientId: number = Number(useRoute().params.id);
+// TODO: replace with real user Interface
+const patientInfo = ref<IPatient>({
+  id: 0,
+  rut: '',
+  nombre: '',
+  categoría: '',
+  urgencia: 0,
+});
+// - [Methods]
+function getPatientById(id: number) {
+  const patients = ref(usePatients);
+  // TODO: replace with data fetching logic
+  patientInfo.value = patients.value.find(
+    (patient: IPatient) => patient.id === id,
+  ) as IPatient;
+  console.log(patientInfo.value);
+}
 // [Lifecycle Hooks]
 onMounted(() => {
   emits('setPageTitle', 'Detalles');
+  getPatientById(patientId);
 });
 </script>
 
@@ -21,14 +49,19 @@ onMounted(() => {
           >
             <!-- Personal data card -->
             <BaseTitledCard title="Antecedentes personales">
-              <BaseText class="text-[20px] font-bold text-dark-text"
-                >Regina del Pilar Plaza Baeza</BaseText
-              >
+              <BaseText class="text-[20px] font-bold text-dark-text">{{
+                patientInfo?.nombre
+              }}</BaseText>
               <v-container class="px-0">
-                <BaseTextData category="Rut" value="12.345.678-9" />
-                <BaseTextData category="Correo" value="correo@falp.org" />
-                <BaseTextData category="Categoría" value="II" />
-                <BaseTextData category="Edad" value="42 años" />
+                <BaseTextData category="Rut" :value="patientInfo?.rut" />
+                <BaseTextData
+                  category="Categoría"
+                  :value="String(patientInfo?.urgencia)"
+                />
+                <BaseTextData
+                  category="Categoría"
+                  :value="patientInfo?.categoría"
+                />
               </v-container>
             </BaseTitledCard>
             <!-- Tags card -->

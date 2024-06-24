@@ -17,8 +17,8 @@ const model = defineModel<string>();
 
 <template>
   <v-text-field
-    variant="outlined"
     v-model="model"
+    variant="outlined"
     density="comfortable"
     :label="props.label"
     :placeholder="props.placeholder"

@@ -29,7 +29,12 @@ const headers = ref([
 
 <template>
   <div class="rounded-lg overflow-hidden">
-    <v-data-table :items="patients" :headers="headers" items-per-page="10">
+    <v-data-table
+      :items="patients"
+      :headers="headers"
+      items-per-page="10"
+      @update:options="getPatients($event)"
+    >
       <template #item.id="{ item }">
         <!-- Redirection to details -->
         <NuxtLink :to="`/patient-details/${item.id}`">
