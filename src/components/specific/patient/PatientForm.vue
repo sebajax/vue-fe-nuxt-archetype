@@ -1,110 +1,44 @@
 <script setup lang="ts">
 // [Imports]
-// -stores
-import patientValidation from '~/composables/velidatePatient.composable';
-import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
+import { useVuelidate } from '@vuelidate/core'
+import { items } from '~/resources/nationalityItems.json'
+import  { patientRules }  from '~/schemas/PatientForm.schema'
+import errorHandler from '~/composables/useVuelidate.composable';
+
+// - stores
+import { usePatientDataStore } from '~/stores/patient/usePatientDataStore';
 
 // - [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
-const nationalityItems = [
-  'Chile',
-  'Perú',
-  'Argentina',
-  'Bolivia',
-  'Colombia',
-  'Ecuador',
-  'Paraguay',
-  'Uruguay',
-  'Venezuela',
-  'Brasil',
-  'Panamá',
-  'Costa Rica',
-  'Nicaragua',
-  'Honduras',
-  'El Salvador',
-  'Guatemala',
-  'México',
-  'Estados Unidos',
-  'Canadá',
-  'España',
-  'Portugal',
-  'Francia',
-  'Alemania',
-  'Italia',
-  'Reino Unido',
-  'Irlanda',
-  'Suecia',
-  'Noruega',
-  'Finlandia',
-  'Dinamarca',
-  'Islandia',
-  'Rusia',
-  'China',
-  'Japón',
-  'Corea del Sur',
-  'India',
-  'Australia',
-  'Nueva Zelanda',
-  'Sudáfrica',
-  'Egipto',
-];
-
-// VUE
+const nationalityItems = items
 
 // [Modularity - Post Data]
 // - [Reactivity State]
-const formData = ref({
-  name: '',
-  rut: '',
-  birthdate: undefined,
-  age: 0,
-  genre: '',
-  nationality: 'Chile',
-  address: '',
-  socialSecurity: '',
-  phone: '',
-  altPhone: '',
-  email: '',
-});
-// TODO: replace with Pinnia based toast
-const mesagge = ref<string>('');
+const { formData, resetForm } = usePatientDataStore();
+
+const rules = computed(()=> {
+  return patientRules
+})
 
 // - [Composable - Validation]
-const { $v, nameRules, emailRules } = patientValidation(formData);
+const v$ = useVuelidate(rules, formData)
 
 // - [Methods]
 async function postData() {
-  console.log('formData', formData.value);
-  const validation = await $v.value.$validate();
+  const validation = await v$.value.$validate();
   if (validation) {
-    // await addUserProvider.addUser(formData.value);
-    const res: boolean = addUserProvider.getError;
-    if (!res) {
-      mesagge.value = 'Usuario añadido correctamente';
-      return;
-    } else {
-      mesagge.value = 'Error al añadir usuario';
-    }
-    formData.value = {
-      name: '',
-      rut: '',
-      birthdate: undefined,
-      age: 0,
-      genre: '',
-      nationality: 'Chile',
-      address: '',
-      socialSecurity: '',
-      phone: '',
-      altPhone: '',
-      email: '',
-    };
+
+    //API calls
+
+    //The form store is cleared
+    resetForm();
+    //The form fields on the screen are reset
+    v$.value.$reset();
+
   } else {
-    mesagge.value = 'Asegúrate de llenar los campos correctamente';
+    // TODO: replace with component toast
   }
 }
-
-// [Stores]
-const addUserProvider = useAddUserStore();
 </script>
 
 <template>
@@ -118,7 +52,8 @@ const addUserProvider = useAddUserStore();
           label="Nombre"
           placeholder="Nombre y Apellido"
           required
-          :rules="nameRules"
+          :error-messages="errorHandler(v$.name).message"
+          @blur="v$.name.$touch"
         />
         <!-- rut -->
         <BaseInputText
@@ -126,19 +61,25 @@ const addUserProvider = useAddUserStore();
           v-model="formData.rut"
           label="Rut"
           placeholder="12345678-5"
+          :error-messages="errorHandler(v$.rut).message"
+          @blur="v$.rut.$touch"
         />
         <!-- birthdate -->
-        <BaseInputDate
+<!--          <BaseInputDate
           key="birthdate"
           v-model="formData.birthdate"
           label="Fecha de nacimiento"
-        />
+          :error-messages="errorHandler(v$.birthdate).message"
+          @blur="v$.birthdate.$touch"          
+        />  -->
         <!-- genre -->
         <BaseInputDropdown
           key="genre"
           v-model="formData.genre"
           label="Sexo"
           :items="genreItems"
+          :error-messages="errorHandler(v$.genre).message"
+          @blur="v$.genre.$touch"
         />
         <!-- nationality -->
         <BaseInputDropdown
@@ -146,6 +87,8 @@ const addUserProvider = useAddUserStore();
           v-model="formData.nationality"
           label="Nacionalidad"
           :items="nationalityItems"
+          :error-messages="errorHandler(v$.nationality).message"
+          @blur="v$.nationality.$touch"
         />
         <!-- address -->
         <BaseInputText
@@ -153,6 +96,8 @@ const addUserProvider = useAddUserStore();
           v-model="formData.address"
           label="Dirección"
           placeholder="Calle 123"
+          :error-messages="errorHandler(v$.address).message"
+          @blur="v$.address.$touch"
         />
         <!-- socialSecurity -->
         <BaseInputText
@@ -160,6 +105,8 @@ const addUserProvider = useAddUserStore();
           v-model="formData.socialSecurity"
           label="Previsión"
           placeholder="Fonasa"
+          :error-messages="errorHandler(v$.socialSecurity).message"
+          @blur="v$.socialSecurity.$touch"
         />
         <!-- phone -->
         <BaseInputText
@@ -167,6 +114,8 @@ const addUserProvider = useAddUserStore();
           v-model="formData.phone"
           label="Teléfono"
           placeholder="+569 1234 5678"
+          :error-messages="errorHandler(v$.phone).message"
+          @blur="v$.phone.$touch"
         />
         <!-- altPhone -->
         <BaseInputText
@@ -174,6 +123,8 @@ const addUserProvider = useAddUserStore();
           v-model="formData.altPhone"
           label="Teléfono alternativo"
           placeholder="+569 1234 5678"
+          :error-messages="errorHandler(v$.altPhone).message"
+          @blur="v$.altPhone.$touch"
         />
         <!-- email -->
         <BaseInputText
@@ -183,7 +134,8 @@ const addUserProvider = useAddUserStore();
           placeholder="correo@falp.org"
           type="email"
           required
-          :rules="emailRules"
+          :error-messages="errorHandler(v$.email).message"
+          @blur="v$.email.$touch"
         />
         <!-- Button -->
         <BaseButton
@@ -192,10 +144,6 @@ const addUserProvider = useAddUserStore();
           @click="postData()"
         />
         <v-spacer />
-        <!-- TODO: replace with Pinnia based toast -->
-        <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">
-          {{ mesagge }}
-        </p>
       </div>
     </v-form>
   </ClientOnly>
