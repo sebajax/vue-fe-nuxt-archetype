@@ -35,7 +35,7 @@ export const useToastStore = defineStore('toastStore', () => {
   const toggleStateToast = () => {
     configToast.value.state = !configToast.value.state;
   };
-  function updateConfig(newConfig: IConfigToast) {
+  const updateConfig = (newConfig: IConfigToast) => {
     // Mandatory to update the state
     configToast.value.text = newConfig.text;
     configToast.value.type = newConfig.type;
@@ -46,7 +46,7 @@ export const useToastStore = defineStore('toastStore', () => {
 
     // Call toggleStateToast() to show the toast
     toggleStateToast();
-  }
+  };
 
   return { toggleStateToast, configToast, updateConfig, toastState };
 });

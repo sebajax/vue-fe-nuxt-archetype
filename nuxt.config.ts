@@ -51,6 +51,7 @@ export default defineNuxtConfig({
     '~/plugins/sessionStorage.client.ts',
   ],
   modules: [
+    'nuxt-lodash',
     'nuxt-oidc-auth',
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
