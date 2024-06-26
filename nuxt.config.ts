@@ -58,7 +58,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error because config.plugins may be undefined
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
@@ -72,9 +71,6 @@ export default defineNuxtConfig({
   },
   pinia: {
     storesDirs: ['~/stores', '~/stores/**', '~/stores/**/**'],
-  },
-  typescript: {
-    typeCheck: true,
   },
   runtimeConfig: {
     // The private keys which are only available within server-side
