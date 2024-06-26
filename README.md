@@ -175,3 +175,52 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+Guía de Actualización de Dependencias para Nuxt
+Paso 1: Preparación
+Eliminar las carpetas y archivos que puedan causar conflictos.
+sh
+Copiar código
+rm -rf node_modules .nuxt .dist package-lock.json
+Paso 2: Instalar Dependencias
+Instalar las dependencias nuevamente.
+sh
+Copiar código
+npm install
+Paso 3: Actualizar Nuxt
+Utilizar nuxi para actualizar Nuxt a la última versión.
+sh
+Copiar código
+npx nuxi@latest upgrade
+Paso 4: Verificar Tipos
+Asegurarse de que no hay problemas de tipos.
+sh
+Copiar código
+npx nuxi typecheck
+Paso 5: Verificar Linting
+Verificar que el linting funciona correctamente.
+sh
+Copiar código
+npm run lint:check
+Paso 6: Verificar Versión de Nuxt
+Asegurarse de que la versión de Nuxt sea la correcta en el archivo package.json.
+Abrir package.json.
+Verificar que la versión de Nuxt es 3.12.2:
+json
+Copiar código
+"dependencies": {
+  "nuxt": "3.12.2",
+  // otras dependencias
+}
+Paso 7: (Opcional) Limpiar y Reconstruir
+Limpiar y reconstruir el proyecto para asegurarse de que todo está en orden.
+sh
+Copiar código
+npm run clean && npm run build
+Paso 8: Ejecutar el Proyecto
+Iniciar el proyecto para asegurarse de que todo funciona correctamente.
+sh
+Copiar código
+npm run dev
+Esta guía garantiza que sigas un proceso claro y detallado para actualizar las dependencias de tu proyecto Nuxt y verificar que todo funcione correctamente.

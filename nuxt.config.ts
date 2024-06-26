@@ -73,6 +73,11 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['~/stores', '~/stores/**', '~/stores/**/**'],
   },
+  /*
+  typescript: {
+    typeCheck: true,
+  },
+  */
   runtimeConfig: {
     // The private keys which are only available within server-side
     apiSecret: '123',
