@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// VUE
-
 // [Options]
 defineOptions({
   inheritAttrs: true,
@@ -28,6 +26,4 @@ const props = defineProps<IProps>();
   </v-btn>
 </template>
 
-<style>
-
-</style>
+<style></style>
