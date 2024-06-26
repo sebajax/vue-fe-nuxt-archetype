@@ -16,6 +16,9 @@ interface IToastTypeIconMap {
   [EnumToastType.ALERT]: string;
 }
 
+// For triggerHttpToast only
+const serverError = 'Error de servidor';
+
 // This interface will be used in BaseToast.vue component
 interface IConfigToast {
   text: string;
@@ -26,5 +29,5 @@ interface IConfigToast {
   timeout?: number; // Optional
 }
 
-export { EnumToastType };
+export { EnumToastType, serverError };
 export type { IConfigToast, IToastTypeIconMap };

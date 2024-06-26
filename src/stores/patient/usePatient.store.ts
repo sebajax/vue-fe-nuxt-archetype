@@ -1,6 +1,6 @@
 // [Imports]
 // - Module
-import { FetchError } from 'ofetch'; // Import FetchError from ohmyfetch
+import { FetchError } from 'ofetch';
 // - Interface
 import type { Patient } from '~/interfaces/domain/patient.domain';
 import type { ResponseDomain } from '~/interfaces/domain/response.domain';
@@ -59,8 +59,11 @@ export const usePatientStore = defineStore('patientStore', () => {
       const { triggerHttpToast } = useToastStore();
       triggerHttpToast(
         patientResponseMapping(patientData.value?.message || ''),
-        patientData.value?.error || false,
+        patientData.value?.error,
       );
+
+      // Once message is display reset the state
+      patientData.value = undefined;
     }
   };
 

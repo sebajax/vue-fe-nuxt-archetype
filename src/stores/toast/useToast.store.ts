@@ -2,6 +2,7 @@
 // - Interface
 import {
   EnumToastType,
+  serverError,
   type IConfigToast,
   type IToastTypeIconMap,
 } from '~/interfaces/stores/toast/toast.interface';
@@ -49,12 +50,16 @@ export const useToastStore = defineStore('toastStore', () => {
     toggleStateToast();
   };
   // - [Method]
-  const triggerHttpToast = (message: string, error: boolean) => {
+  const triggerHttpToast = (message: string, error: boolean | undefined) => {
+    // Set message to server error if undefined
+    const responseMessage = message === undefined ? serverError : message;
     // Get the type from the sent error param
-    const type = error ? EnumToastType.WARNING : EnumToastType.SUCCESS;
+    let type = error ? EnumToastType.WARNING : EnumToastType.SUCCESS;
+    // If server error, set the type to error
+    type = responseMessage === serverError ? EnumToastType.ERROR : type;
 
     // Mandatory to update the state
-    configToast.value.text = message;
+    configToast.value.text = responseMessage;
     configToast.value.type = type;
     configToast.value.icon = toastTypeIcons[type];
     // Optional to update the other properties
