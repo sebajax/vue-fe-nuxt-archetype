@@ -1,10 +1,12 @@
 import * as validators from '@vuelidate/validators'
 import { createI18n } from "vue-i18n"
+//personalised message dictionary
 import { values } from '@/composables/useCustomMsgVuelidate.composable';
+//imports customised validators
+import { checkRutValidator } from '~/helpers/validators/rut.validator';
 
 const { createI18nMessage } = validators
-
-// Create your i18n message instance. Used for vue-i18n@9
+// Create your i18n message instance
 const i18n = createI18n({
   locale: 'es',
   messages: {
@@ -15,7 +17,9 @@ const i18n = createI18n({
         minLength: values.MINLENGTH,
         numeric: values.NUMERIC,
         email: values.EMAIL,
-        alpha: values.ALPHANUM
+        alpha: values.ALPHANUM,
+        //customised validators
+        checkRut : values.CHECKRUT,
       }
     }
   }
@@ -30,3 +34,5 @@ export const maxLength = withI18nMessage(validators.maxLength, { withArguments: 
 export const numeric = withI18nMessage(validators.numeric)
 export const email = withI18nMessage(validators.email)
 export const alpha = withI18nMessage(validators.alpha)
+//customised validator is exported
+export const checkRut = withI18nMessage(checkRutValidator)

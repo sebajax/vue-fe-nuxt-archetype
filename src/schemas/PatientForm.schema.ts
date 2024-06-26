@@ -3,11 +3,13 @@ import {
   alpha,
   email as emailValidator,
   maxLength,
-  numeric,  
+  numeric,
+  checkRut  
 } from '@/utils/i18-validators'
+
 const patientRules = {
   name: { required,maxLength: maxLength(10)},
-  rut: { required, maxLength: maxLength(12) },
+  rut: { required, checkRut },
   birthdate: {},
   age: { required, numeric },
   genre: { required, alpha },

@@ -19,7 +19,7 @@ export const usePatientDataStore = defineStore('patientDataStore', () => {
   const formData = ref({
     name: '',
     rut: '',
-    birthdate: undefined,
+    birthdate: Date,
     age: 0,
     genre: '',
     nationality: 'Chile',
@@ -30,18 +30,12 @@ export const usePatientDataStore = defineStore('patientDataStore', () => {
     email: '',
   });
 
-  const dataTest = ref({})
-
   // - [Method]
-
-  function addDataTest(data: any){
-    dataTest.value = data
-  }
 
   function resetForm() {
     formData.value.name = '',
     formData.value.rut = '',
-    formData.value.birthdate = undefined,
+    formData.value.birthdate = Date,
     formData.value.age = 0,
     formData.value.nationality = 'Chile',
     formData.value.address = '',
@@ -51,5 +45,5 @@ export const usePatientDataStore = defineStore('patientDataStore', () => {
     formData.value.email = ''
   }
 
-  return { formData, resetForm , addDataTest, dataTest};
+  return { formData, resetForm};
 });

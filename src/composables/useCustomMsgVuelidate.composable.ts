@@ -9,4 +9,5 @@ export const values = {
   UPPERCASE: 'Falta una mayúscula',
   LOWERCASE: 'Falta minúscula',
   PHONENUMBER: 'Formato de número incorrecto',
+  CHECKRUT: 'Formato invalido (ingrese rut sin puntos y con guión)',
 };
