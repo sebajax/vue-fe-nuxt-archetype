@@ -1,10 +1,14 @@
 // [Imports]
+// - Module
 import { FetchError } from 'ofetch'; // Import FetchError from ohmyfetch
 // - Interface
 import type { Patient } from '~/interfaces/domain/patient.domain';
 import type { ResponseDomain } from '~/interfaces/domain/response.domain';
-import type { TypeResponseCreatePatient } from '~/interfaces/stores/patient/patient.store.interface';
-import { EnumToastType } from '~/interfaces/toast.interface';
+import {
+  patientResponseMapping,
+  type TypeResponseCreatePatient,
+} from '~/interfaces/stores/patient/patient.store.interface';
+// - Store
 import { useToastStore } from '~/stores/toast/useToast.store';
 
 // This store will be used for Patient provider using an api
@@ -15,7 +19,7 @@ export const usePatientStore = defineStore('patientStore', () => {
   const patientData = shallowRef<ResponseDomain<TypeResponseCreatePatient>>();
   // - [Computed]
   const patientFetchMessage = computed(() => {
-    return patientData.value?.message;
+    return patientResponseMapping(patientData.value?.message || '');
   });
   // - [Method]
   const fetchCreate = async (patient: Patient) => {
@@ -23,35 +27,40 @@ export const usePatientStore = defineStore('patientStore', () => {
     const runtimeConfig = useRuntimeConfig();
 
     try {
+      // Call the api
       const response = await $http(`${runtimeConfig.public.api}/user`, {
         method: 'POST',
         body: JSON.stringify(patient),
       });
 
+      // Map the response to the specific type
       const createdPatient =
         response as unknown as ResponseDomain<TypeResponseCreatePatient>;
 
+      // Update the state with the response using a deep clone
       patientData.value = useCloneDeep(createdPatient);
     } catch (error: unknown) {
+      // Handle the error if it is a FetchError
       if (error instanceof FetchError) {
         const fetchError =
           error.data as ResponseDomain<TypeResponseCreatePatient>;
 
+        // Update the state with the error using a deep clone
         patientData.value = useCloneDeep(fetchError);
 
+        // Exit the function
         return;
       }
+
+      // Otherwise, log the error
       console.error('Error fetching data:', error);
     } finally {
       // Handle execute toast
-      const { updateConfig } = useToastStore();
-      updateConfig({
-        text: `${patientData.value?.message}`,
-        type: patientData.value?.error
-          ? EnumToastType.WARNING
-          : EnumToastType.SUCCESS,
-        showIcon: true,
-      });
+      const { triggerHttpToast } = useToastStore();
+      triggerHttpToast(
+        patientResponseMapping(patientData.value?.message || ''),
+        patientData.value?.error || false,
+      );
     }
   };
 

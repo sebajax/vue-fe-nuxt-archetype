@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // [Imports]
 // - Store
-import { EnumToastType } from '~/interfaces/toast.interface';
+import { EnumToastType } from '~/interfaces/stores/toast/toast.interface';
 import { useToastStore } from '~/stores/toast/useToast.store';
 
 // [Store]

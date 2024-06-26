@@ -1,19 +1,11 @@
 // [Imports]
 // - Modules
 import { StatusCodes } from 'http-status-codes';
+// - Interfaces
+import type { TypeHttpMethod } from '~/interfaces/plugins/http.interface';
 
+// CSR: This plugin is for CSR http calls
 export default defineNuxtPlugin(() => {
-  // Type HttpMethod
-  type TypeHttpMethod =
-    | 'DELETE'
-    | 'GET'
-    | 'POST'
-    | 'PUT'
-    | 'delete'
-    | 'get'
-    | 'post'
-    | 'put';
-
   // Get user session from oidc
   const { loggedIn, user, refresh } = useOidcAuth();
 
@@ -28,7 +20,9 @@ export default defineNuxtPlugin(() => {
     return headers;
   };
 
+  // Create a new http instance using fetch
   const http = $fetch.create({
+    // onRequest hook
     async onRequest({ options }) {
       // Check if the user is logged in
       if (loggedIn.value === null || !loggedIn.value) {
@@ -39,6 +33,7 @@ export default defineNuxtPlugin(() => {
       // Set the Authorization header
       options.headers = setAuthorizationHeader();
     },
+    // onResponseError hook
     async onResponseError({ request, response, options }) {
       // Handle authorization response error
       if (response.status === StatusCodes.UNAUTHORIZED) {
@@ -49,6 +44,7 @@ export default defineNuxtPlugin(() => {
           // Update the headers with the new token from refresh
           options.headers = setAuthorizationHeader();
 
+          // Retry the request with new token from refresh
           return await $fetch(request, {
             ...options,
             method: options.method as TypeHttpMethod,
