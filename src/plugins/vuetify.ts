@@ -17,10 +17,11 @@ const customLightTheme = {
     'light-gray': '#F4F5F6',
     'dark-text': '#282828',
     error: '#CF142B',
-    success:'#35A644',
-    alert:'#FFC72C',
-    warning:'#FB8C00',
-    info:'#7B3EB9'
+    success: '#35A644',
+    alert: '#FFC72C',
+    warning: '#FB8C00',
+    info: '#7B3EB9',
+    'blue-falp': '#004990',
   },
 };
 
@@ -34,10 +35,11 @@ const customDarkTheme = {
     'light-gray': '#212121',
     'dark-text': '#F4F5F6',
     error: '#CF142B',
-    success:'#35A644',
-    alert:'#FFC72C',
-    warning:'#FB8C00',
-    info:'#7B3EB9'
+    success: '#35A644',
+    alert: '#FFC72C',
+    warning: '#FB8C00',
+    info: '#7B3EB9',
+    'blue-falp': '#004990',
   },
 };
 

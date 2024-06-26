@@ -37,6 +37,12 @@ export default defineNuxtConfig({
     },
   ],
   css: ['~/assets/styles/main.scss'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   build: {
     transpile: ['vuetify'],
   },
@@ -45,6 +51,7 @@ export default defineNuxtConfig({
     '~/plugins/sessionStorage.client.ts',
   ],
   modules: [
+    'nuxt-lodash',
     'nuxt-oidc-auth',
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
@@ -65,9 +72,6 @@ export default defineNuxtConfig({
   },
   pinia: {
     storesDirs: ['~/stores', '~/stores/**', '~/stores/**/**'],
-  },
-  typescript: {
-    typeCheck: true,
   },
   runtimeConfig: {
     // The private keys which are only available within server-side

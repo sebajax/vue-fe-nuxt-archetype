@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // [Imports]
 // - Store
-import { useToastStore } from '~/stores/toast/useToastStore';
+import { useToastStore } from '~/stores/toast/useToast.store';
 
 // [Store]
 const { configToast, toggleStateToast } = useToastStore();
@@ -20,18 +20,17 @@ const { configToast, toggleStateToast } = useToastStore();
       variant="elevated"
       transition="scroll-x-reverse-transition"
       :color="configToast.type"
-      >
-      
+    >
       <div class="inline-flex items-center text-left">
         <v-icon v-if="configToast.icon" class="mt-n1 icon-size">
-          {{ configToast.icon}}
+          {{ configToast.icon }}
         </v-icon>
 
         <span class="ml-2 text-[14px] font-semibold line-clamp-3">
           {{ configToast.text }}
         </span>
       </div>
- 
+
       <template #actions>
         <v-btn
           variant="plain"
@@ -44,8 +43,7 @@ const { configToast, toggleStateToast } = useToastStore();
 </template>
 
 <style scoped>
-.icon-size{
+.icon-size {
   font-size: 50px;
 }
-
 </style>

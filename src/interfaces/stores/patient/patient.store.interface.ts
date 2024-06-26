@@ -11,15 +11,16 @@ const messages: IMessages = {
 };
 
 // Response type for the use case
-type TResponseAddUser = {
+type TypeResponseCreatePatient = {
   id: number;
   name: string;
   email: string;
 };
 
-function addUserResponse(key: string) {
+// This function maps the response message to the user
+function patientResponseMapping(key: string) {
   return messages[key as keyof IMessages];
 }
 
-export { addUserResponse };
-export type { TResponseAddUser };
+export { patientResponseMapping };
+export type { TypeResponseCreatePatient };

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // [Imports]
 // - Store
-import { EnumToastType } from '~/interfaces/toast.interface';
-import { useToastStore } from '~/stores/toast/useToastStore';
+import { EnumToastType } from '~/interfaces/stores/toast/toast.interface';
+import { useToastStore } from '~/stores/toast/useToast.store';
 
 // [Store]
 const { loggedIn, user, logout, currentProvider } = useOidcAuth();

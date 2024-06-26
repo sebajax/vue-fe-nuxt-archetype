@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// VUE
-
 // [Options]
 defineOptions({
   inheritAttrs: true,
@@ -9,6 +7,7 @@ defineOptions({
 // [Props]
 interface IProps {
   label: string;
+  fontSize?: string;
 }
 const props = defineProps<IProps>();
 </script>
@@ -17,11 +16,11 @@ const props = defineProps<IProps>();
   <v-btn
     v-bind="$attrs"
     color="primary"
-    elevation="8"
+    elevation="0"
     rounded="lg"
     class="text-capitalize text-body-2"
   >
-    <span>
+    <span :class="props.fontSize">
       {{ props.label }}
     </span>
   </v-btn>

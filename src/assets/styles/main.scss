@@ -1,4 +1,8 @@
 // assets/styles/main.scss
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import 'vuetify/styles';
 @import '@mdi/font/css/materialdesignicons.css';
 // Inter font

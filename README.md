@@ -15,6 +15,7 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
   // - Interface
   // - Module
   // - Store
+  // - Public
 
   // [Const]
 
@@ -30,6 +31,12 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
   // [Composable]
 
+  // [Store]
+
+  // [Global Method]
+
+  // [Global Computed]
+
   // [Modularity - ['Name']]
   // - [Reactivity State]
   // -- {Alway add first} *all the defineModel v-model
@@ -39,12 +46,6 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
   // - [Computed]
   // - [Method]
   // - [Watch]
-
-  // [Store]
-
-  // [Global Method]
-
-  // [Global Computed]
 
   // [Lifecycle Hooks]
 </script>

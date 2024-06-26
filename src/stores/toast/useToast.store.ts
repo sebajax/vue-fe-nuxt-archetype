@@ -4,7 +4,7 @@ import {
   EnumToastType,
   type IConfigToast,
   type IToastTypeIconMap,
-} from '~/interfaces/toast.interface';
+} from '~/interfaces/stores/toast/toast.interface';
 
 // This store will be used for BaseToast.vue component configuration
 export const useToastStore = defineStore('toastStore', () => {
@@ -35,18 +35,40 @@ export const useToastStore = defineStore('toastStore', () => {
   const toggleStateToast = () => {
     configToast.value.state = !configToast.value.state;
   };
-  function updateConfig(newConfig: IConfigToast) {
+  // - [Method]
+  const updateConfig = (newConfig: IConfigToast) => {
     // Mandatory to update the state
     configToast.value.text = newConfig.text;
     configToast.value.type = newConfig.type;
     configToast.value.icon =
       newConfig.showIcon === true ? toastTypeIcons[newConfig.type] : '';
     // Optional to update the other properties
-    configToast.value.timeout = newConfig.timeout ? newConfig.timeout : 3000;
+    configToast.value.timeout = newConfig.timeout || 3000;
 
     // Call toggleStateToast() to show the toast
     toggleStateToast();
-  }
+  };
+  // - [Method]
+  const triggerHttpToast = (message: string, error: boolean) => {
+    // Get the type from the sent error param
+    const type = error ? EnumToastType.WARNING : EnumToastType.SUCCESS;
 
-  return { toggleStateToast, configToast, updateConfig, toastState };
+    // Mandatory to update the state
+    configToast.value.text = message;
+    configToast.value.type = type;
+    configToast.value.icon = toastTypeIcons[type];
+    // Optional to update the other properties
+    configToast.value.timeout = 3000;
+
+    // Call toggleStateToast() to show the toast
+    toggleStateToast();
+  };
+
+  return {
+    toggleStateToast,
+    configToast,
+    updateConfig,
+    toastState,
+    triggerHttpToast,
+  };
 });
