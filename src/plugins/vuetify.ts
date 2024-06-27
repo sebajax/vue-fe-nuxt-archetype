@@ -6,6 +6,8 @@ import 'vuetify/styles';
 import '@mdi/font/css/materialdesignicons.css';
 // - Interface
 import { EnumTheme } from '~/interfaces/theme.interface';
+// - Components
+import { VDateInput } from 'vuetify/labs/VDateInput';
 
 // Custom theme light
 const customLightTheme = {
@@ -56,6 +58,9 @@ export default defineNuxtPlugin((app) => {
     },
     icons: {
       defaultSet: 'mdi',
+    },
+    components: {
+      VDateInput,
     },
   });
 

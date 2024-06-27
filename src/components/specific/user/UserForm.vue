@@ -1,15 +1,13 @@
 <script setup lang="ts">
 // [Imports]
 import { Patient } from '~/interfaces/domain/patient.domain';
-// -stores
-import { usePatientStore } from '~/stores/patient/usePatient.store';
 
 // [Store]
-const store = usePatientStore();
+const patientStore = usePatientStore();
 
-const { patientData } = storeToRefs(store);
+const { patientData } = storeToRefs(patientStore);
 
-const { fetchCreate } = store;
+const { fetchCreate } = patientStore;
 
 // [Modularity - Post Data]
 // - [Reactivity State]

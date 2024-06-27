@@ -3,10 +3,12 @@
 interface IProps {
   title?: string | null;
   maxWidth?: string;
+  buttonLabel?: string;
 }
 const props = withDefaults(defineProps<IProps>(), {
   title: null,
   maxWidth: '800',
+  buttonLabel: 'Modal',
 });
 </script>
 
@@ -14,7 +16,7 @@ const props = withDefaults(defineProps<IProps>(), {
   <ClientOnly>
     <v-dialog :max-width="props.maxWidth">
       <template #activator="{ props: activatorProps }">
-        <BaseButton v-bind="activatorProps" label="Formulario" />
+        <BaseButton v-bind="activatorProps" :label="props.buttonLabel" />
       </template>
       <template #default="{ isActive }">
         <!-- If the component has title -->

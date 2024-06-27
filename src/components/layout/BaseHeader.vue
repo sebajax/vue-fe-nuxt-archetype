@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-// VUE
-
 // [Modularity - Model]
 // - [Reactivity state]
 const model = defineModel<string>();

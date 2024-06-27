@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 // [Modularity - Get Patients]
 const patients = ref(usePatients);
-
 // TODO: make pagination options an interface
 // [Modularity - Fetch Data After Update]
 // - [Reactivity State]
@@ -15,11 +14,33 @@ async function getPatients(event: unknown) {
   // TODO: change to real API
   console.log(options.value);
 }
+
+// [Modularity - Table structure]
+// - [Reactivity State]
+const headers = ref([
+  { title: 'RUT', value: 'rut', sortable: true },
+  { title: 'Nombre', value: 'nombre', sortable: true },
+  { title: 'Categoría', value: 'categoría', sortable: true },
+  { title: 'Urgencia', value: 'urgencia', sortable: true },
+  { title: 'Detalles', value: 'id', sortable: false },
+]);
 </script>
 
 <template>
   <div class="rounded-lg overflow-hidden">
-    <v-data-table :items="patients" @update:options="getPatients($event)" />
+    <v-data-table
+      :items="patients"
+      :headers="headers"
+      items-per-page="10"
+      @update:options="getPatients($event)"
+    >
+      <template #[`item.id`]="{ item }">
+        <!-- Redirection to details -->
+        <NuxtLink :to="`/patient-details/${item.id}`">
+          <v-icon color="primary" size="x-large">mdi-file-tree</v-icon>
+        </NuxtLink>
+      </template>
+    </v-data-table>
   </div>
 </template>
 

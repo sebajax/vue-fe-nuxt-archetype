@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-// VUE
-
 // [Props]
 interface IProps {
   category: string;

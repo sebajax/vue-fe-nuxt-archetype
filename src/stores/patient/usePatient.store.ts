@@ -1,4 +1,3 @@
-// [Imports]
 // - Module
 import { FetchError } from 'ofetch';
 // - Interface
@@ -8,8 +7,6 @@ import {
   patientResponseMapping,
   type TypeResponseCreatePatient,
 } from '~/interfaces/stores/patient/patient.store.interface';
-// - Store
-import { useToastStore } from '~/stores/toast/useToast.store';
 
 // This store will be used for Patient provider using an api
 export const usePatientStore = defineStore('patientStore', () => {

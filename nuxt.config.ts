@@ -56,6 +56,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@nuxtjs/i18n',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error because config.plugins may be undefined
@@ -71,7 +72,7 @@ export default defineNuxtConfig({
     },
   },
   pinia: {
-    storesDirs: ['~/stores', '~/stores/**', '~/stores/**/**'],
+    storesDirs: ['./src/stores/', './src/stores/**', './src/stores/**/**'],
   },
   /*
   typescript: {

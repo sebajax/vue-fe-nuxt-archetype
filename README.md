@@ -12,14 +12,13 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 <!-- FIRST: SCRIPT -->
 <script setup lang="ts">
   // [Imports]
-  // - Interface
   // - Module
-  // - Store
+  // - Interface
   // - Public
 
   // [Const]
 
-  // VUE - Not necessary to add only to know that here starts VUE data
+  // VUE - Don´t add
 
   // [Options]
 
