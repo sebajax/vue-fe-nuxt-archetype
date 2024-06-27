@@ -35,7 +35,7 @@ const headers = ref([
       items-per-page="10"
       @update:options="getPatients($event)"
     >
-      <template #item:id="{ item }">
+      <template #item.id="{ item }">
         <!-- Redirection to details -->
         <NuxtLink :to="`/patient-details/${item.id}`">
           <v-icon color="primary" size="x-large">mdi-file-tree</v-icon>
