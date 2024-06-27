@@ -43,9 +43,9 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
   // -- ref
   // - [Utils]
   // - [Composable]
-  // - [Computed]
-  // - [Method]
-  // - [Watch]
+  // - [Computed] - many
+  // - [Method] - many
+  // - [Watch] - many
 
   // [Lifecycle Hooks]
 </script>
@@ -176,7 +176,6 @@ bun run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
-
 Guía de Actualización de Dependencias para Nuxt
 Paso 1: Preparación
 Eliminar las carpetas y archivos que puedan causar conflictos.
@@ -210,8 +209,8 @@ Verificar que la versión de Nuxt es 3.12.2:
 json
 Copiar código
 "dependencies": {
-  "nuxt": "3.12.2",
-  // otras dependencias
+"nuxt": "3.12.2",
+// otras dependencias
 }
 Paso 7: (Opcional) Limpiar y Reconstruir
 Limpiar y reconstruir el proyecto para asegurarse de que todo está en orden.
