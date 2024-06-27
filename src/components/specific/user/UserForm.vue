@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // [Imports]
-import patientValidation from '~/composables/velidate-patient.composable';
 import { Patient } from '~/interfaces/domain/patient.domain';
 // -stores
 import { usePatientStore } from '~/stores/patient/usePatient.store';
@@ -19,7 +18,7 @@ const formData = ref({
   email: '',
 });
 // - [Composable]
-const { nameRules, emailRules } = patientValidation(formData);
+
 // - [Methods]
 async function postData() {
   const patient = new Patient(formData.value.name, formData.value.email);
@@ -37,7 +36,6 @@ async function postData() {
         label="Nombre"
         placeholder="Nombre y Apellido"
         required
-        :rules="nameRules"
       />
       <!-- email -->
       <BaseInputText
@@ -46,7 +44,6 @@ async function postData() {
         label="Email"
         placeholder="email@email.com"
         required
-        :rules="emailRules"
       />
       <BaseButton
         label="Añadir usuario"
