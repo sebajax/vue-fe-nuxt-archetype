@@ -5,7 +5,7 @@ import {
   maxLength,
   numeric,
   checkRut  
-} from '@/utils/i18-validators'
+} from '@/utils/validationTranslation.util'
 
 const patientRules = {
   name: { required,maxLength: maxLength(10)},
