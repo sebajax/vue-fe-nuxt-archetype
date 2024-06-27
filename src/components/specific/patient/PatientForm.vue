@@ -1,14 +1,10 @@
 <script setup lang="ts">
-// [Imports]
 // - Module
 import { useVuelidate } from '@vuelidate/core';
 import { patientRules } from '~/schemas/PatientForm.schema';
-// TODO: CHANGE THIS IMPLEMENTATION TO AVOID IMPORTING THE JSON FILE
-import { items } from '~/resources/nationalityItems.json';
 
 // [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
-const nationalityItems = items;
 const formData = ref({
     name: '',
     rut: '',
@@ -25,8 +21,6 @@ const formData = ref({
 
 // [Modularity - Post Data]
 // - [Reactivity State]
-
-
 const rules = computed(() => {
   return patientRules;
 });

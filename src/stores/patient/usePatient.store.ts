@@ -1,4 +1,3 @@
-// [Imports]
 // - Module
 import { FetchError } from 'ofetch';
 // - Interface

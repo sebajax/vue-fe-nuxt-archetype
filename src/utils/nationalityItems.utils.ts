@@ -1,5 +1,5 @@
-{
-  "items" : [
+
+const nationalityItems = [
     "Chile",
     "Perú",
     "Argentina",
@@ -40,5 +40,6 @@
     "Nueva Zelanda",
     "Sudáfrica",
     "Egipto"
-  ]
-}
+]
+
+export {nationalityItems};

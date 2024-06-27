@@ -1,8 +1,6 @@
 <script setup lang="ts">
 // [Imports]
 import { Patient } from '~/interfaces/domain/patient.domain';
-// -stores
-
 
 // [Store]
 const store = usePatientStore();

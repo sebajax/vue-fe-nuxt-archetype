@@ -1,4 +1,5 @@
-export const values = {
+// Translated validation dictionary
+const translatedVariables = {
   REQUIRED: 'Este campo es requerido',
   NUMERIC: 'Solo pueden ser números',
   MAXLENGTH: 'Máximo de caracteres permitidos',
@@ -11,3 +12,5 @@ export const values = {
   PHONENUMBER: 'Formato de número incorrecto',
   CHECKRUT: 'Formato invalido (ingrese rut sin puntos y con guión)',
 };
+
+export { translatedVariables };

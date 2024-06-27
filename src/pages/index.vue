@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// [Imports]
 // - Interface
 import { EnumToastType } from '~/interfaces/stores/toast/toast.interface';
 

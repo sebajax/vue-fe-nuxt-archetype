@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// [Imports]
-
 // [Store]
 const { configToast, toggleStateToast } = useToastStore();
 </script>

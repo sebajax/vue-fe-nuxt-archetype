@@ -1,21 +1,29 @@
-import * as validators from '@vuelidate/validators';
+// [Imports]
+import {
+createI18nMessage, 
+required as validatorsRequired,
+minLength as validatorsMinLength,
+maxLength as validatorsMaxLength,
+numeric as validatorsNumeric,
+email as validatorsEmail,
+alpha as validatorsAlpha
+} from '@vuelidate/validators';
 import { createI18n } from 'vue-i18n';
 
-const { createI18nMessage } = validators;
 // Create your i18n message instance
 const i18n = createI18n({
   locale: 'es',
   messages: {
     es: {
       validations: {
-        required: values.REQUIRED,
-        maxLength: values.MAXLENGTH,
-        minLength: values.MINLENGTH,
-        numeric: values.NUMERIC,
-        email: values.EMAIL,
-        alpha: values.ALPHANUM,
+        required: translatedVariables.REQUIRED,
+        maxLength: translatedVariables.MAXLENGTH,
+        minLength: translatedVariables.MINLENGTH,
+        numeric: translatedVariables.NUMERIC,
+        email: translatedVariables.EMAIL,
+        alpha: translatedVariables.ALPHANUM,
         //customized validators
-        checkRut: values.CHECKRUT,
+        checkRut: translatedVariables.CHECKRUT,
       },
     },
   },
@@ -24,16 +32,16 @@ const t = i18n.global.t;
 const withI18nMessage = createI18nMessage({ t });
 
 // Wrap each validator
-const required = withI18nMessage(validators.required);
-const minLength = withI18nMessage(validators.minLength, {
+const required = withI18nMessage(validatorsRequired);
+const minLength = withI18nMessage(validatorsMinLength, {
   withArguments: true,
 });
-const maxLength = withI18nMessage(validators.maxLength, {
+const maxLength = withI18nMessage(validatorsMaxLength, {
   withArguments: true,
 });
-const numeric = withI18nMessage(validators.numeric);
-const email = withI18nMessage(validators.email);
-const alpha = withI18nMessage(validators.alpha);
+const numeric = withI18nMessage(validatorsNumeric);
+const email = withI18nMessage(validatorsEmail);
+const alpha = withI18nMessage(validatorsAlpha);
 const checkRut = withI18nMessage(checkRutValidator);
 
 export { alpha, checkRut, email, maxLength, minLength, numeric, required };
