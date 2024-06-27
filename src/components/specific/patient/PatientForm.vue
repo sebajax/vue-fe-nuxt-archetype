@@ -6,7 +6,7 @@ import  { patientRules }  from '~/schemas/PatientForm.schema'
 import errorHandler from '~/composables/useVuelidate.composable';
 
 // - stores
-import { usePatientDataStore } from '~/stores/patient/usePatientDataStore';
+import { usePatientDataStore } from '~/stores/patient/usePatientDataStore'
 
 // - [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
