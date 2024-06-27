@@ -9,10 +9,23 @@ import { items } from '~/resources/nationalityItems.json';
 // [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
 const nationalityItems = items;
+const formData = ref({
+    name: '',
+    rut: '',
+    birthdate: Date,
+    age: 0,
+    genre: '',
+    nationality: 'Chile',
+    address: '',
+    socialSecurity: '',
+    phone: '',
+    altPhone: '',
+    email: '',
+  });
 
 // [Modularity - Post Data]
 // - [Reactivity State]
-const { formData, resetForm } = usePatientDataStore();
+
 
 const rules = computed(() => {
   return patientRules;
@@ -27,8 +40,6 @@ async function postData() {
   if (validation) {
     //API calls
 
-    //The form store is cleared
-    resetForm();
     //The form fields on the screen are reset
     v$.value.$reset();
   } else {

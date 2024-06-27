@@ -1,9 +1,5 @@
 import * as validators from '@vuelidate/validators';
 import { createI18n } from 'vue-i18n';
-// Personalised message dictionary
-import { values } from '~/composables/useCustomMsgVuelidate';
-// Imports customised validators
-import { checkRutValidator } from '~/utils/rut.validator';
 
 const { createI18nMessage } = validators;
 // Create your i18n message instance

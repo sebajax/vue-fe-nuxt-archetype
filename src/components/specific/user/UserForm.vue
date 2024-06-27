@@ -2,7 +2,7 @@
 // [Imports]
 import { Patient } from '~/interfaces/domain/patient.domain';
 // -stores
-import { usePatientStore } from '~/stores/patient/usePatient.store';
+
 
 // [Store]
 const store = usePatientStore();

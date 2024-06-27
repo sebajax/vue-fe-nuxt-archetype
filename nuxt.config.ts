@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  srcDir: '/src',
+  srcDir: 'src/',
   devtools: { enabled: true },
   components: [
     {
@@ -72,7 +72,7 @@ export default defineNuxtConfig({
     },
   },
   pinia: {
-    storesDirs: ['~/stores', '~/stores/**', '~/stores/**/**'],
+    storesDirs: ['./src/stores/', './src/stores/**', './src/stores/**/**'],
   },
   /*
   typescript: {
