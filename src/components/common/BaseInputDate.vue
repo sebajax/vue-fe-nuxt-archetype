@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * TODO: Component is not working properly
+ */
+
 // [Props]
 interface IProps {
   label: string;

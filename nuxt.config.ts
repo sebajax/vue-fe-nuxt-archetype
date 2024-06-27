@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  srcDir: 'src/',
+  srcDir: '/src',
   devtools: { enabled: true },
   components: [
     {

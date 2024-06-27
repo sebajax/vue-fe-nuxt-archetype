@@ -1,40 +1,36 @@
 <script setup lang="ts">
 // [Imports]
-import { useVuelidate } from '@vuelidate/core'
-import { items } from '~/resources/nationalityItems.json'
-import  { patientRules }  from '~/schemas/PatientForm.schema'
-import errorHandler from '~/composables/useVuelidate.composable';
+// - Module
+import { useVuelidate } from '@vuelidate/core';
+import { patientRules } from '~/schemas/PatientForm.schema';
+// TODO: CHANGE THIS IMPLEMENTATION TO AVOID IMPORTING THE JSON FILE
+import { items } from '~/resources/nationalityItems.json';
 
-// - stores
-import { usePatientDataStore } from '~/stores/patient/usePatientDataStore'
-
-// - [Const]
+// [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
-const nationalityItems = items
+const nationalityItems = items;
 
 // [Modularity - Post Data]
 // - [Reactivity State]
 const { formData, resetForm } = usePatientDataStore();
 
-const rules = computed(()=> {
-  return patientRules
-})
+const rules = computed(() => {
+  return patientRules;
+});
 
 // - [Composable - Validation]
-const v$ = useVuelidate(rules, formData)
+const v$ = useVuelidate(rules, formData);
 
 // - [Methods]
 async function postData() {
   const validation = await v$.value.$validate();
   if (validation) {
-
     //API calls
 
     //The form store is cleared
     resetForm();
     //The form fields on the screen are reset
     v$.value.$reset();
-
   } else {
     // TODO: replace with component toast
   }
@@ -52,7 +48,7 @@ async function postData() {
           label="Nombre"
           placeholder="Nombre y Apellido"
           required
-          :error-messages="errorHandler(v$.name).message"
+          :error-messages="useErrorHandler(v$.name).message"
           @blur="v$.name.$touch"
         />
         <!-- rut -->
@@ -61,16 +57,16 @@ async function postData() {
           v-model="formData.rut"
           label="Rut"
           placeholder="12345678-5"
-          :error-messages="errorHandler(v$.rut).message"
+          :error-messages="useErrorHandler(v$.rut).message"
           @blur="v$.rut.$touch"
         />
         <!-- birthdate -->
-<!--          <BaseInputDate
+        <!--          <BaseInputDate
           key="birthdate"
           v-model="formData.birthdate"
           label="Fecha de nacimiento"
           :error-messages="errorHandler(v$.birthdate).message"
-          @blur="v$.birthdate.$touch"          
+          @blur="v$.birthdate.$touch"
         />  -->
         <!-- genre -->
         <BaseInputDropdown
@@ -78,7 +74,7 @@ async function postData() {
           v-model="formData.genre"
           label="Sexo"
           :items="genreItems"
-          :error-messages="errorHandler(v$.genre).message"
+          :error-messages="useErrorHandler(v$.genre).message"
           @blur="v$.genre.$touch"
         />
         <!-- nationality -->
@@ -87,7 +83,7 @@ async function postData() {
           v-model="formData.nationality"
           label="Nacionalidad"
           :items="nationalityItems"
-          :error-messages="errorHandler(v$.nationality).message"
+          :error-messages="useErrorHandler(v$.nationality).message"
           @blur="v$.nationality.$touch"
         />
         <!-- address -->
@@ -96,7 +92,7 @@ async function postData() {
           v-model="formData.address"
           label="Dirección"
           placeholder="Calle 123"
-          :error-messages="errorHandler(v$.address).message"
+          :error-messages="useErrorHandler(v$.address).message"
           @blur="v$.address.$touch"
         />
         <!-- socialSecurity -->
@@ -105,7 +101,7 @@ async function postData() {
           v-model="formData.socialSecurity"
           label="Previsión"
           placeholder="Fonasa"
-          :error-messages="errorHandler(v$.socialSecurity).message"
+          :error-messages="useErrorHandler(v$.socialSecurity).message"
           @blur="v$.socialSecurity.$touch"
         />
         <!-- phone -->
@@ -114,7 +110,7 @@ async function postData() {
           v-model="formData.phone"
           label="Teléfono"
           placeholder="+569 1234 5678"
-          :error-messages="errorHandler(v$.phone).message"
+          :error-messages="useErrorHandler(v$.phone).message"
           @blur="v$.phone.$touch"
         />
         <!-- altPhone -->
@@ -123,7 +119,7 @@ async function postData() {
           v-model="formData.altPhone"
           label="Teléfono alternativo"
           placeholder="+569 1234 5678"
-          :error-messages="errorHandler(v$.altPhone).message"
+          :error-messages="useErrorHandler(v$.altPhone).message"
           @blur="v$.altPhone.$touch"
         />
         <!-- email -->
@@ -134,7 +130,7 @@ async function postData() {
           placeholder="correo@falp.org"
           type="email"
           required
-          :error-messages="errorHandler(v$.email).message"
+          :error-messages="useErrorHandler(v$.email).message"
           @blur="v$.email.$touch"
         />
         <!-- Button -->

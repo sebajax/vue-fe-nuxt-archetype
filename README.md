@@ -12,9 +12,8 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 <!-- FIRST: SCRIPT -->
 <script setup lang="ts">
   // [Imports]
-  // - Interface
   // - Module
-  // - Store
+  // - Interface
   // - Public
 
   // [Const]
