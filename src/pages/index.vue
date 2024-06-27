@@ -1,12 +1,14 @@
 <script setup lang="ts">
+// [Imports]
 // - Interface
 import { EnumToastType } from '~/interfaces/stores/toast/toast.interface';
 
-// [Store]
+// [Composable]
 const { loggedIn, user, logout, currentProvider } = useOidcAuth();
+// [Store]
 const { updateConfig, configToast } = useToastStore();
 
-// test Toast Component
+// Test toast component
 function testUpdateConfig() {
   updateConfig({
     text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eaque voluptates veritatis ea odit at animi, fugiat quaerat repellendus sit libero a qui voluptas quos magni laboriosam ab dolore eligendi.`,
@@ -74,3 +76,5 @@ function testUpdateConfig() {
     </v-row>
   </v-container>
 </template>
+
+<style></style>

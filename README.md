@@ -18,7 +18,7 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
   // [Const]
 
-  // VUE - Not necessary to add only to know that here starts VUE data
+  // VUE - Don´t add
 
   // [Options]
 

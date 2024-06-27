@@ -1,17 +1,17 @@
 // [Imports]
-import { 
-  required,  
+// - Module
+import {
   alpha,
+  checkRut,
   email as emailValidator,
   maxLength,
   numeric,
-  checkRut  
-} from '@/utils/validationTranslation.util'
+  required,
+} from '~/utils/validationTranslation.util';
 
 const patientRules = {
-  name: { required,maxLength: maxLength(10)},
+  name: { required, maxLength: maxLength(10) },
   rut: { required, checkRut },
-  birthdate: {},
   age: { required, numeric },
   genre: { required, alpha },
   nationality: { required, alpha },

@@ -1,12 +1,12 @@
 // [Imports]
 import {
-createI18nMessage, 
-required as validatorsRequired,
-minLength as validatorsMinLength,
-maxLength as validatorsMaxLength,
-numeric as validatorsNumeric,
-email as validatorsEmail,
-alpha as validatorsAlpha
+  createI18nMessage,
+  alpha as validatorsAlpha,
+  email as validatorsEmail,
+  maxLength as validatorsMaxLength,
+  minLength as validatorsMinLength,
+  numeric as validatorsNumeric,
+  required as validatorsRequired,
 } from '@vuelidate/validators';
 import { createI18n } from 'vue-i18n';
 

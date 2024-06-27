@@ -25,3 +25,5 @@ onMounted(() => {
     </v-container>
   </v-app>
 </template>
+
+<style></style>

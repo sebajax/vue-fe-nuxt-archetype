@@ -3,11 +3,11 @@
 import { Patient } from '~/interfaces/domain/patient.domain';
 
 // [Store]
-const store = usePatientStore();
+const patientStore = usePatientStore();
 
-const { patientData } = storeToRefs(store);
+const { patientData } = storeToRefs(patientStore);
 
-const { fetchCreate } = store;
+const { fetchCreate } = patientStore;
 
 // [Modularity - Post Data]
 // - [Reactivity State]
