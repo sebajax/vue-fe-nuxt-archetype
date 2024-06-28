@@ -36,7 +36,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  css: ['~/assets/styles/main.scss'],
+  css: ['~/assets/styles/main.css'],
   postcss: {
     plugins: {
       tailwindcss: {},
