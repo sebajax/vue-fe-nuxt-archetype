@@ -1,6 +1,6 @@
 // [Imports]
 // - Module
-import {
+/* import {
   alpha,
   checkRut,
   email as emailValidator,
@@ -22,4 +22,4 @@ const patientRules = {
   email: { required, email: emailValidator },
 };
 
-export { patientRules };
+export { patientRules }; */

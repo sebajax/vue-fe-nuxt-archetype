@@ -1,5 +1,6 @@
 // [Imports]
-import {
+//TODO: move to composable
+/* import {
   createI18nMessage,
   alpha as validatorsAlpha,
   email as validatorsEmail,
@@ -10,7 +11,6 @@ import {
 } from '@vuelidate/validators';
 import { createI18n } from 'vue-i18n';
 
-// Create your i18n message instance
 const i18n = createI18n({
   locale: 'es',
   messages: {
@@ -31,7 +31,6 @@ const i18n = createI18n({
 const t = i18n.global.t;
 const withI18nMessage = createI18nMessage({ t });
 
-// Wrap each validator
 const required = withI18nMessage(validatorsRequired);
 const minLength = withI18nMessage(validatorsMinLength, {
   withArguments: true,
@@ -44,4 +43,4 @@ const email = withI18nMessage(validatorsEmail);
 const alpha = withI18nMessage(validatorsAlpha);
 const checkRut = withI18nMessage(checkRutValidator);
 
-export { alpha, checkRut, email, maxLength, minLength, numeric, required };
+export { alpha, checkRut, email, maxLength, minLength, numeric, required }; */
