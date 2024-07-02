@@ -1,14 +1,42 @@
 <script setup lang="ts">
 // [Imports]
 // - Module
-/* import { patientRules } from '~/schemas/PatientForm.schema'; */
-import { useField, useForm } from 'vee-validate'
-import * as yup from 'yup';
+import { patientSchema } from '~/schemas/PatientForm.schema';
+import { useForm } from 'vee-validate';
+
+
+//TODO composobale
+  const vuetifyConfig = (state: any) => ({
+    props: {
+      'error-messages': state.errors,
+    },
+  });
+
+  const { defineField, handleSubmit } = useForm({
+    validationSchema: patientSchema,
+  });
+
+
 // [Const]
-/* const genreItems = ['Femenino', 'Masculino', 'Otro']; */
-/*const formData = ref({
-  name: useField('name'),
-   rut: '',
+  const genreItems = ['Femenino', 'Masculino', 'Otro'];
+
+
+// TODO: formData
+
+
+  const  [name, nameProps] = defineField('name', vuetifyConfig)
+  const  [rut, rutProps] = defineField('rut', vuetifyConfig)
+  const  [genre, genreProps] = defineField('genre', vuetifyConfig)
+  const  [nationality, nationalityProps] = defineField('nationality', vuetifyConfig)
+  const  [address, addressProps] = defineField('address', vuetifyConfig)
+  const  [socialSecurity, socialSecurityProps] = defineField('formData.socialSecurity', vuetifyConfig)
+  const  [phone, phoneProps] = defineField('formData.phone', vuetifyConfig)
+  const  [altPhone, altPhoneProps] = defineField('formData.altPhone', vuetifyConfig)
+  const  [email, emailProps] = defineField('email', vuetifyConfig)
+
+/* const formData = ref({
+  name: 
+  rut: '',
   age: 0,
   genre: '',
   nationality: 'Chile',
@@ -16,75 +44,104 @@ import * as yup from 'yup';
   socialSecurity: '',
   phone: '',
   altPhone: '',
-  email: '', 
-});*/
-  const validationSchema = yup.object().shape({
-          name: yup.string().required(),
-        });
-
-  const name = useField('name', validationSchema)
-
-
-
-  const { handleSubmit, handleReset } = useForm({
-    validationSchema,
-  });
-
-
-  const submit = handleSubmit(async (values) => {
-    alert(JSON.stringify(values, null, 2));
-  });
+  email: '',  
+});  */
 
 // [Modularity - Post Data]
 // - [Reactivity State]
-/* const rules = computed(() => {
-  return patientRules;
-}); */
 
-// - [Composable - Validation]
-//Se usa para ver si esta validado el form, retorna booleano
-/* const v$ = useVuelidate(rules, formData); */
 
 // - [Methods]
-/* async function postData() {
-  const validation = await v$.value.$validate();
-  if (validation) {
-    //API calls
+const onSubmit = handleSubmit((values) => {
+  console.log('Submitted with', values);
+  //API calls
+  //reset values
+  // TODO: replace with component toast
+});
 
-    //The form fields on the screen are reset
-    v$.value.$reset();
-  } else {
-    // TODO: replace with component toast
-  }
-} */
 </script>
 
 <template>
-  <form class="pb-4" @submit.prevent="submit">
-
-      <!-- name -->
-      <BaseInputText
-        key="name"
-        v-model="name.value.value"
-        label="Nombre"
-        placeholder="Nombre y Apellido"
-        :error-messages="name.errorMessage.value"
-      />
-  
-      <!-- Button -->
-<!--       <BaseButton
-        label="Añadir paciente"
-        type="submit"
-      /> -->
-      <v-btn
-      class="me-4"
+  <v-form class="pb-4" @submit.prevent="onSubmit">
+    <!-- name -->
+    <BaseInputText
+      key="name"
+      v-model="name"
+      v-bind="nameProps"
+      label="Nombre"
+      placeholder="Nombre y Apellido"
+    />
+    <!-- rut -->
+    <BaseInputText
+      key="rut"
+      v-model="rut"
+      v-bind="rutProps"
+      label="Rut"
+      placeholder="12345678-5"
+    />
+    <!-- genre -->
+    <BaseInputDropdown
+      key="genre"
+      v-model="genre"
+      v-bind="genreProps"
+      label="Sexo"
+      :items="genreItems"
+    />
+    <!-- nationality -->
+    <BaseInputDropdown
+      key="nationality"
+      v-model="nationality"
+      v-bind="nationalityProps"
+      label="Nacionalidad"
+      :items="nationalityItems"
+    />
+    <!-- address -->
+    <BaseInputText
+      key="address"
+      v-model="address"
+      v-bind="addressProps"
+      label="Dirección"
+      placeholder="Calle 123"
+    />
+    <!-- socialSecurity -->
+    <BaseInputText
+      key="socialSecurity"
+      v-model="socialSecurity"
+      v-bind="socialSecurityProps"
+      label="Previsión"
+      placeholder="Fonasa"
+    />
+    <!-- phone -->
+    <BaseInputText
+      key="phone"
+      v-model="phone"
+      v-bind="phoneProps"
+      label="Teléfono"
+      placeholder="+569 1234 5678"
+    />
+    <!-- altPhone -->
+    <BaseInputText
+      key="altPhone"
+      v-model="altPhone"
+      v-bind="altPhoneProps"
+      label="Teléfono alternativo"
+      placeholder="+569 1234 5678"
+    />
+    <!-- email -->
+    <BaseInputText
+      key="email"
+      v-model="email"
+      v-bind="emailProps"
+      label="Correo"
+      placeholder="correo@falp.org"
+      type="email"
+      required
+    />
+    <BaseButton
+      label="Añadir paciente"
       type="submit"
-    >
-      submit
-    </v-btn>
-      <v-spacer />
-      <v-btn @click="handleReset">
-        clear
-      </v-btn>
-  </form>
+    /> 
+    <v-spacer />
+
+</v-form>
 </template>

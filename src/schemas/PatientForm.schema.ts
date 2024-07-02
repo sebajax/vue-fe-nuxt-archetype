@@ -8,18 +8,23 @@
   numeric,
   required,
 } from '~/utils/validationTranslation.util';
+*/
 
-const patientRules = {
-  name: { required, maxLength: maxLength(10) },
-  rut: { required, checkRut },
-  age: { required, numeric },
-  genre: { required, alpha },
-  nationality: { required, alpha },
-  address: { required },
-  socialSecurity: { required, alpha },
-  phone: { required, numeric },
-  altPhone: { numeric },
-  email: { required, email: emailValidator },
-};
+import { object, string, number } from 'yup';
 
-export { patientRules }; */
+  //importar desde composable
+  //{ setLocaleTraduction } = useValidationTraslation();
+
+  const patientSchema = object({
+    name: string().required(),
+    rut: number().required(), //added custom check-rut
+    genre: string().required(),
+    nationality: string().nullable(),
+    address: string().required(),
+    socialSecurity: string().required(),
+    phone: number().required(),
+    altPhone: number().required(),
+    email: string().email().required(),
+  });
+
+export { patientSchema }; 
