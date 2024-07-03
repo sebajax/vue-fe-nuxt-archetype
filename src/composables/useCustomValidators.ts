@@ -1,7 +1,7 @@
 // [Imports]
 // - Module
-import { string, addMethod } from 'yup';
 import type { StringSchema } from 'yup';
+import { addMethod, string } from 'yup';
 
 // Extend Yup to include custom methods
 declare module 'yup' {
@@ -21,7 +21,6 @@ declare module 'yup' {
     phoneNumber(message: string): this;
   }
 } */
-
 
 function useCustomValidators() {
   // Custom method: checkRut
@@ -49,7 +48,6 @@ function useCustomValidators() {
   });
 
   // Add other validation...
-
 }
 
-export { useCustomValidators }
+export { useCustomValidators };

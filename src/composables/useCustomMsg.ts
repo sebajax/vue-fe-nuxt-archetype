@@ -1,9 +1,8 @@
 // [Imports]
 // - Interface
-import type { ValidatorMsg } from "~/interfaces/validatorMsg.interface";
+import type { ValidatorMsg } from '~/interfaces/validatorMsg.interface';
 
 function useCustomMsg(): { validatorMsg: ValidatorMsg } {
-  
   // Translated validation dictionary
   const validatorMsg = {
     DEFAULT: 'Campo inválido',
@@ -21,8 +20,8 @@ function useCustomMsg(): { validatorMsg: ValidatorMsg } {
   };
 
   // Other personalised messages...
-  
-  return { validatorMsg }
+
+  return { validatorMsg };
 }
 
 export { useCustomMsg };
