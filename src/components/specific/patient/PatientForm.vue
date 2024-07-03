@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // [Imports]
 // - Module
-import { patientSchema } from '~/schemas/patientForm.schema';
 import { useForm } from 'vee-validate';
+import { patientSchema } from '~/schemas/patientForm.schema';
 
 // [Composable]
 const { defineField, handleSubmit } = useForm({
@@ -11,15 +11,21 @@ const { defineField, handleSubmit } = useForm({
 
 // [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
-const [name, nameProps] = defineField('data.name', useErrorHandler) // String
-const [rut, rutProps] = defineField('rut', useErrorHandler) // String
-const [genre, genreProps] = defineField('genre', useErrorHandler) // String
-const [nationality, nationalityProps] = defineField('nationality', useErrorHandler) // String
-const [address, addressProps] = defineField('address', useErrorHandler) // String
-const [socialSecurity, socialSecurityProps] = defineField('socialSecurity', useErrorHandler) // String
-const [phone, phoneProps] = defineField('phone', useErrorHandler) // String
-const [altPhone, altPhoneProps] = defineField('altPhone', useErrorHandler) // String
-const [email, emailProps] = defineField('email', useErrorHandler) // String
+const [name, nameProps] = defineField('data.name', useErrorHandler); // String
+const [rut, rutProps] = defineField('rut', useErrorHandler); // String
+const [genre, genreProps] = defineField('genre', useErrorHandler); // String
+const [nationality, nationalityProps] = defineField(
+  'nationality',
+  useErrorHandler,
+); // String
+const [address, addressProps] = defineField('address', useErrorHandler); // String
+const [socialSecurity, socialSecurityProps] = defineField(
+  'socialSecurity',
+  useErrorHandler,
+); // String
+const [phone, phoneProps] = defineField('phone', useErrorHandler); // String
+const [altPhone, altPhoneProps] = defineField('altPhone', useErrorHandler); // String
+const [email, emailProps] = defineField('email', useErrorHandler); // String
 
 // [Modularity - Post Data]
 // - [Methods]
@@ -28,7 +34,6 @@ const postData = handleSubmit((values) => {
   //API calls
   //TODO reset values
 });
-
 </script>
 
 <template>
@@ -108,10 +113,7 @@ const postData = handleSubmit((values) => {
         type="email"
         required
       />
-      <BaseButton
-        label="Añadir paciente"
-        type="submit"
-      /> 
+      <BaseButton label="Añadir paciente" type="submit" />
       <v-spacer />
     </v-form>
   </client-only>

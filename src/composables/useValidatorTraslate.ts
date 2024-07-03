@@ -19,7 +19,7 @@ function useValidatorTranslate() {
       email: validatorMsg.EMAIL,
       lowercase: validatorMsg.LOWERCASE,
       uppercase: validatorMsg.UPPERCASE,
-/*       checkRut: validatorMsg.CHECKRUT,
+      /*       checkRut: validatorMsg.CHECKRUT,
       phoneNumber: validatorMsg.PHONENUMBER, */
     },
     number: {
@@ -30,4 +30,3 @@ function useValidatorTranslate() {
 }
 
 export { useValidatorTranslate };
-

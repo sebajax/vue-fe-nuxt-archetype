@@ -1,10 +1,7 @@
 // [Imports]
 // - Module
 import type { ObjectSchema } from 'yup';
-import { 
-  object, 
-  string, 
-} from 'yup';
+import { object, string } from 'yup';
 
 // - Interface
 import type { PatientForm } from '~/interfaces/patientForm.interface';
