@@ -194,6 +194,8 @@ Ctrl + k then Ctrl + Shift + s
 - Hydration warning persist if the component try to render some information from some `script`. At the moment, this will persist with the use of `vuetify`. Keep an eye on the [Nuxt module for Vuetify](https://nuxt.com/modules/vuetify-nuxt-module) for possible module replacement in the future.
 - To remove common generated Nuxt files and caches:
 
+[npx nuxi cleanup](https://nuxt.com/docs/api/commands/cleanup)
+
 ```bash
 npx nuxi cleanup
 ```
