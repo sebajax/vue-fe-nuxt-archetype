@@ -2,17 +2,21 @@
 // [Imports]
 // - Module
 import { useForm } from 'vee-validate';
-import { patientSchema } from '~/schemas/patientForm.schema';
 
 // [Composable]
+const { patientSchema } = usePatientFormSchema();
+
 const { defineField, handleSubmit } = useForm({
   validationSchema: patientSchema,
 });
 
 // [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
-const [name, nameProps] = defineField('data.name', useErrorHandler); // String
-const [rut, rutProps] = defineField('rut', useErrorHandler); // String
+const [name, nameProps] = defineField('name', useErrorHandler); // String
+const [identityNumber, identityNumberProps] = defineField(
+  'identityNumber',
+  useErrorHandler,
+); // String
 const [genre, genreProps] = defineField('genre', useErrorHandler); // String
 const [nationality, nationalityProps] = defineField(
   'nationality',
@@ -50,8 +54,8 @@ const postData = handleSubmit((values) => {
       <!-- rut -->
       <BaseInputText
         key="rut"
-        v-model="rut"
-        v-bind="rutProps"
+        v-model="identityNumber"
+        v-bind="identityNumberProps"
         label="Rut"
         placeholder="12345678-5"
       />

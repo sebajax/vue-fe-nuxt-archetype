@@ -6,48 +6,45 @@ import { addMethod, string } from 'yup';
 // Extend Yup to include custom methods
 declare module 'yup' {
   interface StringSchema {
-    checkRut(message: string): StringSchema;
-    phoneNumber(message: string): StringSchema;
+    checkIdentityNumber(message: string): StringSchema;
+    checkPhoneNumber(message: string): StringSchema;
   }
 }
 
-/* declare module 'yup' {
-  interface StringSchema<
-    TType extends string | undefined = string | undefined,
-    TContext extends AnyObject = AnyObject,
-    TOut extends TType = TType,
-  > extends StringSchema<TType, TContext, TOut> {
-    checkRut(message: string): this;
-    phoneNumber(message: string): this;
-  }
-} */
+// Define a function to add custom validators to Yup
+export const useCustomValidators = () => {
+  // Custom method for validating a Chilean identity number (RUT)
+  addMethod<StringSchema>(
+    string,
+    'checkIdentityNumber',
+    function (message: string) {
+      return this.test('checkIdentityNumber', message, function (value) {
+        const { path, createError } = this;
+        if (typeof value !== 'string') {
+          return createError({ path, message });
+        }
+        const isValidRut = checkRutValidator(value);
+        // Return true if valid, otherwise create an error
+        return isValidRut || createError({ path, message });
+      });
+    },
+  );
 
-function useCustomValidators() {
-  // Custom method: checkRut
-  addMethod<StringSchema>(string, 'checkRut', function (message) {
-    return this.test('checkRut', message, function (value) {
-      const { path, createError } = this;
-      if (typeof value !== 'string') {
-        return createError({ path, message });
-      }
-      const isValidRut = checkRutValidator(value);
-      return isValidRut || createError({ path, message });
-    });
-  });
+  // Custom method for validating a Chilean phone number
+  addMethod<StringSchema>(
+    string,
+    'checkPhoneNumber',
+    function (message: string) {
+      return this.test('checkPhoneNumber', message, function (value) {
+        const { path, createError } = this;
+        const phoneNumberRegex = /^\+56\d{9}$/;
+        if (typeof value !== 'string' || !phoneNumberRegex.test(value)) {
+          return createError({ path, message });
+        }
+        return true;
+      });
+    },
+  );
 
-  // Custom method: phoneNumber
-  addMethod<StringSchema>(string, 'phoneNumber', function (message) {
-    return this.test('phoneNumber', message, function (value) {
-      const { path, createError } = this;
-      const phoneNumberRegex = /^\+56\d{9}$/;
-      if (typeof value !== 'string' || !phoneNumberRegex.test(value)) {
-        return createError({ path, message });
-      }
-      return true;
-    });
-  });
-
-  // Add other validation...
-}
-
-export { useCustomValidators };
+  // Add other custom validators here
+};
