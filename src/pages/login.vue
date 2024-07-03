@@ -33,12 +33,12 @@ useHead({
   <div class="mx-auto my-auto p-2 bg-blue-falp md:w-2/3 lg:w-1/2">
     <!-- Icons -->
     <div class="inline-flex w-full justify-between px-4">
-      <img :src="whiteLogoFalp" alt="logo_falp" class="w-1/3" />
-      <img :src="oncoTracerLogo" alt="logo_oncoTracer" class="w-1/3" />
+      <img :src="whiteLogoFalp" alt="logo_falp" class="w-1/3" >
+      <img :src="oncoTracerLogo" alt="logo_oncoTracer" class="w-1/3" >
     </div>
     <!-- Center Image -->
     <div class="mt-5">
-      <img class="w-full" :src="imgLogin" alt="img_oncoTracer" />
+      <img class="w-full" :src="imgLogin" alt="img_oncoTracer" >
     </div>
     <!-- Titles -->
     <div class="grid text-center mt-8">
