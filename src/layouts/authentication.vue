@@ -1,9 +1,8 @@
 <template>
-  <v-app >
+  <v-app>
     <v-layout>
       <v-main>
-        <div 
-          class="h-screen flex justify-center items-center bg-blue-falp">
+        <div class="h-screen flex justify-center items-center bg-blue-falp">
           <slot />
         </div>
       </v-main>

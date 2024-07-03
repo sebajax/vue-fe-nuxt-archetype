@@ -2,6 +2,14 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  imports: {
+    dirs: [
+      // Scan top-level modules
+      'composables',
+      // ... or scan modules nested one level deep with a specific name and file extension
+      'composables/*/*.{ts,js,mjs,mts}',
+    ],
+  },
   // OIDC Auth (OpenID Connect) configuration
   oidc: {
     defaultProvider: 'keycloak',
@@ -36,7 +44,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  css: ['~/assets/styles/main.scss'],
+  css: ['~/assets/styles/main.css'],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -49,6 +57,7 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/localStorage.client.ts',
     '~/plugins/sessionStorage.client.ts',
+    '~/plugins/translationConfig.client.ts',
   ],
   modules: [
     'nuxt-lodash',
@@ -56,7 +65,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    '@nuxtjs/i18n',
+    '@vee-validate/nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error because config.plugins may be undefined
@@ -81,9 +90,9 @@ export default defineNuxtConfig({
   */
   runtimeConfig: {
     // The private keys which are only available within server-side
-    apiSecret: '123',
     // Keys within public, will be also exposed to the client-side
     public: {
+      language: process.env.LANGUAGE,
       nodeEnv: process.env.API_NAME,
       api: process.env.CLEAN_ARCHITECTURE_API,
     },

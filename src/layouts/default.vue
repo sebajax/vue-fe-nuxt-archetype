@@ -43,7 +43,7 @@ const darkTextColor = colors.darkText;
       <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguage" />
       <BaseHeader v-model="actualPage" />
       <ClientOnly>
-        <BaseToast/>
+        <BaseToast />
       </ClientOnly>
       <v-main class="h-[100vh]">
         <NuxtPage

@@ -1,141 +1,124 @@
 <script setup lang="ts">
 // [Imports]
 // - Module
-import { useVuelidate } from '@vuelidate/core';
-import { patientRules } from '~/schemas/PatientForm.schema';
+import { useForm } from 'vee-validate';
+
+// [Composable]
+const { patientSchema } = usePatientFormSchema();
+
+const { defineField, handleSubmit } = useForm({
+  validationSchema: patientSchema,
+});
 
 // [Const]
 const genreItems = ['Femenino', 'Masculino', 'Otro'];
-const formData = ref({
-  name: '',
-  rut: '',
-  age: 0,
-  genre: '',
-  nationality: 'Chile',
-  address: '',
-  socialSecurity: '',
-  phone: '',
-  altPhone: '',
-  email: '',
-});
+const [name, nameProps] = defineField('name', useErrorHandler); // String
+const [identityNumber, identityNumberProps] = defineField(
+  'identityNumber',
+  useErrorHandler,
+); // String
+const [genre, genreProps] = defineField('genre', useErrorHandler); // String
+const [nationality, nationalityProps] = defineField(
+  'nationality',
+  useErrorHandler,
+); // String
+const [address, addressProps] = defineField('address', useErrorHandler); // String
+const [socialSecurity, socialSecurityProps] = defineField(
+  'socialSecurity',
+  useErrorHandler,
+); // String
+const [phone, phoneProps] = defineField('phone', useErrorHandler); // String
+const [altPhone, altPhoneProps] = defineField('altPhone', useErrorHandler); // String
+const [email, emailProps] = defineField('email', useErrorHandler); // String
 
 // [Modularity - Post Data]
-// - [Reactivity State]
-const rules = computed(() => {
-  return patientRules;
-});
-
-// - [Composable - Validation]
-const v$ = useVuelidate(rules, formData);
-
 // - [Methods]
-async function postData() {
-  const validation = await v$.value.$validate();
-  if (validation) {
-    //API calls
-
-    //The form fields on the screen are reset
-    v$.value.$reset();
-  } else {
-    // TODO: replace with component toast
-  }
-}
+const postData = handleSubmit((values) => {
+  console.log('Submitted with', values);
+  //API calls
+  //TODO reset values
+});
 </script>
 
 <template>
-  <v-form class="pb-4" @submit.prevent="postData">
-    <div class="px-0 grid lg:grid-cols-2 gap-4">
+  <client-only>
+    <v-form class="pb-4" @submit.prevent="postData">
       <!-- name -->
       <BaseInputText
         key="name"
-        v-model="formData.name"
+        v-model="name"
+        v-bind="nameProps"
         label="Nombre"
         placeholder="Nombre y Apellido"
-        required
-        :error-messages="useErrorHandler(v$.name).message"
-        @blur="v$.name.$touch"
       />
       <!-- rut -->
       <BaseInputText
         key="rut"
-        v-model="formData.rut"
+        v-model="identityNumber"
+        v-bind="identityNumberProps"
         label="Rut"
         placeholder="12345678-5"
-        :error-messages="useErrorHandler(v$.rut).message"
-        @blur="v$.rut.$touch"
       />
       <!-- genre -->
       <BaseInputDropdown
         key="genre"
-        v-model="formData.genre"
+        v-model="genre"
+        v-bind="genreProps"
         label="Sexo"
         :items="genreItems"
-        :error-messages="useErrorHandler(v$.genre).message"
-        @blur="v$.genre.$touch"
       />
       <!-- nationality -->
       <BaseInputDropdown
         key="nationality"
-        v-model="formData.nationality"
+        v-model="nationality"
+        v-bind="nationalityProps"
         label="Nacionalidad"
         :items="nationalityItems"
-        :error-messages="useErrorHandler(v$.nationality).message"
-        @blur="v$.nationality.$touch"
       />
       <!-- address -->
       <BaseInputText
         key="address"
-        v-model="formData.address"
+        v-model="address"
+        v-bind="addressProps"
         label="Dirección"
         placeholder="Calle 123"
-        :error-messages="useErrorHandler(v$.address).message"
-        @blur="v$.address.$touch"
       />
       <!-- socialSecurity -->
       <BaseInputText
         key="socialSecurity"
-        v-model="formData.socialSecurity"
+        v-model="socialSecurity"
+        v-bind="socialSecurityProps"
         label="Previsión"
         placeholder="Fonasa"
-        :error-messages="useErrorHandler(v$.socialSecurity).message"
-        @blur="v$.socialSecurity.$touch"
       />
       <!-- phone -->
       <BaseInputText
         key="phone"
-        v-model="formData.phone"
+        v-model="phone"
+        v-bind="phoneProps"
         label="Teléfono"
         placeholder="+569 1234 5678"
-        :error-messages="useErrorHandler(v$.phone).message"
-        @blur="v$.phone.$touch"
       />
       <!-- altPhone -->
       <BaseInputText
         key="altPhone"
-        v-model="formData.altPhone"
+        v-model="altPhone"
+        v-bind="altPhoneProps"
         label="Teléfono alternativo"
         placeholder="+569 1234 5678"
-        :error-messages="useErrorHandler(v$.altPhone).message"
-        @blur="v$.altPhone.$touch"
       />
       <!-- email -->
       <BaseInputText
         key="email"
-        v-model="formData.email"
+        v-model="email"
+        v-bind="emailProps"
         label="Correo"
         placeholder="correo@falp.org"
         type="email"
         required
-        :error-messages="useErrorHandler(v$.email).message"
-        @blur="v$.email.$touch"
       />
-      <!-- Button -->
-      <BaseButton
-        label="Añadir paciente"
-        :readinly="formData"
-        @click="postData()"
-      />
+      <BaseButton label="Añadir paciente" type="submit" />
       <v-spacer />
-    </div>
-  </v-form>
+    </v-form>
+  </client-only>
 </template>

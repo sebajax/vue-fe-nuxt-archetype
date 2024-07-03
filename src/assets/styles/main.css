@@ -1,14 +1,14 @@
-// assets/styles/main.scss
+@import 'vuetify/styles';
+@import '@mdi/font/css/materialdesignicons.css';
+/* Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* assets/styles/main.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import 'vuetify/styles';
-@import '@mdi/font/css/materialdesignicons.css';
-// Inter font
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-// Heading
+/* Heading */
 h1,
 h2,
 h3,
@@ -34,7 +34,7 @@ h4 {
   font-size: 20px;
 }
 
-// Paragraph
+/* Paragraph */
 p {
   font-family: 'Inter';
   font-weight: normal;
@@ -42,7 +42,7 @@ p {
   line-height: 1.5;
 }
 
-// Table
+/* Table */
 .v-table {
   border-radius: 20px;
 }

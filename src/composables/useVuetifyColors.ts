@@ -1,8 +1,9 @@
 // [Imports]
+// - Modules
 import { useTheme } from 'vuetify';
 
 // Colors theme definition
-export function useColors() {
+export const useColors = () => {
   // Vuetify composable theme
   const theme = useTheme();
 
@@ -30,4 +31,4 @@ export function useColors() {
     darkText,
     lightGray,
   };
-}
+};
