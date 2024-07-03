@@ -194,20 +194,16 @@ Ctrl + k then Ctrl + Shift + s
 - Hydration warning persist if the component try to render some information from some `script`. At the moment, this will persist with the use of `vuetify`. Keep an eye on the [Nuxt module for Vuetify](https://nuxt.com/modules/vuetify-nuxt-module) for possible module replacement in the future.
 - To remove common generated Nuxt files and caches:
 
-[npx nuxi cleanup](https://nuxt.com/docs/api/commands/cleanup)
-
-```bash
-npx nuxi cleanup
-```
-
 <a id="actualization"></a>
 
 ## Dependencies actualizations guide
 
 This guide ensures that you follow a clear and detailed process to update your Nuxt project's dependencies and verify that everything is working correctly.
 
-- Delete folders and files that generates conflicts (`node_modules`, `.nuxt`, `.dist`, `package-lock.json`)
+- Delete folders and files that generates conflicts (`node_modules`, `.nuxt`, `.output`, `package-lock.json`)
   run
+
+- To remove generated nuxt files and caches [npx nuxi cleanup](https://nuxt.com/docs/api/commands/cleanup)
 
 ```bash
 rm -rf node_modules .nuxt .dist package-lock.json
