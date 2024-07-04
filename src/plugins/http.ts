@@ -37,20 +37,20 @@ export default defineNuxtPlugin(() => {
     async onResponseError({ request, response, options }) {
       // Handle authorization response error
       if (response.status === StatusCodes.UNAUTHORIZED) {
+        // Initialize retry count if not set, then decrement
+        options.retry =
+          options.retry === undefined ? 3 : (options.retry as number) - 1;
+
+        // Check if retry limit reached
+        if (options.retry <= 0) {
+          console.error('Token refresh failed');
+          await navigateTo('/login');
+          return; // Ensure function exits after handling the error
+        }
+
+        console.log(options.retry);
+
         try {
-          // Initialize retry count if not set, then decrement
-          options.retry =
-            options.retry === undefined ? 3 : (options.retry as number) - 1;
-
-          // Check if retry limit reached
-          if (options.retry <= 0) {
-            console.error('Token refresh failed');
-            await navigateTo('/login');
-            return; // Ensure function exits after handling the error
-          }
-
-          console.log(options.retry);
-
           // Refresh the token using oidc
           await refresh();
 
