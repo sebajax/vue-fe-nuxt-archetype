@@ -43,9 +43,9 @@ export default defineNuxtPlugin(() => {
             throw new Error('Retry limit reached');
           }
 
-          console.log(options.retry);
+          options.retry = options.retry ? (options.retry as number) + 1 : 1;
 
-          options.retry++;
+          console.log(options.retry);
 
           // Refresh the token using oidc
           await refresh();
