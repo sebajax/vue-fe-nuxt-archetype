@@ -15,13 +15,13 @@ stop:
 
 #  Nuxt operations
 nuxt-build:
-	nuxt build
+	npm run build
 
 dev:
-	nuxt dev
+	npm run dev
 
 cleanup:
-  npx nuxi cleanup
+	npx nuxi cleanup
 
 # Testing
 test:
@@ -39,6 +39,21 @@ lint-prettier:
 
 type-check:
 	npx nuxi typecheck
+
+# Help
+help:
+	@echo "Usage instructions:"
+	@echo "  make build          - Build the Docker containers"
+	@echo "  make start          - Start the Docker containers"
+	@echo "  make stop           - Stop the Docker containers"
+	@echo "  make nuxt-build     - Build the Nuxt application"
+	@echo "  make dev            - Live reloading during development"
+	@echo "  make cleanup        - Clean up Nuxt build artifacts"
+	@echo "  make test           - Run tests"
+	@echo "  make lint           - Lint code"
+	@echo "  make lint-fix       - Fix lint issues"
+	@echo "  make lint-prettier  - Format code with Prettier"
+	@echo "  make type-check     - Type-check the Nuxt application"
 
 # Usage instructions:
 # - To build the Docker containers: make build
