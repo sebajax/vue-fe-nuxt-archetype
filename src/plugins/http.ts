@@ -44,7 +44,9 @@ export default defineNuxtPlugin(() => {
 
           // Check if retry limit reached
           if (options.retry <= 0) {
-            throw new Error('Retry limit reached');
+            console.error('Token refresh failed');
+            await navigateTo('/login');
+            return; // Ensure function exits after handling the error
           }
 
           console.log(options.retry);
