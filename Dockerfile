@@ -13,10 +13,10 @@ RUN npm install
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN npm run build && npm prune --production
 
 # Expose the port that the app runs on
 EXPOSE 8080
 
 # Command to run the application
-CMD ["npm", "run", "start"]
+CMD ["node", ".output/server/index.mjs"]

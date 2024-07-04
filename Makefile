@@ -1,7 +1,17 @@
-.PHONY: build start stop nuxt-build dev cleanup test lint lint-fix lint-prettier type-check
+.PHONY: build-prod start-prod stop-prod build start stop nuxt-build dev cleanup test lint lint-fix lint-prettier type-check
 # Load environment variables
 include .env
 export
+
+# Docker production
+build-prod:
+	docker build -t $(PROJECT_NAME) .
+
+start-prod:
+	docker run -d -p 8080:8080 $(PROJECT_NAME)
+
+stop-prod:
+	docker stop $(PROJECT_NAME) && docker rm $(PROJECT_NAME)
 
 # Docker tasks
 build:
@@ -43,6 +53,9 @@ type-check:
 # Help
 help:
 	@echo "Usage instructions:"
+	@echo "  make build-prod     - Build the [Production] Docker containers"
+	@echo "  make start-prod     - Start the [Production] Docker containers"
+	@echo "  make stop-prod      - Stop the [Production] Docker containers"
 	@echo "  make build          - Build the Docker containers"
 	@echo "  make start          - Start the Docker containers"
 	@echo "  make stop           - Stop the Docker containers"
@@ -56,6 +69,9 @@ help:
 	@echo "  make type-check     - Type-check the Nuxt application"
 
 # Usage instructions:
+# - To build the [Production] Docker containers: make build-prod
+# - To start the [Production] Docker containers: make start-prod
+# - To stop the [Production] Docker containers: make stop-prod
 # - To build the Docker containers: make build
 # - To start the Docker containers: make start
 # - To stop the Docker containers: make stop
