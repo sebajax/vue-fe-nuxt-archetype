@@ -8,7 +8,7 @@ build-prod:
 	docker build -t $(PROJECT_NAME) .
 
 start-prod:
-	docker run -d -p 8080:8080 $(PROJECT_NAME)
+	docker run -d -p 8080:8080 --name $(PROJECT_NAME) $(PROJECT_NAME)
 
 stop-prod:
 	docker stop $(PROJECT_NAME) && docker rm $(PROJECT_NAME)
