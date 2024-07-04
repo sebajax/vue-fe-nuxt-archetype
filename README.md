@@ -5,12 +5,10 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 **Content:**
 
 - [Setup](##setup)
-- [Development observations](#observations)
 - [Structure](#structure)
+- [Rules](#rules)
 - [Actualization](#actualization)
 - [Tailwind](#tailwind)
-
-[]()
 
 <a id="setup"></a>
 
@@ -49,8 +47,6 @@ npm run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-<a id="observations"></a>
 
 <a id="structure"></a>
 
@@ -176,6 +172,8 @@ vue-fe-nuxt-archetype/
 - `Pages`:
   - Always use `kebab-case` to the page names.
   - `[id].vue` elements must always be nested on another folder.
+- `Plugins`:
+  - If a plugin only works at Client Side, you have to use the `.client` as postfix.
 - `Stores`:
   - The name has to start with `use`.
 
@@ -295,7 +293,12 @@ However, since Vue's SFC is being used, we will use the `@apply` only if the sam
 Since Tailwind does not have an established order in the class strings, the project MUST follow the following order:
 
 ```html
-<div class="grid"></div>
+<div
+  class="grid grid-cols-2 w-full h-[100px] mx-4 my-2 gap-2 overflow-hidden justify-items-center"
+>
+  <p class="font-bold"></p>
+  <p class="font-medium"></p>
+</div>
 ```
 
 1. [Position](https://tailwindcss.com/docs/position) (ex: relative, fixed, absolute)
@@ -310,18 +313,18 @@ Since Tailwind does not have an established order in the class strings, the proj
    6. [Min Height](https://tailwindcss.com/docs/min-height)
    7. [Max Height](https://tailwindcss.com/docs/max-height)
 5. [Top Right Bottom Left](https://tailwindcss.com/docs/top-right-bottom-left) (ex: top-0, right-4, bottom-1/2)
-6. [Z index](https://tailwindcss.com/docs/z-index) (ex: z-auto, z-50, z-[9999])
-7. Justification
+6. Spacing
+   1. [Margin](https://tailwindcss.com/docs/margin) (ex: m-0, mt-4, mb-[10px])
+   2. [Space](https://tailwindcss.com/docs/margin) (ex: m-0, mt-4, mb-[10px])
+   3. [Padding](https://tailwindcss.com/docs/padding) (ex: p-0, pt-4, pb-[10px])
+   4. [Gap](https://tailwindcss.com/docs/gap) (ex: gap-1, gap-x-2, gap-y-4)
+7. [Z index](https://tailwindcss.com/docs/z-index) (ex: z-auto, z-50, z-[9999])
+8. Justification
    1. [Justify Content](https://tailwindcss.com/docs/justify-content) (ex: justify-center, justify-between, justify-evenly)
    2. (grid related!) [Justify Items](https://tailwindcss.com/docs/justify-items) (ex: justify-items-start, justify-items-stretch)
    3. (grid related!) [Justify Self](https://tailwindcss.com/docs/justify-self) (ex: justify-self-auto, justify-self-center)
-8. [Overflow](https://tailwindcss.com/docs/overflow) (ex: overflow-auto)
-9. Object Related
-10. Spacing
-    1. [Margin](https://tailwindcss.com/docs/margin) (ex: m-0, mt-4, mb-[10px])
-    2. [Space](https://tailwindcss.com/docs/margin) (ex: m-0, mt-4, mb-[10px])
-    3. [Padding](https://tailwindcss.com/docs/padding) (ex: p-0, pt-4, pb-[10px])
-    4. [Gap](https://tailwindcss.com/docs/gap) (ex: gap-1, gap-x-2, gap-y-4)
+9. [Overflow](https://tailwindcss.com/docs/overflow) (ex: overflow-auto)
+10. Object Related
 11. [Backgrounds](https://tailwindcss.com/docs/background-attachment) (following the Tailwind doc order)
 12. [Typography](https://tailwindcss.com/docs/font-family) (following the Tailwind doc order)
 13. [Borders](https://tailwindcss.com/docs/border-radius) (following the Tailwind doc order)
