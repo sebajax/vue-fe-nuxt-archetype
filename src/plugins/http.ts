@@ -38,14 +38,13 @@ export default defineNuxtPlugin(() => {
       // Handle authorization response error
       if (response.status === StatusCodes.UNAUTHORIZED) {
         try {
-          if (options.retry === undefined) {
-            options.retry = 3;
-          } else {
-            options.retry = (options.retry as number) - 1;
+          // Initialize retry count if not set, then decrement
+          options.retry =
+            options.retry === undefined ? 3 : (options.retry as number) - 1;
 
-            if (options.retry <= 0) {
-              throw new Error('Retry limit reached');
-            }
+          // Check if retry limit reached
+          if (options.retry <= 0) {
+            throw new Error('Retry limit reached');
           }
 
           console.log(options.retry);
