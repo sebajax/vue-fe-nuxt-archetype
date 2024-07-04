@@ -83,6 +83,8 @@ vue-fe-nuxt-archetype/
 ├── composables/
 │   ├── useHttp.ts
 │   ├── useVuetifyColors.ts
+│   └── schema/
+│           └── usePatientSchema.ts
 ├── layouts/
 ├── middleware/
 ├── pages/
@@ -169,7 +171,8 @@ vue-fe-nuxt-archetype/
   - `specific` components must start with the name of its specific folder (ex: `PatientForm`).
 - `Composable`:
   - The name has to start with `use`.
-  - Composable function name must have the same name as the file
+  - Composable function name must have the same name as the file.
+  - Schemas must be in the `schema` folder and follow the `use[FormName]Schema.ts` pattern.
 - `Pages`:
   - Always use `kebab-case` to the page names.
   - `[id].vue` elements must always be nested on another folder.

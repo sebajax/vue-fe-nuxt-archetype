@@ -58,6 +58,7 @@ export default defineNuxtConfig({
     '~/plugins/localStorage.client.ts',
     '~/plugins/sessionStorage.client.ts',
     '~/plugins/translationConfig.client.ts',
+    '~/plugins/casl.ts',
   ],
   modules: [
     'nuxt-lodash',

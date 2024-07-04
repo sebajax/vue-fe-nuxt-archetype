@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import { useAbility } from '@casl/vue';
+
 // [Emits]
 const emits = defineEmits(['setPageTitle']);
+
+// [Composable]
+const ability = useAbility();
 
 // [Lifecycle Hooks]
 onMounted(() => {
@@ -17,9 +22,11 @@ onMounted(() => {
           <Title text="Inicio" />
         </v-row>
         <v-row>
-          <BaseModal title="Actualizar formulario">
-            Modal de ejemplo
-          </BaseModal>
+          <div v-if="ability.can('VIEW', 'TASKMODAL')">
+            <BaseModal title="Actualizar formulario">
+              Modal de ejemplo
+            </BaseModal>
+          </div>
         </v-row>
       </v-container>
     </v-main>
