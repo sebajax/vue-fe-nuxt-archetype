@@ -32,20 +32,21 @@ export default defineNuxtPlugin(() => {
 
       // Set the Authorization header
       options.headers = setAuthorizationHeader();
-      options.retry = 1;
     },
     // onResponseError hook
     async onResponseError({ request, response, options }) {
       // Handle authorization response error
       if (response.status === StatusCodes.UNAUTHORIZED) {
         try {
-          if ((options.retry as number) >= 3 || !options.retry) {
-            throw new Error('Retry limit reached');
+          if (options.retry === undefined) {
+            options.retry = 3;
+          } else {
+            options.retry = (options.retry as number) - 1;
+
+            if (options.retry <= 0) {
+              throw new Error('Retry limit reached');
+            }
           }
-
-          options.retry = options.retry ? (options.retry as number) + 1 : 1;
-
-          console.log(options.retry);
 
           // Refresh the token using oidc
           await refresh();
