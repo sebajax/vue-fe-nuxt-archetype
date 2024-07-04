@@ -48,6 +48,8 @@ export default defineNuxtPlugin(() => {
             }
           }
 
+          console.log(options.retry);
+
           // Refresh the token using oidc
           await refresh();
 
