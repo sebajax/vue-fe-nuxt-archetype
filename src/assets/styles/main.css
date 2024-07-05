@@ -1,0 +1,58 @@
+@import 'vuetify/styles';
+@import '@mdi/font/css/materialdesignicons.css';
+/* Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* assets/styles/main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Heading */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter';
+  font-weight: bold;
+}
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+/* Paragraph */
+p {
+  font-family: 'Inter';
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Table */
+.v-table {
+  border-radius: 20px;
+}
+/* Even table row bg-color */
+.v-table tbody tr:nth-child(even) {
+  color: black;
+  background-color: #e6e6e6;
+}
+/* Odd table row bg-color */
+.v-table tbody tr:nth-child(odd) {
+  color: black;
+  background-color: white;
+}

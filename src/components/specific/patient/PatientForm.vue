@@ -1,105 +1,124 @@
 <script setup lang="ts">
 // [Imports]
-import patientValidation from '~/composables/velidate-patient.composable';
-// -stores
-import { useAddUserStore } from '~/stores/user/addUser/useAddUserStore';
+// - Module
+import { useForm } from 'vee-validate';
 
-// VUE
+// [Composable]
+const { patientSchema } = usePatientFormSchema();
+
+const { defineField, handleSubmit } = useForm({
+  validationSchema: patientSchema,
+});
+
+// [Const]
+const genreItems = ['Femenino', 'Masculino', 'Otro'];
+const [name, nameProps] = defineField('name', useErrorHandler); // String
+const [identityNumber, identityNumberProps] = defineField(
+  'identityNumber',
+  useErrorHandler,
+); // String
+const [genre, genreProps] = defineField('genre', useErrorHandler); // String
+const [nationality, nationalityProps] = defineField(
+  'nationality',
+  useErrorHandler,
+); // String
+const [address, addressProps] = defineField('address', useErrorHandler); // String
+const [socialSecurity, socialSecurityProps] = defineField(
+  'socialSecurity',
+  useErrorHandler,
+); // String
+const [phone, phoneProps] = defineField('phone', useErrorHandler); // String
+const [altPhone, altPhoneProps] = defineField('altPhone', useErrorHandler); // String
+const [email, emailProps] = defineField('email', useErrorHandler); // String
 
 // [Modularity - Post Data]
-// - [Reactivity State]
-const formData = ref({
-  name: '',
-  rut: '',
-  birthdate: '',
-  age: 0,
-  genre: '',
-  nationality: '',
-  address: '',
-  socialSecurity: '',
-  phone: '',
-  altPhone: '',
-  email: '',
-});
-// TODO: replace with Pinnia based toast
-const mesagge = ref<string>('');
-// - [Composable]
-const { $v, nameRules, emailRules } = patientValidation(formData);
 // - [Methods]
-async function postData() {
-  const validation = await $v.value.$validate();
-  if (validation) {
-    // await addUserProvider.addUser(formData.value);
-    const res: boolean = addUserProvider.getError;
-    if (!res) {
-      mesagge.value = 'Usuario añadido correctamente';
-      return;
-    } else {
-      mesagge.value = 'Error al añadir usuario';
-    }
-    formData.value = {
-      name: '',
-      rut: '',
-      birthdate: '',
-      age: 0,
-      genre: '',
-      nationality: '',
-      address: '',
-      socialSecurity: '',
-      phone: '',
-      altPhone: '',
-      email: '',
-    };
-  } else {
-    mesagge.value = 'Asegúrate de llenar los campos correctamente';
-  }
-}
-
-// [Stores]
-const addUserProvider = useAddUserStore();
+const postData = handleSubmit((values) => {
+  console.log('Submitted with', values);
+  //API calls
+  //TODO reset values
+});
 </script>
 
 <template>
-  <v-form class="pb-4" @submit.prevent="postData">
-    <div class="px-0 grid lg:grid-cols-2 gap-4">
+  <client-only>
+    <v-form class="pb-4" @submit.prevent="postData">
       <!-- name -->
-      <InputText
+      <BaseInputText
         key="name"
-        v-model="formData.name"
+        v-model="name"
+        v-bind="nameProps"
         label="Nombre"
         placeholder="Nombre y Apellido"
-        required
-        :rules="nameRules"
       />
       <!-- rut -->
       <BaseInputText
         key="rut"
-        v-model="formData.rut"
+        v-model="identityNumber"
+        v-bind="identityNumberProps"
         label="Rut"
         placeholder="12345678-5"
-        required
-        :rules="emailRules"
       />
-      <!-- rol -->
+      <!-- genre -->
       <BaseInputDropdown
-        label="Rol"
-        :items="['Administrador', 'Médico', 'Enfermera']"
-      />
-      <!-- gente -->
-      <BaseInputDropdown
+        key="genre"
+        v-model="genre"
+        v-bind="genreProps"
         label="Sexo"
-        :items="['Femenino', 'Masculino', 'Otro']"
+        :items="genreItems"
       />
-      <BaseButton
-        label="Añadir usuario"
-        :readinly="formData"
-        @click="postData()"
+      <!-- nationality -->
+      <BaseInputDropdown
+        key="nationality"
+        v-model="nationality"
+        v-bind="nationalityProps"
+        label="Nacionalidad"
+        :items="nationalityItems"
       />
+      <!-- address -->
+      <BaseInputText
+        key="address"
+        v-model="address"
+        v-bind="addressProps"
+        label="Dirección"
+        placeholder="Calle 123"
+      />
+      <!-- socialSecurity -->
+      <BaseInputText
+        key="socialSecurity"
+        v-model="socialSecurity"
+        v-bind="socialSecurityProps"
+        label="Previsión"
+        placeholder="Fonasa"
+      />
+      <!-- phone -->
+      <BaseInputText
+        key="phone"
+        v-model="phone"
+        v-bind="phoneProps"
+        label="Teléfono"
+        placeholder="+569 1234 5678"
+      />
+      <!-- altPhone -->
+      <BaseInputText
+        key="altPhone"
+        v-model="altPhone"
+        v-bind="altPhoneProps"
+        label="Teléfono alternativo"
+        placeholder="+569 1234 5678"
+      />
+      <!-- email -->
+      <BaseInputText
+        key="email"
+        v-model="email"
+        v-bind="emailProps"
+        label="Correo"
+        placeholder="correo@falp.org"
+        type="email"
+        required
+      />
+      <BaseButton label="Añadir paciente" type="submit" />
       <v-spacer />
-      <!-- TODO: replace with Pinnia based toast -->
-      <p v-if="mesagge" class="bg-red rounded-lg px-2 py-2">
-        {{ mesagge }}
-      </p>
-    </div>
-  </v-form>
+    </v-form>
+  </client-only>
 </template>

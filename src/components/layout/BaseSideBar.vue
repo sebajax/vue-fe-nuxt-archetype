@@ -7,8 +7,6 @@ const sidebarItems = [
   { label: 'Tareas', icon: 'mdi-calendar', path: '/tasks' },
 ];
 
-// VUE
-
 // [Props]
 interface IProps {
   spTheme: string;

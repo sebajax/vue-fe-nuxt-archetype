@@ -1,30 +1,51 @@
 <script setup lang="ts">
 // [Imports]
 import { useTheme } from 'vuetify';
-// types
-import type { Theme } from '../interfaces/theme.type';
-// stores
-// import { useThemeStore } from '@/stores/theme/themeStore';
-// [Reactivity - Actual page]
+// - Interface
+import type { TypeTheme } from '../interfaces/theme.interface';
+import { EnumTheme, EnumThemeTranslation } from '../interfaces/theme.interface';
+
+// [Modularity - Actual page]
 const actualPage = ref<string>('');
-// [Reactivity - Set application theme]
+
+// [Modularity - Set application theme]
 const theme = useTheme();
-const defaultTheme = ref<Theme>('light');
-const themeLanguaje = ref<string>(
-  { light: 'claro', dark: 'oscuro' }[defaultTheme.value],
-);
-// -set default theme based on the swtich value
-watch(defaultTheme, (newTheme: Theme) => {
-  themeLanguaje.value = { light: 'claro', dark: 'oscuro' }[newTheme];
+const defaultTheme = ref<TypeTheme>(EnumTheme.LIGHT);
+const themeLanguage = ref<string>(EnumThemeTranslation.LIGHT);
+// - [Watch]
+watch(defaultTheme, (newTheme: TypeTheme) => {
+  themeLanguage.value = getThemeTranslation(newTheme);
   theme.global.name.value = newTheme;
 });
+
+// [Modularity - Page title]
+const title = ref('Nuxt Archetype');
+const description = ref('Nuxt 3 frontend archetype');
+useHead({
+  title,
+  meta: [
+    {
+      name: 'description',
+      content: description,
+    },
+  ],
+});
+
+// [Modularity - Get theme colors]
+const colors = useColors();
+const primaryColor = colors.primary;
+const darkTextColor = colors.darkText;
 </script>
+
 <template>
   <v-app class="d-flex">
     <v-layout column>
-      <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguaje" />
+      <BaseSideBar v-model="defaultTheme" :sp-theme="themeLanguage" />
       <BaseHeader v-model="actualPage" />
-      <v-main :style="{ height: '100vh' }">
+      <ClientOnly>
+        <BaseToast />
+      </ClientOnly>
+      <v-main class="h-[100vh]">
         <NuxtPage
           class="pt-5 pr-8 overflow-y-scroll"
           @set-page-title="(value: string) => (actualPage = value)"
@@ -33,8 +54,13 @@ watch(defaultTheme, (newTheme: Theme) => {
     </v-layout>
   </v-app>
 </template>
-<style scoped>
-.full-height {
-  height: 100vh; /* You can adjust this value to your desired height */
+
+<style>
+/* Table header class: color and font */
+.v-table thead tr th {
+  background-color: v-bind(primaryColor);
+  color: v-bind(darkTextColor);
+  font-size: large;
+  font-weight: 900;
 }
 </style>

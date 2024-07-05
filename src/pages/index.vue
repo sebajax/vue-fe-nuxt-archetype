@@ -1,6 +1,21 @@
 <script setup lang="ts">
-const { loggedIn, user, refresh, login, logout, currentProvider, fetch } =
-  useOidcAuth();
+// [Imports]
+// - Interface
+import { EnumToastType } from '~/interfaces/stores/toast/toast.interface';
+
+// [Composable]
+const { loggedIn, user, logout, currentProvider } = useOidcAuth();
+// [Store]
+const { updateConfig, configToast } = useToastStore();
+
+// Test toast component
+function testUpdateConfig() {
+  updateConfig({
+    text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eaque voluptates veritatis ea odit at animi, fugiat quaerat repellendus sit libero a qui voluptas quos magni laboriosam ab dolore eligendi.`,
+    type: EnumToastType.ERROR,
+    showIcon: true,
+  });
+}
 </script>
 <template>
   <v-container class="mt-5 pa-2">
@@ -16,20 +31,19 @@ const { loggedIn, user, refresh, login, logout, currentProvider, fetch } =
           <p><b>Current provider : </b> {{ currentProvider }}</p>
           <v-btn
             color="#B684E7"
-            append-icon="mdi-refresh"
-            :disabled="!loggedIn || !user.canRefresh"
-            @click="refresh()"
-          >
-            <span class="pl-2">Refresh</span>
-          </v-btn>
-          <v-btn
-            color="#B684E7"
             append-icon="mdi-logout"
             :disabled="!loggedIn"
             @click="logout(currentProvider)"
           >
             <span class="pl-2">Logout</span>
           </v-btn>
+          <!-- test toast component -->
+          <v-divider />
+          <h3>Toast component</h3>
+          <v-btn color="primary" @click="testUpdateConfig">
+            test updateConfig
+          </v-btn>
+          <pre>{{ configToast }}</pre>
         </div>
       </v-col>
 
@@ -62,3 +76,5 @@ const { loggedIn, user, refresh, login, logout, currentProvider, fetch } =
     </v-row>
   </v-container>
 </template>
+
+<style></style>
